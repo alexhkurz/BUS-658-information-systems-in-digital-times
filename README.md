@@ -1,6 +1,6 @@
 # BUS 658: Information Systems in Digital Times
 
-This is the repository for the course BUS-658 Information Systems in Digital Times in Spring 2026.
+This is the repository for the course BUS-658 Information Systems in Digital Times in Spring 2026 taught by Seth Benzell and Alexander Kurz.
 
 **Quick Links**:
 - [Syllabus](syllabus.md)

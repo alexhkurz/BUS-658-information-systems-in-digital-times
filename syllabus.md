@@ -4,7 +4,7 @@
 
 ## Introduction
 
-**Course Meetings**:  One weekly three hour class with break (7:00 -9:50pm Thursdays in Beckman 104)
+**Course Meetings**:  One weekly three hour class with break (7:00 - 9:50pm Thursdays in Beckman 104)
 
 **Course Materials**: No textbook; required readings will be posted on course website
 
