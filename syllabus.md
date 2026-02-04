@@ -62,8 +62,8 @@
     - Unit 2 Reflection Due
 
 
-Wrap-up/Project Presentations
-Presentation Week 1
-Presentation Week 2
+- Wrap-up/Project Presentations
+  - Presentation Week 1
+  - Presentation Week 2
 
 
