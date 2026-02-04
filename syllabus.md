@@ -51,14 +51,14 @@
 
 - Unit 1 - Artificial Intelligence: 
     - Week 2 + 3: What is AI? Readings about the foundations of AI. 
-    - Week 3 + 4: Will Automation Save or Doom the Economy? Readings from the history of economics.
-    - Week 5 + 6: The Near and Far Future. Readings on Culture and AI. 
+    - Week 3, 4, 5: Will Automation Save or Doom the Economy? Readings from the history of economics.
+    - Week 6 + 7, The Near and Far Future. Readings on Culture and AI. 
     - Unit 1 Reflection Due
 
 - Unit 2 - Digital Platforms
-    - Week 7 + 8: What are Digital Platforms and their Technologies? Readings on social and economics networs and the mathematics of crypto.
-    - Week 9+ 10: Digital Platforms Today. Reading about the golden age of digital content and the enshittification of platforms.
-    - Week 11 + 12: Digital Platforms in the Future. Readings about the emerging decentralized +AI ecosystems
+    - Week 8 + 9: What are Digital Platforms and their Technologies? Readings on social and economics networs and the mathematics of crypto.
+    - Week 10+ 11: Digital Platforms Today. Reading about the golden age of digital content and the enshittification of platforms.
+    - Week 12: Digital Platforms in the Future. Readings about the emerging decentralized +AI ecosystems
     - Unit 2 Reflection Due
 
 
