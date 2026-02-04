@@ -6,20 +6,6 @@ marp: true
 
 (draft)
 
-**Week 1 — Course introduction**
-
-Seth & Alex
-
----
-
-things to add:
-
-discord
-
-the lab
-
-questions ... what kind of question we expect ... discussion in class ... 
-
 ---
 
 ## Today’s plan
@@ -48,7 +34,7 @@ Materials: On Github.
 
 ## Questions
 
-
+Link to join discord server will be on canvas.
 
 ---
 
@@ -65,7 +51,23 @@ Seth introduction
 
 ---
 
-Alex introduction
+## Who is Alexander Kurz?
+
+PhD in Computer Science, University of Munich, 2000
+Postdocs in Amsterdam and Brno
+Professor of CS, Leicester, UK, 2002-2018
+Chapman University, 2018-
+
+---
+
+## Research
+
+Theoretical Computer Science
+Models of Computation
+
+---
+
+## Teaching
 
 ---
 
