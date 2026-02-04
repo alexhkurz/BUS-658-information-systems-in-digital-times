@@ -207,10 +207,10 @@ Teams are encouraged (interdisciplinary is a feature).
 ## Course roadmap (tentative)
 
 - **Unit 0 (Week 1)**: How to generate great questions using LLMs + Scholar
-- **Unit 1 (Weeks 2–6)**: Artificial Intelligence
+- **Unit 1 (Weeks 2–8)**: Artificial Intelligence
   - foundations; automation & the economy; near vs far future
   - **Reflection 1 due**
-- **Unit 2 (Weeks 7–12)**: Digital platforms
+- **Unit 2 (Weeks 9–12)**: Digital platforms + the digital ecosystem
   - platform tech; “enshittification”; decentralized + AI ecosystems
   - **Reflection 2 due**
 - **Weeks 13–14**: Project presentations
