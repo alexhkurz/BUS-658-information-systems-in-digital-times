@@ -1,0 +1,3 @@
+# Lecture by Lecture
+
+- L1: ... tba ... 
