@@ -1,5 +1,7 @@
 # Information Systems in Digital Times, BUS 658
 
+(draft)
+
 ## Introduction
 
 **Course Meetings**:  One weekly three hour class with break (7:00 -9:50pm Thursdays in Beckman 104)
