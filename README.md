@@ -6,29 +6,41 @@ This is the repository for the course BUS-658 Information Systems in Digital Tim
 - [Syllabus](syllabus.md)
 - [Lecture by Lecture](lecture-by-lecture.md)
 - [Canvas](https://canvas.chapman.edu/courses/???)
-- [Slides](https://YOUR_USERNAME.github.io/BUS-658-information-systems-in-digital-times/) (after enabling Pages; see below)
+- [Slides](https://alexhkurz.github.io/BUS-658-information-systems-in-digital-times/) (after building and enabling Pages; see below)
 
 ---
 
 ## Slides on GitHub Pages
 
-Slides are written in [Marp](https://marp.app/) markdown in `slides/`. They are built to HTML and deployed automatically when you push to `main`.
+Slides are written in [Marp](https://marp.app/) markdown in `slides/`. You build them locally to HTML and push the `docs/` folder; GitHub Pages serves from that.
 
 ### One-time setup
 
-1. **Enable GitHub Pages (Actions)**  
+1. **Enable GitHub Pages (Deploy from a branch)**  
    In your repo: **Settings → Pages**  
-   - Under **Build and deployment**, set **Source** to **GitHub Actions**.
+   - Under **Build and deployment**, set **Source** to **Deploy from a branch**.
+   - **Branch**: `main` (or `master`)  
+   - **Folder**: `/docs`  
+   - Save.
 
-2. **Push this repo**  
-   After the first push to `main`, the workflow runs and deploys.  
+2. **Build and push the site once** (see “Workflow” below).  
    Your slides will be at:  
-   `https://YOUR_USERNAME.github.io/BUS-658-information-systems-in-digital-times/slides/slides01.html`
-
-3. **Optional**: Replace `YOUR_USERNAME` in this README with your GitHub username so the link works.
+   `https://alexhkurz.github.io/BUS-658-information-systems-in-digital-times/slides/slides01.html`
 
 ### Workflow
 
-- You only edit and commit **`.md`** files in `slides/`.
-- The GitHub Action builds them to HTML and deploys to GitHub Pages (no separate branch; no need to commit HTML).
-- To add more slide decks, add `slides02.md`, etc.; the workflow builds every `slides/*.md` file.
+1. Edit the **`.md`** files in `slides/` as needed.
+2. From the repo root, run:
+   ```bash
+   bash scripts/gh-pages.sh
+   ```
+   (Requires Node/npm; the script uses `npx` to run Marp—no global install needed. If the script is executable you can use `./scripts/gh-pages.sh` instead.)
+3. Commit and push the built files:
+   ```bash
+   git add docs/
+   git commit -m "Update slides"
+   git push
+   ```
+   GitHub Pages will update from the `docs/` folder on `main`.
+
+To add more slide decks, add `slides02.md`, etc.; the script builds every `slides/*.md` file into `docs/slides/`.
