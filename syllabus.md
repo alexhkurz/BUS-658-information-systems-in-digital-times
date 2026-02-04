@@ -62,7 +62,7 @@
     - Unit 2 Reflection Due
 
 
-- Wrap-up/Project Presentations
+- Wrap-up/Project Presentations: Week 13 + 14
   - Presentation Week 1
   - Presentation Week 2
 
