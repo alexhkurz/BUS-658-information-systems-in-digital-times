@@ -11,5 +11,5 @@
 
 - Optional:
     - Anthropic — [Constitution](https://www.anthropic.com:constitution)  
-    - Lenat & Marcus — [Getting from Generative AI to Trustworthy AI](https://arxiv.org/abs/2308.04445)" (the 16 desiderata).
+    - Lenat & Marcus — [Getting from Generative AI to Trustworthy AI](https://arxiv.org/abs/2308.04445)" (16 desiderata for future AI).
 
