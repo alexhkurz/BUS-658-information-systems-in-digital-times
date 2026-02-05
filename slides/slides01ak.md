@@ -60,14 +60,24 @@ Chapman University, 2018-
 
 ---
 
-## Research
+## Research Areas
 
 Theoretical Computer Science
+Theory of Programming Languages, Software Engineering (SWE)
 Models of Computation
+Formal Methods
+Proving Correctness of Programs
+Logic and Category Theory, Algebra and Topology
 
 ---
 
 ## Teaching
+
+Programming Languages
+Compiler Construction
+Algorithm Analysis
+Logical Foundations of Computer Science
+Natural Language Processing, Smart Contracts, Wikipedia Governance
 
 ---
 
