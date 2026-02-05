@@ -1,8 +1,8 @@
 # Readings Week 1
 
 - One of the following:
-  - 3Blue1Brown — [Neural Networks](https://www.3blue1brown.com/topics/neural-networks) 
-  - [Attention Is All You Need](https://arxiv.org/abs/1706.03762) (Vaswani et al.)
+  - 3Blue1Brown — [Neural Networks](https://www.3blue1brown.com/topics/neural-networks) (foundational introduction)
+  - [Attention Is All You Need](https://arxiv.org/abs/1706.03762) (the seminal paper)
 
 - One of the following:
   - [Why Can't Your AI Agent Book a Flight?](https://empiricrafting.substack.com/p/why-cant-your-ai-agent-book-a-flight)  
