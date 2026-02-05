@@ -1,5 +1,7 @@
 ---
 marp: true
+style: |
+  section { text-align: left; }
 ---
 
 # BUS 658: Information Systems in Digital Times
@@ -91,6 +93,7 @@ Substack Paia, Nearbytes, Etc
 Wikipedia Bias (What is Bias?)
 Democratic Technologies
 Interestingness (in math and beyond)
+[210 reasons are no reason at all](https://courses.washington.edu/rome250/gallery/ROME%20250/210%20Reasons.htm)
 
 ---
 
@@ -98,6 +101,30 @@ Interestingness (in math and beyond)
 
 - Lab: Use **LLMs** + **Google Scholar** to elaborate an *interesting* question 
 - Discussion: Summarize your conversation at [Hackmd](https://hackmd.io/@alexhkurz/ryT_nVMD-l)
+
+---
+
+## Method of finding an interesting question
+
+Converse with AI until you don't get a good answer anymore. Ask the AI to link the most relevant scholarly resources on the topic. Read some of them. 
+
+--- 
+
+## Example: HI vs AI
+
+I recently had a conversation about the future of humanity in times of AI. Here is a stepping stone I came up after several iterations, worth of further development
+
+> Brief history of Intelligent Machines:
+> 
+> - [McCulloch & Pitts (1943)](https://www.cs.cmu.edu/~./epxing/Class/> 10715/reading/McCulloch.and.Pitts.pdf): Neural Networks
+> - [Von Neumann (1944)](https://archive.org/details/> 20200901-vN_First_Draft_Report_EDVAC_Moore_Sch_1945/page/n19/mode/2up): > **AI-as-logical-deduction**
+> - Machines are better at I-as-logical-deduction than Hs
+> - [Rosenblatt (1958)](https://www.ling.upenn.edu/courses/cogs501/> Rosenblatt1958.pdf): **AI-as-probablistic-pattern-recognition**
+> - Machines are better at I-as-probabilistic-pattern-recognition than Hs
+>   
+> What is left for humans?
+
+---
 
 ## Instructions for the Lab
 

@@ -15,47 +15,47 @@ Here are the best references, categories of evidence, and thought leadership pie
 ### 1. The "Token Efficiency" Argument
 The strongest technical argument for Markdown is tokenization. LLMs process text in "tokens." Markdown is concise; HTML and XML are verbose.
 
-*   **Reference:** **OpenAI’s Tokenizer Tool**
+*   [OpenAI’s Tokenizer Tool](https://platform.openai.com/tokenizer)
     *   *Context:* If you paste HTML into a tokenizer, the tags (`<div class="...">`, `<span>`) consume massive amounts of context window. Markdown (`**bold**`, `# Header`) is extremely token-efficient.
     *   *Takeaway:* AI engineers prefer Markdown because it costs less money (API costs) and allows more content to fit in the model's memory.
 
 ### 2. The Training Data: GitHub and Stack Overflow
 LLMs are proficient in Markdown because they were trained on the internet, and the highest quality technical data on the internet is formatted in Markdown.
 
-*   **Reference:** **"The Pile: An 800GB Dataset of Diverse Text for Language Modeling" (Gao et al., 2020)**
+*   [The Pile: An 800GB Dataset of Diverse Text for Language Modeling](https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=The+Pile%3A+An+800GB+Dataset+of+Diverse+Text+for+Language+Modeling&btnG=) (Gao et al., 2020)
     *   *The Evidence:* This paper describes one of the most famous open-source datasets for training AI. It highlights datasets like **GitHub** (ReadMe.md files) and **StackExchange** (which uses Markdown).
     *   *Why it matters:* Because the models read billions of lines of Markdown during "childhood" (training), they "speak" it natively.
 
 ### 3. The "Universal Interface" (Jupyter & Notebooks)
 Before the current LLM boom, the Data Science and Machine Learning communities settled on a standard for mixing code and text.
 
-*   **Reference:** **Project Jupyter (The `.ipynb` JSON structure)**
+*   [Project Jupyter (The `.ipynb` JSON structure)](https://ipython.readthedocs.io/en/3.x/notebook/nbformat.html)
     *   *Context:* Jupyter Notebooks are the standard environment for AI development. A notebook is literally a JSON wrapper around **Markdown cells** and **Code cells**.
     *   *Impact:* Because AI researchers live inside Jupyter notebooks, the tools they build naturally output Markdown.
 
 ### 4. Prompt Engineering Guidelines
 The official documentation from major AI labs explicitly instructs developers to use Markdown to structure inputs for the best results.
 
-*   **Reference:** **OpenAI Prompt Engineering Guide**
+*   [OpenAI Prompt Engineering Guide](https://platform.openai.com/docs/guides/prompt-engineering#message-formatting-with-markdown-and-xml)
     *   *Quote:* "Use delimiters to clearly indicate distinct parts of the input."
     *   *The Standard:* While they mention XML tags, their output examples and system messages almost exclusively use Markdown for formatting tables, lists, and headers.
-*   **Reference:** **Anthropic (Claude) System Prompts**
+*   [Anthropic (Claude) System Prompts](https://platform.claude.com/docs/en/release-notes/system-prompts#:~:text=markdown)
     *   Anthropic is unique in that they actually prefer XML tags for *input* delimiters, but they train Claude to output **Markdown** for human readability.
 
 ### 5. Thought Leadership & Industry Analysis
 Tech commentators have articulated why Markdown won over other formats (like MS Word, PDF, or HTML).
 
-*   **Reference:** **Simon Willison’s Weblog (Co-creator of Django)**
+*   [Simon Willison’s Weblog (Co-creator of Django)](https://simonwillison.net/)
     *   *Specific Concept:* Willison writes extensively about "LLM interactions." He highlights that Markdown is the only format that effectively bridges **Structure** (headers, lists, tables) and **Fluidity** (plain text).
     *   *Search term:* "Simon Willison Markdown LLM" will yield discussions on how he uses Markdown to archive his own data to make it "AI-ready."
 
-*   **Reference:** **Karpathy on Twitter (Andrej Karpathy)**
+*   [Karpathy on Twitter (Andrej Karpathy)](https://x.com/karpathy)
     *   The former Director of AI at Tesla and OpenAI researcher frequently discusses the "text interface." He has noted that code (formatted in Markdown blocks) is the highest signal-to-noise ratio data available to models.
 
 ### 6. The "Code Block" Standard (GFM)
 The specific dialect of Markdown used by AI is **GFM (GitHub Flavored Markdown)**.
 
-*   **Reference:** **GitHub Flavored Markdown Spec**
+*   [GitHub Flavored Markdown Spec](https://github.github.com/gfm/)
     *   *Why it is the Lingua Franca:* Standard Markdown didn't have tables or fenced code blocks (` ```python `). GitHub added them.
     *   *The AI Connection:* When ChatGPT or Claude writes code for you, they are using GFM fenced code blocks. This allows the UI to render the "Copy Code" button. This interaction pattern is now the universal standard for AI coding assistants.
 

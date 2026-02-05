@@ -12,66 +12,73 @@ theme: gaia
 ## Lab Instructions
 
 1. Make a one slide summary of your dialogue. Write down your question and explian why it is interesting. [Why Markdown](../notes/why-markdown.md)
-2. Export the full dialogue with PantherAI, share it via [Rentry.co](https://rentry.co/), put the link on your slide.
+2. Export the full dialogue with PantherAI (top right button, export to .markdown, select "Include enpoint options").
+3. Copy the exported md-file to [Rentry.co](https://rentry.co/), generate a link, share the link on your slide ([my example](https://rentry.co/urozevaf))
 
 ---
 
-# Matt Becker
+### Matt Becker
 
 ---
 
-# Lewis Campbell
+### Lewis Campbell
 
 ---
 
-# Carlo Castro
+### Carlo Castro
 
 ---
 
-# Kelly Dang
+### Kelly Dang
 
 ---
 
-# Jordan Ehrman
+### Jordan Ehrman
 
 ---
 
-# Amelia Hammer
+### Amelia Hammer
 
 ---
 
-# Francis Kurian
+### Francis Kurian
 
 ---
 
-# Manuel Lara
+### Manuel Lara
 
 ---
 
-# Nga Nguyen
+### Nga Nguyen
 
 ---
 
-# Sayde Pianko
+### Sayde Pianko
 
 ---
 
-# Abigail Reyes
+### Abigail Reyes
 
 ---
 
-# Alexxis Saucedo
+### Alexxis Saucedo
 
 ---
 
-# Matt Tonks
+### Matt Tonks
 
 ---
 
-# Colton Wedell
+### Colton Wedell
 
 ---
 
-# Alex Zermeno
+### Alex Zermeno
 
 ---
+
+# Readings and Discord Question
+
+See ... for the readings.
+
+Choose one reading and, using the methods practiced today in the lab, find an interesting question. This questioned should be deep enought to not get a good answer from an AI.
