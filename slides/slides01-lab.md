@@ -11,7 +11,7 @@ theme: gaia
 
 ## Lab Instructions
 
-1. Make a one slide summary of your dialogue. Write down your question and explian why it is interesting.
+1. Make a one slide summary of your dialogue. Write down your question and explian why it is interesting. [Why Markdown](../notes/why-markdown.md)
 2. Export the full dialogue with PantherAI, share it via [Rentry.co](https://rentry.co/), put the link on your slide.
 
 ---
