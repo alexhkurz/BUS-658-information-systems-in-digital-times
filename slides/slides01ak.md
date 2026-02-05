@@ -81,13 +81,36 @@ Natural Language Processing, Smart Contracts, Wikipedia Governance
 
 ---
 
-## Lab: What makes a question *interesting*?
+## Software Engineering (SWE)
 
-- Use **LLMs** + **Google Scholar** to turn a reading into research/discussion questions  
-- Practice: what counts as interesting? what’s worth following up?  
-- We’ll walk through examples and try it together  
-
-*Next: lab instructions / handout.*
+SWE Methods for Vibe Coding
+Formal Methods and AI
+Incomplete Smart Contracts
+Local-First AI
+Substack Paia, Nearbytes, Etc
+Wikipedia Bias (What is Bias?)
+Democratic Technologies
+Interestingness (in math and beyond)
 
 ---
 
+## Lab: What makes a question *interesting*?
+
+- Lab: Use **LLMs** + **Google Scholar** to elaborate an *interesting* question 
+- Discussion: Summarize your conversation at [Hackmd](https://hackmd.io/@alexhkurz/ryT_nVMD-l)
+
+## Instructions for the Lab
+
+1. Go to [PantherAi](https://pantherai.chapman.edu/), choose a model
+2. Ask a question ... Ask a follow up question ... etc
+3. Make a mental model of  the emergin landscape
+4. Ask to inline links to google scholar queries, wikipedia, etc
+5. Also read outside of the AI
+6. Until (end) go back to 2
+7. Make a one slide summary at [HackMd](https://hackmd.io/PVMx34caTxKPrE09uYV9tw?both#/
+)
+8. Export the dialogue with the AI and share it via [Rentry.co](https://rentry.co/)
+
+---
+
+## Break (10 min)
