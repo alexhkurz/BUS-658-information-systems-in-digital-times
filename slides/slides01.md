@@ -8,16 +8,16 @@ theme: gaia
 ## Information Systems in Digital Times
 
 **Spring 2026**  
-Instructor: **Seth G. Benzell** (Chapman Argyros)  
-Digital Fellow: **MIT IDE**, **Stanford HAI Digital Economy Lab**
+**Seth G. Benzell** (Chapman Argyros, MIT IDE, Stanford HAI Digital Economy Lab)
+**Alexander Kurz** (Chapman Keck)
 
 ---
 
 ## Today
 
 - **Who I am** + what I work on
-- **What this class is** (and isn’t)
-- **How we’ll run discussion**
+- **Goals For The Class** 
+- **Typical Class Format**
 - **Assignments + grading**
 - **Course roadmap**
 
@@ -26,22 +26,95 @@ Digital Fellow: **MIT IDE**, **Stanford HAI Digital Economy Lab**
 ## Who is Seth Benzell?
 
 - **Assistant Professor** at Chapman University (Argyros School of Business & Economics)
-- **PhD (Economics)**, Boston University (2017)
+- **PhD (Economics)**, Boston University, Postdoc at MIT 2017-2020
 - Research focus: **economics of digitization**
   - automation + AI
   - networks + information systems
-  - digital platforms (including **APIs**)
+  - digital platforms
+- working on a book on "The Power Law Economy"
+ - host of the Justified Posteriors podcast
+---
+## Goals for Class
+
+- Topic: Think about the bigger picture and longer term impact of the digital tools you are learning: specifically *AI*, *Analytics*, and *Digital Networks*
+
+- Tools: Practice reading, discussing, and using LLMs as a learning assistant for foundational and cutting edge tech and econ of tech research
+
+- Deliverables: A chance to further develop portfolio project; a refined appreciation of plausible longer-term career trajectories
+
+---
+## Typical Weekly Format
+
+- Do readings in the days leading up to class, assigned week before
+- A small assignment due Wednesday: e.g. Developing one *good* question based on the readings for discussion
+- An introudctory lecture on the topics of the day
+- A lab or breakout session
+- A regrouping for a closing discussion
+
+
+*Breaks in between*
 
 ---
 
-## A few research themes (examples)
+## Logistics
 
-- **AI & the macroeconomy**: how new tech changes investment, wages, welfare
-- **Skill-biased technological change**: how it propagates through the economy
-- **Platforms + APIs**: how interfaces can “invert the firm” and create growth
-- **Networks & history**: how relationships and institutions shape outcomes
+- **Meeting**: Thursdays **7:00–9:50pm** (break included), **Beckman 104**
+- **Materials**: no textbook; readings posted on the course site
+
+
+  I would also like to set up an *optional* schedule for:
+-group reading
+-maybe 2 movie nights?
+
+Alex will set up a system for submitting the weekly small assignments
 
 ---
+
+## Course roadmap (tentative)
+
+- **Unit 1 (Weeks 2–8)**: AI foundations; automation & the economy; alignment, regulation and the farther future
+  - **Reflection 1 due**
+- **Unit 2 (Weeks 9–12)**: Digital platforms + the digital ecosystem
+  - platform tech (e.g. APIs, MCPs, crypto); decentralized + AI ecosystems; the *Power Law Economy*
+  - **Reflection 2 due**
+- **Weeks 13–14**: Project presentations
+
+---
+
+## Before Class
+
+- Submit **1–2 questions** about the reading **the day before**
+- Also include an LLM answer to the question you believe is inadequate
+
+Aim for questions that are:
+- **specific** (not “is AI good/bad?”)
+- **answerable, but currently unknown** 
+- **consequential** 
+Some weeks we may ask you to do something else for your small assignment instead (e.g. finalize project teams)
+
+
+---
+## Some Topics I Think are Interesting
+A conversation with Bo Cowgill of Columbia University
+- The destruction of meaning vs. the coasian singularity
+- Algorithmic bias vs. AI omniscience
+- The future of data analytics careers
+
+
+
+---
+extra slides follow
+
+
+
+---
+
+
+
+
+
+
+
 
 ## Seth’s research: the questions
 
@@ -121,7 +194,6 @@ You should be able to:
 
 - **Meeting**: Thursdays **7:00–9:50pm** (break included), **Beckman 104**
 - **Materials**: no textbook; readings posted on the course site
-- **Background**: MGSC 209 or MATH 203 (or instructor approval)
 
 ---
 
@@ -147,19 +219,7 @@ Borrowing from the *Justified Posteriors* idea:
 - State your **posterior** (how did your belief change, and why?)
 - Name what would change your mind **next**
 
----
 
-## Before each class (discussion questions)
-
-- Submit **1–2 questions** about the reading **the day before**
-- Questions are graded rigorously (you can use the internet + LLMs)
-
-Aim for questions that are:
-- **specific** (not “is AI good/bad?”)
-- **answerable** (with theory, data, or careful logic)
-- **consequential** (the answer matters)
-
----
 
 ## How discussions will work
 
@@ -176,9 +236,9 @@ Aim for questions that are:
 ## Grading (high level)
 
 - **20%** Participation (quality of contributions)
-- **20%** Discussion questions (submitted before class)
-- **15%** Reflection 1 (Weeks 4–6 window; topic suggested by instructors)
-- **15%** Reflection 2 (Weeks 10–12 window; topic suggested by instructors)
+- **20%** Discussion questions (submitted day before class)
+- **15%** Reflection 1 (Weeks 4–6 window)
+- **15%** Reflection 2 (Weeks 10–12 window)
 - **30%** Final project
 
 ---
@@ -202,20 +262,7 @@ Examples (not exhaustive):
 
 Teams are encouraged (interdisciplinary is a feature).
 
----
 
-## Course roadmap (tentative)
-
-- **Unit 0 (Week 1)**: How to generate great questions using LLMs + Scholar
-- **Unit 1 (Weeks 2–8)**: Artificial Intelligence
-  - foundations; automation & the economy; near vs far future
-  - **Reflection 1 due**
-- **Unit 2 (Weeks 9–12)**: Digital platforms + the digital ecosystem
-  - platform tech; “enshittification”; decentralized + AI ecosystems
-  - **Reflection 2 due**
-- **Weeks 13–14**: Project presentations
-
----
 
 <!-- _class: lead -->
 ## Week 1: what I want from you
