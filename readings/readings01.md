@@ -7,7 +7,7 @@
 - One of the following:
   - [Why Can't Your AI Agent Book a Flight?](https://empiricrafting.substack.com/p/why-cant-your-ai-agent-book-a-flight)  
   - [Stanford AI Index Report (2025)](https://hai.stanford.edu/ai-index/2025-ai-index-report)  
-  - [Evaluating GDPVal](https://empiricrafting.substack.com/p/evaluating-gdpval-openais-eval-for) (OpenAI's eval for economic reasoning)  
+  - [Evaluating GDPVal](https://empiricrafting.substack.com/p/evaluating-gdpval-openais-eval-for)
 
 - Optional:
     - Anthropic — [Constitution](https://www.anthropic.com:constitution)  
