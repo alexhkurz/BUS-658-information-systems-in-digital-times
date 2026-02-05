@@ -11,15 +11,6 @@
 
 The paper introduces the **Transformer** architecture, which relies entirely on self-attention (no recurrence or convolution). It achieves state-of-the-art on WMT 2014 English–German and English–French machine translation and generalizes to English constituency parsing. Scaled dot-product attention and multi-head attention are the core mechanisms; position is encoded via fixed sinusoids. The model is more parallelizable and trains faster than prior encoder–decoder RNN/CNN models.
 
-## Relevance to course
-
-### Unit 1 (AI) — foundations
-- Core reading for “What is AI?” and mathematical foundations (attention, transformers).
-- Fits Week 2–3: foundations of AI; optional advanced reading for students with ML background.
-
-### Key themes
-- Neural networks, attention, transformers, sequence transduction, foundations of LLMs.
-
 ## Key concepts
 
 - Transformer, self-attention, scaled dot-product attention, multi-head attention

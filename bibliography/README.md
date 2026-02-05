@@ -5,3 +5,4 @@ Course bibliography: papers, reports, and readings for Information Systems in Di
 ## Subfolders
 
 - [ai-foundations](ai-foundations/README.md) — What is AI? Neural nets, attention, transformers, foundations; landscape reports.
+- [trustworthy-ai](trustworthy-ai/README.md) — Evaluation, safety, alignment; constitution; desiderata; benchmarks (e.g. GDPVal).

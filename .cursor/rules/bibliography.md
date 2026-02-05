@@ -25,7 +25,7 @@ You can **copy or drop PDFs (or other sources) into `bibliography/`** (e.g. at t
    - **Choosing:** Pick the **best-matching existing** subfolder from the list below. Prefer the most specific fit (e.g. a paper on LLM evaluation → `trustworthy-ai/`; on automation and wages → `automation-economy/`). If two folders fit, choose the one that matches the **primary** topic.
    - **Creating:** If no existing subfolder fits well, **create a new one**: use a short, lowercase, hyphenated name (e.g. `llm-evaluation/`, `platform-governance/`). Add a one-line description in `bibliography/README.md` and create `bibliography/<newfolder>/README.md` (can start with just this paper’s bullet).
 3. **Move and rename:** Move the file to `bibliography/<subfolder>/{citationkey}.pdf` (create the subfolder if new). Use the citation key derived from authors and year (and short title if needed for disambiguation).
-4. **Do the rest:** Add BibTeX to `bibliography/references.bib`, add one bullet to the subfolder’s `README.md`, create `bibliography/<subfolder>/{citationkey}.md` (metadata, summary, relevance to course, key concepts; summary can be brief or “To be filled”), run `pdftotext` to produce `{citationkey}.txt` in that subfolder. Optionally update `bibliography/README.md` if you created a new subfolder.
+4. **Do the rest:** Add BibTeX to `bibliography/references.bib`, add one bullet to the subfolder’s `README.md`, create `bibliography/<subfolder>/{citationkey}.md` (metadata, summary, key concepts; summary can be brief or “To be filled”), run `pdftotext` to produce `{citationkey}.txt` in that subfolder. Optionally update `bibliography/README.md` if you created a new subfolder.
 
 **Subfolder choice guide (use for “choose or create”):**
 
@@ -99,15 +99,6 @@ Each note file in a subfolder should follow this structure:
 
 {2–3 paragraph summary of main contributions and arguments}
 
-## Relevance to course
-
-### Unit 1 (AI) / Unit 2 (Digital platforms) / Reflections / Final project
-- Which weeks or assignments could use this?
-- Discussion questions it could support?
-
-### Key themes
-- e.g. automation, evaluation, platforms, trustworthy AI
-
 ## Key concepts
 
 - …
@@ -129,8 +120,7 @@ Each note file in a subfolder should follow this structure:
 4. **PDF:** Save to `bibliography/<subfolder>/{citationkey}.pdf` (or your chosen name).
 5. **Text:** Run `pdftotext … .pdf … .txt` in that subfolder (same base name as PDF).
 6. **Subfolder README:** Add one bullet line in `bibliography/<subfolder>/README.md`.
-7. **Note file:** Create `bibliography/<subfolder>/{citationkey}.md` with metadata, summary, relevance to course, key concepts, and notes; include Google Scholar link.
-8. **Relevance:** Map paper to course units (Unit 0 intro, Unit 1 AI, Unit 2 platforms, reflections, final project) and to discussion questions or assignments where it fits.
+7. **Note file:** Create `bibliography/<subfolder>/{citationkey}.md` with metadata, summary, key concepts, and notes; include Google Scholar link.
 
 ## Scaling with many papers
 
