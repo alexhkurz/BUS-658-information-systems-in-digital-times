@@ -174,15 +174,15 @@ Converse with AI until you don't get a good answer anymore. Ask the AI to link t
 
 I recently had a conversation about the future of humanity in times of AI. Here is a stepping stone I came up with after several iterations, worthy of further development
 
-> Brief history of Intelligent Machines:
-> 
-> - [McCulloch & Pitts (1943)](https://www.cs.cmu.edu/~./epxing/Class/10715/reading/McCulloch.and.Pitts.pdf): Neural Networks
-> - [Von Neumann (1944)](https://archive.org/details/20200901-vN_First_Draft_Report_EDVAC_Moore_Sch_1945/page/n19/mode/2up): **AI-as-logical-deduction**
-> - Machines are better at I-as-logical-deduction than Hs
-> - [Rosenblatt (1958)](https://www.ling.upenn.edu/courses/cogs501/Rosenblatt1958.pdf): **AI-as-probabilistic-pattern-recognition**
-> - Machines are better at I-as-probabilistic-pattern-recognition than Hs
->   
-> What is left for humans?
+Brief history of Intelligent Machines:
+
+- [McCulloch & Pitts (1943)](https://www.cs.cmu.edu/~./epxing/Class/10715/reading/McCulloch.and.Pitts.pdf): Neural Networks
+- [Von Neumann (1944)](https://archive.org/details/20200901-vN_First_Draft_Report_EDVAC_Moore_Sch_1945/page/n19/mode/2up): **AI-as-logical-deduction**
+- Machines are better at I-as-logical-deduction than Hs
+- [Rosenblatt (1958)](https://www.ling.upenn.edu/courses/cogs501/Rosenblatt1958.pdf): **AI-as-probabilistic-pattern-recognition**
+- Machines are better at I-as-probabilistic-pattern-recognition than Hs
+  
+What is left for humans?
 
 Hint: [210 reasons are no reason at all](https://courses.washington.edu/rome250/gallery/ROME%20250/210%20Reasons.htm)
 
