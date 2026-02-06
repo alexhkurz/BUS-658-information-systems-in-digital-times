@@ -98,8 +98,9 @@ Materials: On Github.
 
 ## Before Class
 
-- Submit **1–2 questions** about the reading **the day before**
-- Also include an LLM answer to the question you believe is inadequate
+- Submit **one question** about the reading **the day before** class.
+- Include a link that shows the conversation with the LLM.
+- Include a link to an LLM answer to the question you believe is inadequate.
 
 ---
 
@@ -172,8 +173,6 @@ Converse with AI until you don't get a good answer anymore. Ask the AI to link t
 ## Example: HI vs AI
 
 I recently had a conversation about the future of humanity in times of AI. Here is a stepping stone I came up with after several iterations, worthy of further development
-
----
 
 > Brief history of Intelligent Machines:
 > 
