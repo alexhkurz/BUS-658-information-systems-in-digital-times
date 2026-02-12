@@ -30,8 +30,17 @@ The following is reproduced from the first week's slides
   - your iterations with an LLM as you refine the question
   - your own discussion of why you find the question interesting
 
+- Show up ready to **ask** and **improve** questions
+- Bring a point of view, but be willing to **update**
+- Be precise: definitions, baselines, mechanisms
+
+Welcome to BUS 658.
+
 Aim for questions that are:
 - **specific** (not “is AI good/bad?”)
 - **answerable, but currently unknown** 
 - **consequential** 
 Some weeks we may ask you to do something else for your small assignment instead 
+
+
+
