@@ -19,9 +19,10 @@
 - 20% Participation in class participation
     - One of the co-teachers will monitor class discussion participation quality
         - Put in a grade every day on each of these (good, mediocre, zero); 0, 1, 2
-- 20% Student discussion questions
+- 20% Student discussion questions or other weekly assignment
     - The day before class, students will be required to submit 1 questions based on the scheduled reading. These will be graded rigorously based on the knowledge students will have access to LLMs and the internet (and encouraged to use them!) when generating them. 
     - An explanation of why this is an interesting question, for example in form of a link to unsatisfactory answer by an LLM, together with a sentence of why this is a not a good answer.
+    - Or alternate, closely related, weekly assignment
 - 15% Reflection 1:
     - At the end of week 5, we will suggest to each student a topic for reflection based on one of their proposed questions. 
     - Students will have two weeks to complete a 500-1,000 word reflection on this topic; encourage or require an analytical element?
