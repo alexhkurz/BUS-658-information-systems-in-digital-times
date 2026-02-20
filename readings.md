@@ -1,5 +1,16 @@
 # Readings 
 
+## Week 3
+
+Required:
+- Anthropic [Constitution](https://www.anthropic.com:constitution). Read the Overview, Closing thoughts, and "Acknowledging open problems" and skim the rest
+- [Eliciting latent knowledge: How to tell if your eyes deceive you](https://docs.google.com/document/d/1WwsnJQstPq91_Yh-Ch2XRL8H_EpsnjrC1dwZXR37PC8/edit?tab=t.0#heading=h.kkaua0hwmp1d). Read through page 9 and skim the rest
+
+Optional:
+- [AGI Safety From First Principles](https://drive.google.com/file/d/1uK7NhdSKprQKZnRjU58X7NLA1auXlWHt/view), Richard Ngo. Read Introduction (page 2, and Alignment page 16-22, skim the rest).
+- [Isaac Asimov’s Laws of Robotics Are Wrong](https://www.brookings.edu/articles/isaac-asimovs-laws-of-robotics-are-wrong/), Peter W. Singer
+- [The Doomsday Invention](https://www.newyorker.com/magazine/2015/11/23/doomsday-invention-artificial-intelligence-nick-bostrom), The New Yorker.
+
 ## Week 2
 
 - Required:
