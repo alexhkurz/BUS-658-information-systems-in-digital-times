@@ -10,6 +10,8 @@ One of the following:
 - [AGI Safety From First Principles](https://drive.google.com/file/d/1uK7NhdSKprQKZnRjU58X7NLA1auXlWHt/view), Richard Ngo. Read Introduction (page 2, and Alignment page 16-22, skim the rest).
 - [Isaac Asimov's Laws of Robotics Are Wrong](https://www.brookings.edu/articles/isaac-asimovs-laws-of-robotics-are-wrong/), Peter W. Singer
 - [The Doomsday Invention](https://www.newyorker.com/magazine/2015/11/23/doomsday-invention-artificial-intelligence-nick-bostrom), The New Yorker.
+- [ELK prize results](https://www.lesswrong.com/posts/zjMKpSB2Xccn9qi5t/elk-prize-results)
+
 
 ## Week 2
 
