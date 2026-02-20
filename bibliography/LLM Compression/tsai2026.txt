@@ -1,0 +1,1142 @@
+Revisiting Data Compression with Language Modeling
+
+Chen-Han Tsai
+maxwelltsai@yahoo.com
+
+arXiv:2601.02875v1 [cs.CL] 6 Jan 2026
+
+Abstract
+In this report, we investigate the potential use of large language models (LLM’s)
+in the task of data compression. Previous works have demonstrated promising
+results in applying LLM’s towards compressing not only text, but also a wide
+range of multi-modal data. Despite the favorable performance achieved, there
+still remains several practical questions that pose a challenge towards replacing
+existing data compression algorithms with LLM’s. In this work, we explore
+different methods to achieve a lower adjusted compression rate using LLM’s as
+data compressors. In comparison to previous works, we were able to achieve
+a new state-of-the-art (SOTA) adjusted compression rate of around 18% on the
+enwik9 dataset without additional model training. Furthermore, we explore the
+use of LLM’s in compressing non-English data, code data, byte stream sequences.
+We show that while LLM’s excel in compressing data in text-dominant domains,
+their ability in compressing non-natural text sequences still remain competitive if
+configured in the right way.
+
+1
+
+Introduction
+
+Language modeling refers to the probabilistic process of approximating text distributions within
+natural language. The primary objective of a language model is to approximate the probability of
+a given text from its surrounding context. Although traditional rule-based language models (e.g.,
+n-grams, hidden Markov models) have shown to be effective, their versatility and performance
+have not been able to match those achieved by recent deep learning-based Large Language Models
+(LLM’s). LLM’s are transformer-based language models [VSP+ 17] that often contains billions of
+parameters. During training, LLM’s are optimized to maximize the log-likelihood of each token1
+based on a given text corpus. During inference, the LLM predicts the probability distribution of the
+next token for a given input token sequence. Studies [KMH+ 20] have shown that a large parameter
+size of an LLM is often indicative of better generalizability in predicting the next token correctly.
+The predictive performance of an LLM makes it an ideal candidate for data compression. Several
+works [DRD+ 24, VNK+ 23, EDC06, LHW+ 24] have explored various methods to implement data
+compression using LLM’s as a predictive model. The LLM first generates the probability distribution
+of each token, and these probability distributions are passed to an arithmetic encoder for encoding. To
+decode the sequence, the encoded data is passed sequentially into the LLM to predict the probability
+distribution of the next token. The symbol (or token) to decode can be determined by the interval of
+the predicted distribution for which the encoded data falls in.
+Previous works have demonstrated the strong compression abilities of LLM’s in combination with
+arithmetic coding for text, image, and audio data. LLM-based compression methods have been compared to general purpose compressors [Deu96, Pav19, Wel84] as well as domain-specific encoding
+standards [Bou97, Coa08]. Experimental results have shown that LLM-based compression methods
+were able to achieve a much lower compression rate in comparison to previous compression methods.
+1
+For simplicity, we can consider tokens as individual English words in this context. Additional discussions
+regarding tokenization will be introduced later.
+
+Preprint. Under review.
+
+However, if the LLM model size (that can range between several to hundreds of gigabytes) is taken
+into account (also known as the adjusted compression rate), LLM-based compression methods only
+seems to make sense in data ranging in the terabyte range. Furthermore, existing experiments have
+not considered the use of LLM-compression on non-English data as well as byte-stream encoded
+data.
+In this work, we revisit existing LLM-compression algorithms with the goal of reducing the adjusted
+compression rate as well as exploring additional data encoding performance. We show that we
+are able to reduce the memory footprint of existing LLM’s while maintaining similar compression
+levels. This allows us to achieve a new state-of-the-art (SOTA) adjusted compression rate of nearly
+18% without any additional model training. Furthermore, we show that while LLM’s are strong
+compressors for text-dominant data, their performance on non-text data remain competitive when
+configured correctly.
+The next few sections of this paper are outlined as follows. Preliminaries are presented in Section
+2. Related works will be discussed in Section 3. Methods will be listed in Section 4. Experimental
+results will be given in Section 4. Finally, conclusion and possible extensions will be discussed in
+Section 6.
+
+2
+
+Preliminaries
+
+Tokenization Tokenization is the process of converting raw text into a sequence of discrete units,
+known as tokens. These tokens can represent individual characters, subwords, or entire words, and
+serve as the basic input units for the neural network. By splitting text into tokens, the model can
+handle language in manageable segments, facilitating both the training and the generation of coherent
+outputs.
+More formally, consider an input text sequence x = (x1 , x2 , . . . , xN ). The tokenization process
+maps x into a sequence of tokens t = (t1 , t2 , . . . , tM ), where each ti is drawn from a predefined
+vocabulary V . A widely used technique, Byte-Pair Encoding (BPE), merges the most frequently
+occurring pairs of symbols to produce an efficient subword representation. Once the text is tokenized,
+these tokens can be embedded into continuous vector representations, which the LLM processes
+through its layers of attention and transformation to generate meaningful predictions and responses.
+LLM Training LLM’s are often trained in a two stage process before applying them for inference.
+The first stage is pre-training and the second stage is fine-tuning.
+During pre-training, the LLM is trained on a large text corpus2 to maximize the log-likelihood of
+each token conditioned on preceding tokens. Formally, let pθ (x) denote the LLM and let θ be the
+parameters of the model. For a given sequence of tokens x = {xi }N
+i=1 of length N , the log-likelihood
+L is defined as
+!
+N
+Y
+pθ̃ (xi |x<i )
+(1)
+L(θ̃, x) = log
+i=1
+
+for the sequence x. To optimize the parameters θ of the LLM, we maximize the expected loglikelihood
+"N
+#
+h
+i
+X
+θ = arg max Ex∼p(x) L(θ̃, x) = arg max Ex∼p(x)
+log pθ̃ (xi |x<i )
+(2)
+θ̃
+
+θ̃
+
+i=1
+
+where xi is the i-th token and x<i are the preceding tokens of xi for a sample x in the corpus. For
+completeness, let x0 be the begin-of-string token and pθ (x0 ) = 1.
+During fine-tuning, the objective is similar to that of pre-training. The difference is that instead of
+maximizing the log-likelihood across all tokens, we only maximize the conditional log-likelihood
+of the output token sequence y = {yj }M
+j=1 conditioned on the input sequence x. A set of input and
+output text sequences {(x, y)} are provided during training, and θ is optimized by maximizing the
+expected log-likelihood3 (similar to Equation 2). After the LLM has been trained, it learns to generate
+2
+
+Modern pre-training datasets are measured in the order of billions or trillions of tokens. The texts in the
+corpus are often scrapped from the internet.
+3
+The optimized parameters θ during pre-training are optimized for a second time during fine-tuning.
+
+2
+
+Figure 1: Arithmetic coding in action. (figure from [DRD+ 24]) In this example, there are 3 possible
+symbols: {X,I,A}. When encoding a symbol, the probability distribution of all symbols is generated
+by a probabilistic model (e.g., an LLM). The range for which a valid encoding narrows as the number
+of encoded symbols increase. The final encoded symbol (e.g., 0101010) must lie in an interval that
+represents the original sequence of symbols (e.g., AIXI).
+
+text sequences y ∼ pθ (x) given x as the input. Finding the optimal x to obtain a desired y for a
+given LLM pθ (x) is often referred to as prompting.
+It has been proven that maximizing the log-likelihood objective (Equation 2) is equivalent to minimizing the expected message length (in bits) of an optimal entropy encoder [Sha48]. Hence, the
+motivation is to use LLM’s as a probabilistic model to encode data sequences to achieve lossless
+compression.
+Arithmetic Coding Arithmetic coding is a form of entropy encoding used in lossless data compression. Unlike traditional coding techniques that assign fixed codewords to symbols (e.g., Huffman
+coding), arithmetic coding represents a sequence of symbols as a single fractional number in the
+interval [0, 1). This approach allows for more efficient representation, especially when symbol
+probabilities are not uniform.
+The encoding process (see Figure 1) involves partitioning the interval [0, 1) into sub-intervals proportional to the probabilities of each symbol. For a message composed of symbols s1 , s2 , . . . , sn , the
+interval is successively narrowed using the probabilities P (s) of the symbols:
+Interval0 = [0, 1)
+
+(3)
+
+Intervalk = [Lk , Hk ) = Lk−1 + (Hk−1 − Lk−1 ) × [C(sk ), C(sk ) + P (sk ))
+
+(4)
+
+where C(sk ) is the cumulative probability of symbol sk . The final interval [Ln , Hn ) uniquely
+represents the entire message.
+Arithmetic coding approaches the theoretical limit of optimal coding efficiency defined by the source
+entropy H:
+X
+H=−
+P (si ) log2 P (si )
+(5)
+i
+
+This makes it highly effective for compressing data with known probability distributions, achieving
+compression rates close to the entropy bound.
+3
+
+3
+
+Related Works
+
+Arithmetic Coding with LLM In the work of [DRD+ 24], the authors explored the use of LLM’s
+and arithmetic coding to compress text, audio, and image data. The first category of LLM’s they
+considered were transformer models [VSP+ 17] trained from scratch ranging in the 200k, 800k, and
+3.2M parameter range. These LLM’s were trained on the enwik7 and enwik8 text-only datasets
+[Hut05]. The second category of LLM’s are pre-trained LLM’s from the Chinchilla [HBM+ 24]
+family and Llama [TMS+ 23]. These pre-trained models were trained on significantly larger datasets,
+and their model sizes range from 7 billion to 70 billion parameters. Evaluation was performed on
+1GB datasets from the enwik9 text dataset[Hut06], ImageNet [RDS+ 15], and LibriSpeech [PCPK15]
+datasets.
+Their results demonstrate that in terms of raw compression rate (compressed size / raw size), the
+LLM-based methods significantly out-perform standard compression algorithms by a large margin.
+However, when compressing image and audio data, transformers trained on the enwik8 dataset were
+not able to achieve compression (compression rate > 100%). In contrast, Llama2 [TMS+ 23] and
+Chinchilla [HBM+ 24] models (pre-trained on large scale datasets) were able to achieve a compression
+rate on image and audio data that surpasses even PNG [Bou97] and FLAC [Coa08] compression
+standards. This is surprising since these models were supposedly trained on text-only datasets.
+However, this paper also highlights a disadvantage of LLM-based compression methods. LLM’s seem
+to lose their competitive edge when considering the adjusted compression rate. Their compression
+abilities are offset by the model weights themselves (> 3GB for the 1-billion parameter model).
+Furthermore, the Llama 2 [TMS+ 23] and Chinchilla [HBM+ 24] models that the authors explored
+are all limited to ≤ 2048 tokens due to the way these LLM’s are trained. In classical compression
+algorithms, a larger context length allows the compressor to exploit sequential dependencies in the
+data to achieve a lower compression rate. Due to the limitations in the LLM’s context length, the
+authors have only explored sequences of under 2048 tokens. This limits the amount of data the LLM
+is able to process, and it may cause inefficiencies in reducing the compression rate.
+In the work [VNK+ 23], the authors explored several approaches of using LLM’s in combination
+with lossless compression algorithms. In addition to arithmetic coding (which matches the same
+method described by [DRD+ 24]), the authors introduce Token Rank Compression (TRC) and Tokenby-Token Compression (TTC). We breifly explain their methodology.
+Token Rank Compression (TRC) Consider the case where we are processing token xi . We
+condition the LLM on previous tokens x<i , and let the LLM predict a probability distribution vector
+q⃗i = [qi (1), qi (2), ..., qi (D)] across all D tokens in the vocabulary. We sort q⃗i in a descending order,
+and record the rank ri for which the probability corresponding to xi sits in the sorted q⃗i (equivalent
+to the index). The recorded sequence {ri }N
+i=1 is then compressed using a lossless compression
+algorithm (the authors considered the use of zlib). In an ideal setting, the rank of xi would be at 0. In
+reality, the sequence {ri } would fluctuate in small non-negative integers.
+Token-By-Token Compression (TTC) Consider again the case where we are processing token xi .
+Given previous tokens x<i , we predict the probability distribution vector q⃗i = [qi (1), qi (2), ..., qi (D)]
+1
+for token xi . Next, we construct a prefix-free code of length li = ⌈log2 qi (x
+⌉, which satisfies the
+i)
+Kraft inequality. A natural choice for such a prefix-free code is the Huffman code [Huf52], but any
+prefix-free code would suffice. Following such a scheme, there would be a time-varying code-book
+developed for every token processed.
+The results from their experiments reveal that LLM with arithmetic coding yields the best result
+among the three methods, with TTC yielding similar but slightly sub-optimal performance. The
+authors have also experimented with compressing out-of-distribution text data. Their experimental
+results support the claim that a trained LLM is able to compress out-of-distribution text data just as
+effectively.
+Tree Building with n-gram Models In the work [EDC06], the authors considered the use of
+trigram, bigram, and unigram models as language models. Their algorithm is split between a
+tree-building and compression-decompression phase. We briefly describe their approach in the
+following.
+4
+
+During the tree building phase, the trigram model is built by modeling the probability p(x3 |x1 x2 ) of
+each subsequent word x3 following the preceding two words x1 x2 . This means that for every bigram
+x1 x2 , the language model would have probability distribution over x3 . A special ’UNK’ token is
+used to denote any unknown words not in the vocabulary of the trigram model. The probability
+distribution also includes the proability of the ’UNK’ token.
+Constructing the bigram and unigram models follows the same procedure as the trigram model in
+computing the distribution over p(x2 |x1 ) and p(x1 ). For cases where the single word is not present
+in the unigram vocabulary, a character compression model splits the characters inside the word, and
+computes individual character-level probabilities.
+For each trigram, build a Huffman tree using the probability distribution p(x3 |x1 x2 ) ∀x1 x2 in the
+trigram vocabulary. Similarly, build a Huffman tree using the probability distribution p(x2 |x1 ) ∀x1
+in the bigram vocabulary. Lastly, build a Huffman tree using the probability distribution p(x1 ) of the
+unigram vocabulary. Note that all trigram, bigram, and unigram all contain the ’UNK’ token.
+To compress the data, we go through each word (there are 2 start tokens to begin with). We look
+up the current word using the trigram model. If the word exists within the trigram vocabulary, we
+encode it using its corresponding Huffman code, and move to the next word. If the word is not found,
+we write the code for the ’UNK’ token, and revert to the bigram model. Similarly, if the word exists,
+we record its Huffman code. If the word does not exist, record the ’UNK’ Huffman code and revert to
+the unigram model. We continue a similar procedure on the unigram model, and if the word does not
+exist, we encode the word at the character level using the character model. This encoding process is
+repeated on all words in the given text, and the end result is a concatenation of all encoded Huffman
+codes.
+To decompress an encoded sequence, we begin a lookup using the Huffman tree corresponding to
+the initial two start tokens. Decode the sequence using the corresponding trigram Huffman tree. If
+the decoded token is the ’UNK’ token, continue to decode the remaining sequence using the bigram
+Huffman tree. If the resulting sequence is the ’UNK’ token, continue the decoding process using the
+unigram tree. If the resulting sequence is the ’UNK’, then continue the decoding using the character
+level Huffman tree. If during this decoding process, the decoded sequence is not the ’UNK’ token,
+revert the tree back to the trigram case after the last encoding, and use the last two previously decoded
+token to select the relevant trigram Huffman tree. Continue this process until the encoded sequence
+has been decoded.
+An interesting choice in this algorithm is the decision to limit the n-gram models to just a trigram.
+The authors explained that although a longer sequence will allow stronger dependencies between
+words, longer n-grams will suffer from data sparsity. That is why they limit their design to a trigram
+at maximum.
+The authors compared their algorithm to the BZip2 and GZip compressors. Their proposed approach
+closely matches that of GZip without any optimizations. In addition, they experimented with adding
+more training data to the tree-building process. They observed a continual reduction in compression
+rate as more training data is added during tree-building. By adding more training data, it reduces the
+probability of encountering an ’UNK’ token, which causes a prolonged sequence to be encoded.
+Image, Video, and Audio Compression In this work [LHW+ 24], the authors decided upon imageGPT [CRC+ 20] as the probabilistic model for image compression. This is a different probabilistic
+model for the image domain in comparison to the text-prominent LLM proposed by [DRD+ 24].
+Image-GPT is a large-scale vision model that has been trained on a wide range of image data.
+It generates images in an auto-regressive manner by predicting the probability of each pixel in a
+sequence. This sequence-by-sequence generation properties allows the authors to use arithmetic
+coding as the compression algorithm.
+Since images are essentially 2D matrices (if we discard the channel dimension), compressing an
+image using Image-GPT requires resizing the 2D matrix into a one-dimensional sequence of pixels.
+Unlike dealing with text sequences, pixels values ranges from [0, 255], and hence, the probabilities
+can be trivially obtained. Due to the limited context window of the Image-GPT, the authors decided
+to divide the sequence into non-overlapping segments to fit within the Image-GPT’s context window.
+The compressed segments are then concatenated to form the final probability, which is encoded using
+arithmetic coding.
+5
+
+Video compression is done in a similar manner to image compression. Unlike classical methods that
+exploit inter-frame information for compression, the authors did not exploit such dependencies. They
+were concerned that video containing drastic motion changes would not benefit from inter-frame
+dependencies. Their second concern is that they have found that exploiting inter-frame dependence
+for slow-changing inter-frame videos did not really help the overall compression performance. Hence,
+the authors reverted to single frame compression as in image compression.
+On image data, LMCompress was able to achieve a much higher compression rate (higher is better)
+compared to classical methods. When compared to Chinchilla 7B and 70B from [DRD+ 24], LMCompress was able to benifit from the image auto-regressive properties of the Image-GPT, resulting
+in over 2 times higher compression rate than LLM based methods. Video compression also benifited
+with the use of Image-GPT, as the compression rate was over 20% higher than common lossless
+video compressors like FFV1, H.264, and H.265. Audio compressino also benifited with the customtrained audio LLM. In comparison, standard language-centric LLM’s such as Llama [TMS+ 23] and
+Chinchilla [HBM+ 24] achieve an average compression rate of between 4.24 − 4.76. LMCompress
+was able to achieve a compression rate of 6.07. This result emphasize the importance of having the
+probabilistic model that can model the data sequence well.
+
+4
+
+Methods
+
+The goal of this work is to achieve an adjusted compression rate using LLM-based compression that
+is able to maintain competitiveness with existing general purpose compressors. As demonstrated
+in [VNK+ 23, DRD+ 24], LLM-based probabilistic modeling with arithmetic coding achieves near
+theoretical optimal compression. Hence, we consider the use of arithmetic coding, and we explore
+different methods to enhance or maintain the model performance while maintaining or reducing
+model size. We discuss several possibilities in the following sections.
+4.1
+
+Context Length Extension
+
+One method to improve LLM performance is to increase the context length for which a sequence
+is to be processed. The context length effectively determines the amount of bytes a model is able
+to compress at a time. In the works of [VNK+ 23, DRD+ 24], it has been shown that increasing the
+context length of a model would often result in an improved compression rate. This is because the
+model is able to exploit more inter-token dependencies, allowing for better predictability of each
+subsequent token.
+The two main challenges with increasing an LLM’s context lengths are the model’s inherent support
+for long contexts and its memory usage. Most modern LLM’s are trained using a form of Rotary
+Positioning Embedding (RoPE) [SLP+ 23] with a pre-define context length. RoPE embeddings
+encode the absolute and relative position of each input token’s embedding to allow the LLM to
+understand the order of the input tokens. If a sequence that exceeds the context length of a given
+LLM is provided, the LLM would often struggle with encoding the positional information of the
+input tokens, which causes the LLM to deteriorate in performance.
+Some methods [PQFS24, CWCT23] have been proposed to increase the context length of such
+positional embeddings to allow the LLM to extend beyond their original context lengths. However,
+these methods typically involve additional post-training, and require long context data trained on
+designated pools of GPU clusters. Even if the LLM has been trained with large context length support,
+running the LLM with a large context length for inference purposes would also require significant
+GPU memory usage. This is because the memory usage increases quadratically following increases
+in the context length due to the self-attention mechanism within transformers [VSP+ 17]. In this work,
+we consider LLM models that have long context length support, and we evaluate the improvements
+from to longer context lengths.
+4.2
+
+Reducing Model Size
+
+The main challenge in reducing the adjusted compression rate comes from the large model size of
+such LLM’s. Most modern LLM’s are trained and stored in Float16 or BFloat16 precision, which
+takes up 2 bytes per parameter. To reduce the model size of existing LLM’s, several methods
+[FAHA22, LTT+ 24, BS23] have been proposed to quantize LLM model weights to either Int8, Int4,
+6
+
+or even Int2 precision. The goal of LLM model compression is to maintain the same performance as
+its full-precision model while storing the model at a fraction of the original size.
+Quantization methods can occur during training (i.e., quantization-aware training) or after training
+(i.e., post-training quantization). Since we do not consider re-training an LLM from scratch in this
+work, we focus on post-training quantization as our main focus. The two main types of existing
+post-training quantization can be divided into calibration-based and calibration-free quantization.
+Specifically, we consider a candidate from each quantization type as part of our work.
+4.2.1
+
+GPTQ
+
+GPTQ [FAHA22] is a one-shot calibration-based weight quantization algorithm. For each layer l
+c l of
+of a given LLM model, the GPTQ algorithm’s objective is to find a quantized weight matrix W
+c l of each layer is multiplied by an
+the full-precision weight matrix Wl . Since the weights matrix W
+input X during the forward-pass, this quantization should ensure that the output activations using
+c l X remain nearly identical.
+the original weight matrix Wl X and the quantized weight matrix W
+Formally, the objective can be defined as
+2
+c
+argminW
+c l ||Wl X − Wl X||2
+
+(6)
+
+for each layer l in the LLM.
+The GPTQ algorithm builds upon the OBQ [FSA23] algorithm, which performs greedy quantization
+of weight matrix items one weight after another. For smaller models (several million parameters), the
+quantization process could take a few hours. This would become a big bottleneck when trying to
+quantize much larger billion-parameter LLM’s.
+GPTQ performs a column-wise quantization by designating blocks of size B, which consists of B
+columns. In each block, the j-th column W:j is quantized to Q:j . Th quantization error E is then
+computed, which is used to update the values of the weight matrix corresponding to the block. The
+weights of the remaining un-quantized weight matrix is updated only after a block has been quantized.
+The full algorithm is given in Algorithm 1, and the full details are discussed in [FAHA22].
+Algorithm 1 Quantize W given inverse Hessian H−1 = (2XX⊤ + λI)−1 and blocksize B.
+Q ← 0drow ×dcol
+E ← 0drow ×B
+H−1 ← Cholesky(H−1 )⊤
+for i = 0, B, 2B, . . . do
+for j = i, . . . , i + B − 1 do
+Q:,j ← quant(W:,j )
+E:,j−i ← (W:,j − Q:,j ) / [H−1 ]jj
+W:,j:(i+B) ← W:,j:(i+B) − E:,j−i · H−1
+j,j:(i+B)
+end for
+−1
+W:,(i+B): ← W:,(i+B): − E · Hi:(i+B),(i+B):
+end for
+
+// quantized output
+// block quantization errors
+// Hessian inverse information
+// quantize column
+// quantization error
+// update weights in block
+// update all remaining weights
+
+The main issues with calibration-based quantization algorithms are that calibration samples are
+required and the quantization compute time is usually lengthy. Ideally, the calibration data should
+originate from the training samples, but in the case of pre-trained models, such data are usually
+unavailable. Furthermore, the choice of the calibration data may cause bias during the calibration
+process. As described in GPTQ [FAHA22] quantization, multiple forward passes are required
+to quantize each weight matrix. This introduces additional compute and delays during model
+development.
+4.2.2
+
+HQQ
+
+Half-Quadratic Quantization (HQQ) [BS23] is a calibration-free quantization algorithm. The focus
+of HQQ is to align the weights W rather than aligning the model activations WX. In essence, the
+goal is to find a quanzation operator Qz,s (W) that satisfies
+7
+
+argminz,s φ(W − Q−1
+z,s (Qz,s (W)).
+
+(7)
+
+Here, φ() is a sparsity-promoting loss that better captures the outlier errors often located in the
+heavy tails of the error distribution. The quantization operator Qz,s and its inverse (de-quantization
+operator) Q−1
+z,s is defined as
+c = round(W/s + z)
+Qz,s (W) = W
+
+(8)
+
+c
+c
+Q−1
+z,s (W) = s(W − z)
+
+(9)
+
+.
+To solve this problem, the authors proposed the use of a Half-Quadratic Solver [GR92]. The scaling
+term s = 1 is fixed, and a new variable We is introduced to optimize for
+argminz,We φ(We ) +
+
+β
+2
+||We − (W − Q−1
+z (Qz (W)))||2 .
+2
+
+(10)
+
+.
+Equation 10 can be solved by alternate optimization between Equations 11 and 12. Parameters α and
+β are positive hyper-parameters that should be updated after each alternate step (see Equation 13).
+We(t+1) ← argminWe φ(We ) +
+
+β (t)
+2
+||We − (W − Q−1
+z (Qz (W)))||2 .
+2
+
+(11)
+
+.
+z (t+1) ← argminz
+
+1
+(t+1) 2
+||Q−1
+||2
+z (Qz (W)) − (W − We
+2
+
+(12)
+
+β (t+1) ← αβ (t)
+
+(13)
+
+.
+
+Unlike gradient descent, optimizing for z using the Half-Quadratic Solver can be completed in a few
+iterations without any forward passes on the model. HQQ can be applied to the weight matrices in an
+LLM to obtain calibration-free quantization.
+4.3
+
+Tokenization Methods
+
+As noted by [VNK+ 23], tokenization in language modeling is essentially a form of lossless compression. LLM tokenizers are typically trained separately on a given text corpus prior to using them
+to pre-train an LLM. During tokenizer training, the tokenizer’s vocabulary set is determined by
+accounting for the most frequent texts in the corpus. After tokenizer training has completed, the
+vocabulary set is kept fixed, and only the embeddings of the vocabulary and the model weights are
+trained during LLM pre-training and fine-tuning.
+Although LLM’s seem to handle text compression well, their compression performance on non-text
+data is yet to be understood. In this work, we consider data types in the form of a byte stream. Since
+all data encodings (e.g., PDF’s, PPT, Excel) are encoded in bytes in their raw format, we consider the
+case where only the byte stream is available, and we would like to know whether LLM’s are able to
+compress such data. Next, we discuss some possible ways to perform compression on byte streams.
+4.3.1
+
+Treating Byte Streams as Text
+
+This is perhaps the most straightforward method. This strategy treats the byte stream as a string by
+converting each byte into their UTF-8 character representation. The character are then concatenated
+to form one big string. The string is then tokenized using an LLM tokenizer, and we perform LLM
+compression (see Section 3).
+8
+
+First code point
+
+Last code point
+
+Byte 1
+
+Byte 2
+
+Byte 3
+
+Byte 4
+
+U+0000
+U+0080
+U+0800
+U+010000
+
+U+007F
+U+07FF
+U+FFFF
+U+10FFFF
+
+0yyyyzzzz
+110xxxyy
+1110wwww
+11110uvv
+
+10yyzzzz
+10xxxxyy
+10vvwwww
+
+10yyzzzz
+10xxxxyy
+
+10yyzzzz
+
+Table 1: Code point ↔ UTF-8 conversion. The value of the code point can be encoded using 1 − 4
+bytes. The code point in hexadecimal representation is U+uvwxyz
+
+Figure 2: Byte Mapping for Llama 3 and Qwen Model. On the left is mapped byte tokens for the
+Llama 3 [TMS+ 23] model. On the right is the mapped byte tokens for the Qwen [BBC+ 23] model.
+Notice how the two mappings are seemingly identical, except that their mapped tokens are shifted by
+approximately 200. This is most likely due to the fact that both tokenizers are based on Byte-Pair
+Encoding. The different in token value shift is due to different configurations of the two tokenizers.
+
+4.3.2
+
+Treating Byte Streams as Integers
+
+This strategy treats the byte stream as values represented by their byte representations. We consider values between 0 − 255, and we map the bytes to their integer representations in that range.
+Next, we configure the LLM tokenizer such that we only consider the tokens representing the values in {0, 1, 2, ..., 255}. During tokenization, we map each integer from the byte array into their
+corresponding token from the tokenizer, and perform LLM compression using these mapped tokens.
+4.3.3
+
+Treating Byte Streams as Bytes
+
+This method is similar to treating the byte stream as integers. However, instead of mapping the integer
+values to their corresponding token in the tokenizer, we map the integers to their corresponding bytes
+in the tokenizer. Recall that most existing LLM’s are based on Byte-Pair Encoding. This means
+that in the case where a word does not exist in the tokenizer’s vocabulary, the tokenizer will break
+this word into its byte representation, which is represented by more than one token. However, the
+challenge is finding the tokens for which each (actual) byte value corresponds to. Here, we briefly
+explain how we found the mapping from each byte to its corresponding token in the tokenizer.
+We initialized a tokenizer from an existing tokenizer (to ensure identical configurations), and we
+removed all tokens from the the tokenizer’s vocabulary. This means that all texts tokenized by this
+empty tokenizer is now all in its byte tokens. Next, we followed the UTF-8 encoding table (see Table
+4.3) to iterate through valid byte combination values. For each valid combination, we tokenized the
+corresponding UTF-8 decoded string using the empty tokenizer to obtain the tokenizer’s byte token.
+Since the some values in cannot be decoded following the UTF-8 coding schema (e.g., 0xCO, 0xC1,
+0xF5-0xFF), we first map all values values. We then interpolate these missing values from their
+neighboring values. The resulting mappings can be seen on Figure 2.
+9
+
+Using this mapping, we map each byte into their corresponding token, and we send these tokens into
+the LLM for compression.
+
+5
+
+Experiments
+
+In this section, we explore the different methods we have tried to achieve a reduced adjusted
+compression rate. We then revisit LLM compression on tasks involving non-English data and
+evaluate the performance of LLM compression compared to general purpose compressors. We begin
+by introducing our setup. Experimental results will be presented, which is followed by our analysis.
+5.1
+5.1.1
+
+Setup
+Models
+
+The focus of this work is on the compression performance of pre-trained LLM’s. Hence, we do not
+consider methods that require additional training. The models presented in [DRD+ 24] are the 1B,
+7B, and 70B models of the Chichilla [HBM+ 24] family and the 7B model of the Llama 2 [TMS+ 23]
+family. Since the release of Llama 2, Meta has released Llama 3 models of smaller sizes. In particular,
+we consider the Llama 3.2 1B model released by Meta. In comparison to Llama 2, Llama 3 models
+have extended the tokenizer vocabulary from the origianl 32k to a staggering 128k. This extended
+size allows for more token representations, indicating that less texts would be converted to their raw
+byte representation during tokenization. However, this increase in tokenizer vocabulary also increases
+the model parameter (in Llama 3.2 1B, each token is mapped to a unique vector of dimension 2048).
+Another family of models we consider is the Qwen 2 [BBC+ 23] series. These model were trained by
+the Qwen team from Alibaba, and the model they released are in the sizes of 0.5B, 1B, 3B, 7B, 14B,
+32B, and 72B parameters. In the interest of model size reduction, we consider their smallest model at
+the 0.5B scale. In addition to the Qwen series of models, we consider the SmolLM [ALB+ 24] family
+of models developed by a team from Huggingface. The SmolLM series of models come at sizes of
+150M, 360M, and 1.7B parameters trained on fully synthetic data generated by other LLM’s. We
+consider the model of sizes 150M and 360M parameters in the interest of smaller model sizes.
+5.1.2
+
+Datasets
+
+To evaluate the compression performance of existing LLM’s on English and non-English data, we
+consider text datasets of 1GB sizes from English (enwik9) [Hut06], Spanish [Ram], French [TM24],
+Russian [Rus23], Thai [Tha23], Japanese [jap23], Arabic [EK16], and Traditional Chinese (Taiwan)
+[lis23] languages. We include code code data [cod23] as part of our evaluation for language data. For
+byte stream data, we consider PDF files [Man23].
+5.1.3
+
+Metrics
+
+To evaluate the effectiveness of each compression algorithm, we consider the raw compression rate
+γr and adjusted compression rate γa . The raw compression rate γr is defined as
+γr = (compressed size in bytes)/(original size in bytes).
+
+(14)
+
+In contrast, the adjusted compression rate γa is defined as
+γa = (compressed size in bytes + model weight in bytes)/(original size in bytes).
+
+(15)
+
+The closer the compression rate γ → 0 approaches zero, the better the compression performance.
+If the compression rate γ → 1 approaches one, it indicates that no compression is occurring. If the
+compression rate γ > 1, it indicates that the compression has failed to compress the data. This occurs
+when the probabilistic model fails to predict the data sequence.
+5.1.4
+
+Compute
+
+We run all our experiments on a NVIDIA RTX 4090 24GB GPU running Python 3.10 with PyTorch
+2.5.1. Models are loaded from Huggingface distributed by their respective developers.
+10
+
+Figure 3: Context Length and Compression Rate. Shown above is the raw compression rate
+γr as a function of the context length of an LLM. Notice the steady decrease in γr as the context
+length increases. Since Llama-3.2-1B and Qwen2-0.5B both naively support context lengths of up to
+128k tokens, their compression ration is expected to improve for even longer context lengths. Since
+SmolLM models only support up to 2048 tokens, γr increases when we exceed this limit.
+5.2
+
+Compression Rate Reduction
+
+The goal of this set of experiments is to understand the most effective way to reduce the compression
+rate. We follow the methods introduced in Sections 4.1 and 4.2 as reference.
+5.2.1
+
+Context Length Extension
+
+In this experiment, we explore the possibilities to reduce the compression rate γ by increasing
+the context length of the LLM. We consider the performance of each LLM in their BFloat16
+representation, and we evaluate their performance on the enwik9 dataset. Both Llama-3.1-1B and
+Qwen-2-0.5B natively support context lengths of up to 128k tokens. In contrast, SmolLM support
+context lengths of up to 2048 tokens. Due to the limit in compute resources, we explore a context
+length of at most 4096 tokens for our experiments.
+As we can see in Figure 3, the longer the context length, the more the reduction in the compression rate
+γ. However, this reduction only occurs on an incremental scale (i.e., decreasing around ∆γr ∼ 0.01
+for every exponential increase in context length). In addition, notice that for the SmolLM models,
+context lengths exceeding 2048 yields a sudden increase in compression rate. This is due to the
+limited context length support of SmolLM models to only under 2048 tokens. For the remaining of
+the experiments, we limit the context length to 2048 tokens as it achieves a good balance between
+GPU memory and an acceptable compression rate for all models.
+5.2.2
+
+Model Size Compression
+
+To reduce the model size, we consider the GPTQ[FAHA22] and HQQ[BS23] algorithms introduced
+in Sections 4.2.1 and 4.2.2. For GPTQ calibration, we sample 128 text samples from the enwik9
+[Hut06] dataset and perform quantization with block size B = 8. We quantize the model sizes from
+their original BFloat16 representation to their 8-bit, 4-bit, 3-bit, and 2-bit representations. For HQQ
+quantization, we do not perform calibration as it is not needed.
+The raw compression rates γr of the different quantization schemes are presented in Figure 4. From
+the raw compression rate, notice that the more intense the quantization (i.e., using less bits to represent
+the original BFloat16 weights), the higher the resulting compression rate. Despite this increasing
+trend, we are able to compress the model weights from their original 16-bit representation down to a
+11
+
+Figure 4: Raw Compression Rate Under Different Quantization Schemes. Show above is the raw
+compression rate γr under HQQ (left) and GPTQ (right) quantization. The 16-bit representation is
+the original un-quantized representation. Notice how HQQ, a calibration-free quantization algorithm,
+retains better predictive performance compared to GPTQ.
+
+Figure 5: Adjusted Compression Rate Under Different Quantization Schemes. Show above
+is the adjusted compression rate γa under HQQ (left) and GPTQ (right) quantization. The 16-bit
+representation is the original un-quantized representation. Compression rates exceeding 1.0 have
+been labeled and capped. In comparison to the baseline general purpose compressor, LLM’s under
+the 0.5B parameter range have all exceeded Gzip’s compression rate with 3-bit compression.
+
+3-bit representation (over 5× reduction in model size) with a slight drawback in compression rate.
+This ability to maintain a strong compression rate only deteriorates at the 2-bit quantization level.
+Furthermore, this issues is seemingly more prominent in GPTQ compression.
+The adjusted compression rate γa under different quantization schemes is illustrated in Figure 5.
+In comparison to the standard general-purpose compressor Gzip, our quantized LLM’s are able to
+maintain a strong competitive advantage at both the 4-bit and 3-bit quantization level. Despite the
+increase in compression rate at 2-bit quantization, HQQ compression still outperforms Gzip in LLM’s
+under 0.5B parameters, with the lowest γa = 0.18. This result sets a new state-of-the-art (SOTA)
+in un-trained LLM compression performance in comparison to [DRD+ 24]. The complete results
+for this experiment is provided in Table 2. For the remaining of the experiments, we consider the
+HQQ quantized models at 3-bit representation since this configuration offers a good balance between
+model size and adjusted compression rate.
+12
+
+Quantized Bits
+
+Raw Comp. Rate γr
+
+Adj. Comp. Rate γa
+
+-
+
+0.336
+
+0.336
+
+None
+
+-
+
+0.085
+
+2.557
+
+GPTQ
+
+8
+4
+3
+2
+
+0.085
+0.087
+0.096
+0.185
+
+1.321
+0.705
+0.560
+0.494
+
+HQQ
+
+8
+4
+3
+2
+
+0.085
+0.087
+0.093
+0.216
+
+1.321
+0.704
+0.556
+0.525
+
+None
+
+-
+
+0.104
+
+1.092
+
+GPTQ
+
+8
+4
+3
+2
+
+0.105
+0.106
+0.114
+0.232
+
+0.599
+0.353
+0.299
+0.355
+
+HQQ
+
+8
+4
+3
+2
+
+0.104
+0.106
+0.109
+0.138
+
+0.598
+0.353
+0.294
+0.262
+
+None
+
+-
+
+0.100
+
+0.824
+
+GPTQ
+
+8
+4
+3
+2
+
+0.100
+0.103
+0.115
+0.403
+
+0.462
+0.284
+0.251
+0.493
+
+HQQ
+
+8
+4
+3
+2
+
+0.100
+0.101
+0.107
+0.174
+
+0.462
+0.282
+0.242
+0.264
+
+None
+
+-
+
+0.114
+
+0.383
+
+GPTQ
+
+8
+4
+3
+2
+
+0.114
+0.118
+0.136
+0.306
+
+0.249
+0.186
+0.186
+0.340
+
+HQQ
+
+8
+4
+3
+2
+
+0.114
+0.117
+0.129
+0.257
+
+0.249
+0.184
+0.180
+0.291
+
+Model
+
+Quantization
+
+gzip (baseline)
+
+N/A
+
+Llama-3.2-1B
+
+Qwen2-0.5B
+
+SmolLM-360M
+
+SmolLM-135M
+
+Table 2: Compression Rates Under Different Quantization Schemes. Shown above are the raw
+and adjusted compression rates for each of the models on the enwik9 dataset (1GB). The adjusted
+compression rate γa accounts for the model size (see Section 5.1.3). Notice how quantization at
+3-bits still retains a good balance between compression rate and model size. At 2-bit quantization,
+the model’s predictive performance deteriorates significantly.
+
+13
+
+Figure 6: Compression Rate on Different Languages. Shown above is the compression rates of
+LLM compression on different languages. The performance of LLM compress is largely determined
+by amount of exposure the LLM has during pre-training. We incldue Gzip performance as baselinse.
+The raw compression rate is presented on the left, and the adjusted compression rate is given on the
+right.
+
+5.3
+5.3.1
+
+Compression Performance on Different Data Types
+Non-English Data
+
+In this section, we evaluate the performance of LLM compression on various language sources. We
+include Gzip as a baseline comparison, and we evaluate the raw compression rate and the adjusted
+compression rate using 3-bit HQQ quantization.
+Of the languages listed above, Llama-3.2-1B was reported to be optimized for English, French,
+Spanish, and Thai. Therefore, we expect the compression rates for these languages to be exceed those
+of the other languages. Qwen-2-0.5B is an LLM trained on primarily English and Simplified Chinese
+data. Hence, their performance on English, Traditional Chinese, and possibly Japanese (since there
+are overlapping characters between Japanese and Traditional Chinese) should be better. SmolLM
+models were trained on primarily synthetic English data. It is expected that their performance on
+non-English data to drop by a large margin.
+The results of our experiment are presented in Figure 6. The first observation is that Llama-3.2-1B
+able to achieve γr < 0.12 for all the languages it was trained on. In addition, Llama-3.2-1B was able
+to compress Russian text on a competitively level even though it was not trained on it. In contrast,
+Traditional Chinese and Arabic texts seems to requires more effort compressing.
+Qwen-2-0.5B models seem to perform on a similar level as Llama-3.1-1B. We can also notice that
+Qwen-2-0.5B was able surpass Llama-3.2-1B in compressing Traditional Chinese and Japanese texts.
+This aligns with our hypothesis stated earlier.
+SmolLM models yield a strong compression rate compared to Llama-3.2-1B and Qwen-2-0.5B on
+English texts. However, their performance on texts that do not share the same character set as English
+seemingly drops by a significant margin (i.e., Traditional Chinese, Russian, Thai, Japanese). This
+performance drop can be largely alluded to the limited training data during model pre-training.
+Of all language types, LLM’s seem to handle code compression with ease. This is most likely due to
+the amount of code data that was used to pre-train these LLM’s.
+14
+
+Figure 7: Raw Compression Rate Under Different Byte Tokenizations. Shown above are the raw
+compression rates three different byte tokenization methods. Notice that reading the byte encodings as
+raw texts (Section 4.3.1) yield performance very similar to standard compression (Gzip). Tokenizing
+bytes using their mapped byte tokens (see Section 4.3.3) yields significant improvements. Maximum
+compression can be achieved by reading the bytes as integers (Section 4.3.2).
+
+Figure 8: Adjusted Compression Rate Under Different Byte Tokenizations. Shown above are
+the adjusted compression rates three different byte tokenization methods. When accounting for the
+additional model weight, treating the byte stream as text (Section 4.3.1) offers no advantage compared
+to standard compression methods (i.e., Gzip). In contrast, processing the bytes as integers (Section
+4.3.2) or their mapped byte tokens (Section 4.3.3) results in significant improvements.
+
+5.4
+
+Byte Stream Data
+
+In this section, we evaluate the different methods to compress non-text byte stream data. Byte stream
+data are essentially encoded data representations for particular file formats. Here, we would like to
+explore the question whether encoded byte stream data can be compressed just as well as text data. In
+Sections 4.3.1, 4.3.2, and 4.3.3, we presented three different methods to tokenize byte stream data
+before passing them to the LLM for prediction. We follow the proposed methods to evaluate the
+compression performance of LLM’s on PDF data encoded in their byte format.
+15
+
+The raw compression rate is presented in Figure 4. We can see that treating the byte stream as
+texts (Section 4.3.1) offers only a slight advantage over a baseline compressor (i.e. Gzip). In
+contrast, processing the byte stream as their mapped byte tokens (Sec 4.3.3) offers a more competitive
+performance. The best compression rate can be achieved by mapping each byte to their integer
+representation in the tokenizer (Section 4.3.2).
+When considering the model size as part of the compression, we can see that treating the byte
+stream as texts (Section 4.3.1) is worse compared to the baseline compressors. To achieve the
+best compression, one should handle the byte stream as integers (Section 4.3.2) to achieve strong
+compression performance.
+
+6
+
+Conclusions
+
+In this work, we revisit the topic of LLM compression from different perspectives. First, we
+considered methods to improve the adjusted compression rate by means of context length extension
+and model size reduction. Our experiments demonstrate that while longer context lengths offer an
+improvement in compression performance, the incremental improvement does not yield significant
+gains in reducing the adjusted compression rate. We considered two different LLM compression
+methods, GPTQ and HQQ, to reduce the model weights. Our experiments demonstrate that by
+reducing the model weight representations from their original 16-bit representation down to a 3-bit
+representation results in only a slight drop in raw compression rate. The benifit of such compression
+allows for the model size to be compressed significantly. This configuration allows us to compress a
+un-trained model that achieves the SOTA adjusted compression rate of 18% on the enwik9 [Hut06]
+dataset.
+Furthermore, we explored the use of compressing non-English data that spans over a range of
+languages as well as code data. We show that LLM’s trained on specific languages are often
+correlated with better compression performance. In addition to text data, we experimented with
+compressing byte stream data from PDF encoded files. We presented several possible methods to
+process the PDF encoded byte streams as tokens. Our experiments show that processing the byte
+streams as integer representations in the tokenizer results in the best compression.
+Some possible future works may include compressing additional data formats. Potential for compressing deep neural network model weights may also be explored. We hope this work highlights the
+importance of LLM in data compression, and we believe that future data compressors may involve
+more efficient LLM’s specialized for compression.
+
+References
+[ALB+ 24] Loubna Ben Allal, Anton Lozhkov, Elie Bakouch, Gabriel Martín Blázquez, Lewis
+Tunstall, Agustín Piqueres, Andres Marafioti, Cyril Zakka, Leandro von Werra, and
+Thomas Wolf. Smollm2 - with great data, comes great performance, 2024.
+[BBC+ 23] Jinze Bai, Shuai Bai, Yunfei Chu, Zeyu Cui, Kai Dang, Xiaodong Deng, Yang Fan,
+Wenbin Ge, Yu Han, Fei Huang, Binyuan Hui, Luo Ji, Mei Li, Junyang Lin, Runji Lin,
+Dayiheng Liu, Gao Liu, Chengqiang Lu, Keming Lu, Jianxin Ma, Rui Men, Xingzhang
+Ren, Xuancheng Ren, Chuanqi Tan, Sinan Tan, Jianhong Tu, Peng Wang, Shijie Wang,
+Wei Wang, Shengguang Wu, Benfeng Xu, Jin Xu, An Yang, Hao Yang, Jian Yang,
+Shusheng Yang, Yang Yao, Bowen Yu, Hongyi Yuan, Zheng Yuan, Jianwei Zhang,
+Xingxuan Zhang, Yichang Zhang, Zhenru Zhang, Chang Zhou, Jingren Zhou, Xiaohuan
+Zhou, and Tianhang Zhu. Qwen technical report. arXiv preprint arXiv:2309.16609,
+2023.
+[Bou97] Thomas Boutell. PNG (portable network graphics) specification version 1.0. RFC, 1997.
+[BS23] Hicham Badri and Appu Shaji. Half-quadratic quantization of large machine learning
+models, November 2023.
+[Coa08] Josh Coalson. Free lossless audio codec, 2008.
+[cod23] codeparrot. Github code. https://huggingface.co/datasets/codeparrot/
+github-code, 2023. Accessed: 2024-12-13.
+16
+
+[CRC+ 20] Mark Chen, Alec Radford, Rewon Child, Jeff Wu, Heewoo Jun, Prafulla Dhariwal,
+David Luan, and Ilya Sutskever. Generative pretraining from pixels. 2020.
+[CWCT23] Shouyuan Chen, Sherman Wong, Liangjian Chen, and Yuandong Tian. Extending context window of large language models via positional interpolation. ArXiv,
+abs/2306.15595, 2023.
+[Deu96] Peter Deutsch. Gzip file format specification version 4.3. RFC, 1952:1–12, 1996.
+[DRD+ 24] Grégoire Delétang, Anian Ruoss, Paul-Ambroise Duquenne, Elliot Catt, Tim Genewein,
+Christopher Mattern, Jordi Grau-Moya, Li Kevin Wenliang, Matthew Aitchison, Laurent
+Orseau, Marcus Hutter, and Joel Veness. Language modeling is compression. In ICLR,
+2024.
+[EDC06] Antoine El Daher and James Connor. Compression through language modeling. Project
+report for CS224N: Natural Language Processing, Stanford University, 2006.
+[EK16] Ibrahim Abu El-Khair. 1.5 billion words arabic corpus. arXiv preprint arXiv:1611.04033,
+2016.
+[FAHA22] Elias Frantar, Saleh Ashkboos, Torsten Hoefler, and Dan Alistarh. GPTQ: Accurate post-training compression for generative pretrained transformers. arXiv preprint
+arXiv:2210.17323, 2022.
+[FSA23] Elias Frantar, Sidak Pal Singh, and Dan Alistarh. Optimal brain compression: A
+framework for accurate post-training quantization and pruning, 2023.
+[GR92] D. Geman and G. Reynolds. Constrained restoration and the recovery of discontinuities.
+IEEE Transactions on Pattern Analysis and Machine Intelligence, 14(3):367–383, 1992.
+[HBM+ 24] Jordan Hoffmann, Sebastian Borgeaud, Arthur Mensch, Elena Buchatskaya, Trevor Cai,
+Eliza Rutherford, Diego de Las Casas, Lisa Anne Hendricks, Johannes Welbl, Aidan
+Clark, Tom Hennigan, Eric Noland, Katie Millican, George van den Driessche, Bogdan
+Damoc, Aurelia Guy, Simon Osindero, Karen Simonyan, Erich Elsen, Oriol Vinyals,
+Jack W. Rae, and Laurent Sifre. Training compute-optimal large language models. In
+Proceedings of the 36th International Conference on Neural Information Processing
+Systems, NIPS ’22, Red Hook, NY, USA, 2024. Curran Associates Inc.
+[Huf52] David A. Huffman. A method for the construction of minimum-redundancy codes.
+Proceedings of the IRE, 40(9):1098–1101, 1952.
+[Hut05] Marcus Hutter. Universal Artificial Intellegence - Sequential Decisions Based on
+Algorithmic Probability. Springer, 2005.
+[Hut06] Marcus Hutter. 500’000C prize for compressing human knowledge, 2006.
+[jap23] llm-japanese-dataset v0: Construction of Japanese Chat Dataset for Large Language
+Models and its Methodology, 2023.
+[KMH+ 20] Jared Kaplan, Sam McCandlish, Tom Henighan, Tom B. Brown, Benjamin Chess,
+Rewon Child, Scott Gray, Alec Radford, Jeff Wu, and Dario Amodei. Scaling laws for
+neural language models. ArXiv, abs/2001.08361, 2020.
+[LHW+ 24] Ziguang Li, Chao Huang, Xuliang Wang, Haibo Hu, Cole Wyeth, Dongbo Bu, Quan Yu,
+Wen Gao, Xingwu Liu, and Ming Li. Understanding is compression, 2024.
+[lis23] liswei. Taiwan text excellence. https://huggingface.co/datasets/liswei/
+Taiwan-Text-Excellence-2B, 2023. Accessed: 2024-12-13.
+[LTT+ 24] Ji Lin, Jiaming Tang, Haotian Tang, Shang Yang, Wei-Ming Chen, Wei-Chen Wang,
+Guangxuan Xiao, Xingyu Dang, Chuang Gan, and Song Han. Awq: Activation-aware
+weight quantization for llm compression and acceleration. In MLSys, 2024.
+[Man23] Manisha717. Pdf dataset. https://www.kaggle.com/datasets/manisha717/
+dataset-of-pdf-files, 2023. Accessed: 2024-12-13.
+17
+
+[Pav19] Igor Pavlov. 7z Format, 2019.
+[PCPK15] Vassil Panayotov, Guoguo Chen, Daniel Povey, and Sanjeev Khudanpur. Librispeech:
+An ASR corpus based on public domain audio books. In ICASSP, 2015.
+[PQFS24] Bowen Peng, Jeffrey Quesnelle, Honglu Fan, and Enrico Shippole. YaRN: Efficient
+context window extension of large language models. In The Twelfth International
+Conference on Learning Representations, 2024.
+[Ram] Ramitha. Spanish Legal Data 2. Hugging Face: https://huggingface.co/
+datasets/Ramitha/spanish-legal-data-2. 2024-12-12.
+[RDS+ 15] Olga Russakovsky, Jia Deng, Hao Su, Jonathan Krause, Sanjeev Satheesh, Sean Ma,
+Zhiheng Huang, Andrej Karpathy, Aditya Khosla, Michael S. Bernstein, Alexander C.
+Berg, and Li Fei-Fei. Imagenet large scale visual recognition challenge. Int. J. Comput.
+Vis., 2015.
+[Rus23] RussianNLP. Mixed-summarization dataset. https://huggingface.co/datasets/
+RussianNLP/Mixed-Summarization-Dataset, 2023. Accessed: 2024-12-13.
+[Sha48] C. E. Shannon. A mathematical theory of communication. The Bell System Technical
+Journal, 27(3):379–423, 1948.
+[SLP+ 23] Jianlin Su, Yu Lu, Shengfeng Pan, Ahmed Murtadha, Bo Wen, and Yunfeng Liu.
+Roformer: Enhanced transformer with rotary position embedding, 2023.
+[Tha23] ThaiNLP. Thai open text data. https://huggingface.co/datasets/RussianNLP/
+Mixed-Summarization-Dataset, 2023. Accessed: 2024-12-13.
+[TM24] Hugging Face Datasets Team and Manu. Croissant french dataset. https://
+huggingface.co/datasets/manu/croissant_french_dataset, 2024. Accessed:
+2024-12-13.
+[TMS+ 23] Hugo Touvron, Louis Martin, Kevin R. Stone, Peter Albert, Amjad Almahairi, Yasmine
+Babaei, Nikolay Bashlykov, Soumya Batra, Prajjwal Bhargava, Shruti Bhosale, Daniel M.
+Bikel, Lukas Blecher, Cristian Cantón Ferrer, Moya Chen, Guillem Cucurull, David
+Esiobu, Jude Fernandes, Jeremy Fu, Wenyin Fu, Brian Fuller, Cynthia Gao, Vedanuj
+Goswami, Naman Goyal, Anthony S. Hartshorn, Saghar Hosseini, Rui Hou, Hakan Inan,
+Marcin Kardas, Viktor Kerkez, Madian Khabsa, Isabel M. Kloumann, A. V. Korenev,
+Punit Singh Koura, Marie-Anne Lachaux, Thibaut Lavril, Jenya Lee, Diana Liskovich,
+Yinghai Lu, Yuning Mao, Xavier Martinet, Todor Mihaylov, Pushkar Mishra, Igor
+Molybog, Yixin Nie, Andrew Poulton, Jeremy Reizenstein, Rashi Rungta, Kalyan
+Saladi, Alan Schelten, Ruan Silva, Eric Michael Smith, R. Subramanian, Xia Tan,
+Binh Tang, Ross Taylor, Adina Williams, Jian Xiang Kuan, Puxin Xu, Zhengxu Yan,
+Iliyan Zarov, Yuchen Zhang, Angela Fan, Melanie Kambadur, Sharan Narang, Aurelien
+Rodriguez, Robert Stojnic, Sergey Edunov, and Thomas Scialom. Llama 2: Open
+foundation and fine-tuned chat models. ArXiv, abs/2307.09288, 2023.
+[VNK+ 23] Chandra Shekhara Kaushik Valmeekam, Krishna Narayanan, Dileep Kalathil, JeanFrançois Chamberland, and Srinivas Shakkottai. Llmzip: Lossless text compression
+using large language models. arXiv:2306.04050, 2023.
+[VSP+ 17] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N.
+Gomez, Łukasz Kaiser, and Illia Polosukhin. Attention is all you need. In Proceedings of
+the 31st International Conference on Neural Information Processing Systems, NIPS’17,
+page 6000–6010, Red Hook, NY, USA, 2017. Curran Associates Inc.
+[Wel84] Terry A. Welch. A technique for high-performance data compression. Computer, 1984.
+
+18
+
+

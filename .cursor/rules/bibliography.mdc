@@ -1,0 +1,127 @@
+---
+description: Bibliography management — add papers, note files, README, pdftotext workflow
+globs: bibliography/**/*.md, bibliography/**/README.md, references.bib
+alwaysApply: false
+---
+
+# Bibliography Management Rules
+
+Rules for maintaining the bibliography. See also `references.mdc` for BibTeX format and citation key conventions.
+
+## Folder structure
+
+- **Root:** `bibliography/` (no longer `papers/`).
+- **Subfolders:** One per topic or theme (e.g. `math-and-cs/`, `interdisciplinarity/`, `philosophy-of-technology/`). Use subfolders so the bibliography can grow without a single flat list. **Every subfolder must contain a `.gitignore`** that excludes PDFs: add a file `bibliography/<subfolder>/.gitignore` with the single line `*.pdf`.
+- **Per-paper files** live in the chosen subfolder: `{citationkey}.pdf`, `{citationkey}.txt`, `{citationkey}.md`.
+
+Citation keys follow `references.mdc` (e.g. `commelin2023`, `orourke2016`). **PDFs should be renamed to `{citationkey}.pdf`** so that the same base name is used for `.pdf`, `.txt`, and `.md` in that subfolder. When adding a paper from an existing PDF (e.g. a journal download with a long filename), rename the PDF to `{citationkey}.pdf` after assigning the citation key. This keeps scripts (e.g. `pdftotext`) and links consistent. The `.md` and `.txt` names are always `{citationkey}.md` / `{citationkey}.txt`.
+
+## Adding a new paper
+
+1. **Choose or create a subfolder** under `bibliography/` (e.g. `bibliography/math-and-cs/`).
+2. **Add BibTeX entry** to `references.bib` (format and citation key: see `references.mdc`).
+3. **Add entry to the subfolder README:** `bibliography/<subfolder>/README.md` (single-line bullet; see format below).
+4. **Create the note file** in that subfolder: `bibliography/<subfolder>/{citationkey}.md` (structure below).
+5. **Add PDF and text:**
+   - Save or copy the PDF into the subfolder, then **rename it to `{citationkey}.pdf`** (e.g. `romeo2024.pdf`). Do not leave journal filenames (e.g. `S0273-0979-2024-01819-9.pdf`) in place.
+   - Create text: `pdftotext bibliography/<subfolder>/{citationkey}.pdf bibliography/<subfolder>/{citationkey}.txt` (same base name as the PDF).
+6. **Optionally update top-level index:** `bibliography/README.md` (list of subfolders and short description; link to each subfolder's README).
+
+PDFs are ignored by git (e.g. via `bibliography/*/.gitignore` or root `.gitignore`). `.txt` and `.md` are committed so assistants can use them.
+
+## Subfolder README format
+
+Each subfolder has a `README.md` that lists its papers as **single-line bullet points**:
+
+```
+- {Title} - {Author1} & {Author2} ({Year}) - [PDF]({url}) - [Scholar](https://scholar.google.com/scholar?q={title-as-query}) - [`{citationkey}`]({citationkey}.md)
+```
+
+- Title: full title, sentence case.
+- Authors: use "&" between names, "Lastname & Lastname" (no first names in README).
+- Year: 4-digit in parentheses.
+- Link: `[PDF](url)` if available; otherwise omit or use [arXiv](…), [Website](…), etc.
+- **Google Scholar:** `[Scholar](https://scholar.google.com/scholar?q={title-as-query})` — use the paper title as the query string; spaces become `+`.
+- Note file: `` [`citationkey`](citationkey.md) ``.
+
+Example:
+
+```
+- Abstraction boundaries and spec driven development in pure mathematics - Commelin & Topaz (2023) - [PDF](https://arxiv.org/pdf/2309.14870.pdf) - [Scholar](https://scholar.google.com/scholar?q=Abstraction+boundaries+and+spec+driven+development+in+pure+mathematics) - [`commelin2023`](commelin2023.md)
+```
+
+## Top-level bibliography index (optional but recommended)
+
+`bibliography/README.md` can list subfolders so the structure scales:
+
+- Brief description of each subfolder (e.g. "Math and CS convergence", "Interdisciplinarity").
+- Link to each subfolder's README: `[math-and-cs](math-and-cs/README.md)`.
+
+This gives a single place to see all topics and jump to the right subfolder when adding or searching papers.
+
+## Note file structure (`{citationkey}.md`)
+
+Each note file in a subfolder should follow this structure:
+
+```markdown
+# {Title}
+
+**Authors:** {Full names}
+**Year:** {Year}
+**Citation key:** `{citationkey}`
+**PDF:** [link](url)
+**arXiv:** [id](abs url)   (if applicable)
+**Google Scholar:** [Search](https://scholar.google.com/scholar?q={title-as-query})
+## Summary
+
+{2–3 paragraph summary of main contributions and arguments}
+
+## Authors
+
+{Short biographical paragraph for each author: institutional affiliation, key research areas, notable contributions, relevant background. Include links when available: [Homepage](url) | [Wikipedia](url) | [Google Scholar](url)}
+
+## Relevance to our class
+
+...
+
+## Key concepts
+
+...
+
+## Notes
+
+{Quotes, reading notes, follow-ups}
+```
+
+- Include the **citation key** used in `references.bib`.
+- Include a **Google Scholar** link so you can quickly find citations and related work. The link must use the **paper title as the query string** in the URL (e.g. `https://scholar.google.com/scholar?q=Title+Of+Paper`); spaces in the title become `+`. Optionally append first author and year (e.g. `...+Author+Year`) for disambiguation.
+- If there is an **open-access PDF**, link it in the note and optionally in the BibTeX entry (see `references.mdc`).
+
+## Required actions when adding a paper
+
+1. **Metadata:** Title, authors, year, PDF/arXiv URL from the source.
+2. **BibTeX:** Add entry to `references.bib`; if open-access PDF exists, add `url = {\url{...}}`; use `note` only for text that should appear in the reference list; use `title = {{Title}}` with double braces to preserve capitalization.
+3. **Subfolder:** Pick or create a subfolder under `bibliography/`.
+4. **PDF:** Save to the subfolder and **rename to `{citationkey}.pdf`** (e.g. `harris2024.pdf`). Do not leave source filenames (e.g. publisher article IDs) in place.
+5. **Text:** Run `pdftotext bibliography/<subfolder>/{citationkey}.pdf bibliography/<subfolder>/{citationkey}.txt` (same base name as PDF).
+6. **Subfolder README:** Add one bullet line in `bibliography/<subfolder>/README.md` (include PDF link, Google Scholar link with paper title as query, and note file link).
+7. **Note file:** Create `bibliography/<subfolder>/{citationkey}.md` with metadata, summary, relevance, key concepts, and notes; include a Google Scholar link with the paper title as the query string.
+8. **Relevance:** Map paper content to topics in class.
+
+## Scaling with many papers
+
+- **Subfolders:** Add new subfolders by theme (e.g. `formalization/`, `philosophy-of-science/`) instead of piling everything in one list.
+- **Subfolder README:** Stays one line per paper; no need for long descriptions in the README.
+- **Note files:** Keep the detailed content in the `.md` files; README is only for discovery and links.
+- **Top-level index:** Maintain `bibliography/README.md` with subfolder names and links so you can quickly see all topics.
+- **Naming:** Use `{citationkey}` for all three: `.pdf`, `.txt`, and `.md`. Rename PDFs to `{citationkey}.pdf` when adding papers; do not leave publisher or journal filenames in place.
+
+## Git and file handling
+
+- **PDFs:** Ignored by git (e.g. `*.pdf` in `bibliography/*/.gitignore` or equivalent). Stored locally only.
+- **.txt and .md:** Tracked so assistants and tools can search and summarize.
+- This keeps the repo small while leaving full text available locally and in notes.
+
+## References
+
+- **references.mdc:** Citation key format, BibTeX entry types, and biber usage.

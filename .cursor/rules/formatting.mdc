@@ -1,0 +1,65 @@
+---
+description: UK spelling, APA citations, footnotes, LaTeX/BibLaTeX configuration
+globs: "**/*.tex"
+alwaysApply: true
+---
+
+# Formatting and Style Guidelines
+
+## Language and Spelling
+
+- **Use UK spelling** throughout the document
+  - Examples: "organise" (not "organize"), "colour" (not "color"), "centre" (not "center"), "realise" (not "realize")
+
+## Citation Style
+
+- **APA citation style with author-date references**
+  - Use author-date format: `(Author, Year)` or `Author (Year)`
+  - Example: `(Commelin & Topaz, 2023)` or `Commelin and Topaz (2023)`
+
+## Notes
+
+- **Use footnotes rather than endnotes**
+  - Footnotes appear at the bottom of each page
+  - Endnotes are not used
+
+## LaTeX Configuration
+
+### Document Class and Compiler
+
+- **Document class**: Use `article` document class
+- **Fonts**: Use standard fonts (no custom font packages unless necessary)
+- **Compiler**: Use standard `pdflatex` compiler
+- **Bibliography**: Use **BibLaTeX** with an **author-year style** (not natbib)
+
+### Required Files for Submission
+
+When submitting, include all ancillary files:
+- `.sty` files (style files)
+- `.bbl` files (bibliography files)
+- `.log` file (compilation log)
+- **Recommendation**: Submit as a complete zip folder
+
+### Non-Standard Options
+
+- Notify in advance if any non-standard LaTeX options are required
+
+## Current Status
+
+**Status**: ✅ Migrated to BibLaTeX with author-year style
+
+The `main.tex` file uses:
+```latex
+\usepackage[style=authoryear,backend=biber]{biblatex}
+\addbibresource{references.bib}
+...
+\printbibliography
+```
+
+### Compilation
+
+Use `biber` instead of `bibtex` for bibliography processing:
+1. `pdflatex main.tex`
+2. `biber main`
+3. `pdflatex main.tex`
+4. `pdflatex main.tex`

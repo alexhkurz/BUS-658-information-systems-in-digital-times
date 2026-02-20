@@ -3,8 +3,7 @@
 ## Week 2
 
 - Required:
-  - “Situational Awareness” Leopold Ashenfelter
-With or without podcast accompaniment https://empiricrafting.substack.com/p/situational-awareness 
+  - [Situational Awareness](https://situational-awareness.ai/) by  Leopold Aschenbrenner. The [Justified Posteriors podcast](https://empiricrafting.substack.com/p/situational-awareness).
 -  One of:
    - [Scaling Laws](https://arxiv.org/pdf/2001.08361)
    - Ghelli, Internals of Conversational Agents + Anatomy of ChatGPT, in Canvas

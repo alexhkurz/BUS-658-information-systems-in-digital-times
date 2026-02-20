@@ -1,0 +1,756 @@
+nature machine intelligence
+Article
+
+https://doi.org/10.1038/s42256-025-01033-7
+
+Lossless data compression by large models
+Received: 13 July 2024
+Accepted: 4 April 2025
+
+Ziguang Li1,2,3,8, Chao Huang 4,5,8, Xuliang Wang 1,4,6,8, Haibo Hu4,5,8,
+Cole Wyeth6, Dongbo Bu 1,4, Quan Yu2, Wen Gao2, Xingwu Liu 7 &
+Ming Li 1,2,3,6
+
+Published online: 1 May 2025
+Check for updates
+
+Data compression is a fundamental technology that enables efficient
+storage and transmission of information. However, traditional compression
+methods are approaching their theoretical limits after 80 years of research
+and development. At the same time, large artificial intelligence models have
+emerged, which, trained on vast amounts of data, are able to ‘understand’
+various semantics. Intuitively, semantics conveys the meaning of data
+concisely, so large models hold the potential to revolutionize compression
+technology. Here we present LMCompress, a new method that leverages
+large models to compress data. LMCompress shatters all previous lossless
+compression records on four media types: text, images, video and audio.
+It halves the compression rates of JPEG-XL for images, FLAC for audio and
+H.264 for video, and it achieves nearly one-third of the compression rates of
+zpaq for text. Our results demonstrate that the better a model understands
+the data, the more effectively it can compress it, suggesting a deep
+connection between understanding and compression.
+
+Lossless data compression is an essential technology that allows the
+compressed data to be perfectly reconstructed. It is indispensable for
+executable programs, text documents, genomics, cryptography and
+multimedia archiving or production.
+Numerous lossless compression methods have been developed, for
+example, 7z (ref. 1), FLAC2, PNG3 and lossless H.264 (ref. 4)/H.265 (ref.
+5). These methods are largely confined to the information-theoretic
+framework established by C. Shannon more than 80 years ago6. They
+rely on various computable features, such as sophisticated rules and
+transformations, to identify and squeeze out redundancy from the data.
+Such approaches have reached their limits after 80 years of research.
+The dawn of a profound transformation began with the advent
+of large models. The principle of large models dates back to the
+well-known Solomonoff induction proposed in 1960s7. Rather than
+defining computable features, large models approximate the uncomputable Solomonoff induction from a lot of data8. They understand the
+data in this way, enabling efficient compression as we do in everyday
+experiences.
+
+Based on the above observation, we advocate a new method of
+compression, using large models to understand and consequently compress various data (see Fig. 1 for an overview). Precursors of our work
+have been independently published by us9 and by a DeepMind team10,
+and11 expresses similar ideas. Basically, data is input into an autoregressive generative model, which produces a sequence of next-token
+probability distributions. These probability distributions, in turn,
+enable arithmetic coding to equivalently transform the original data
+into a binary string. The studies in ref. 9 and ref. 10 demonstrate that
+the new approach outperforms commonly used top-tier compressors,
+such as 7z, by several folds. However, these works primarily focus on
+text compression.
+This paper intends to comprehensively validate the idea that
+better understanding implies better compression. To enhance understanding of different types of data, we use an image generative pretrained transformer (GPT)12 rather than a plain large language model
+(LLM) for images and videos, we use bGPT-audio 13, a large model
+pretrained on raw audio bytes, for audios and we employ specifically
+
+1
+Central China Institute of Artificial Intelligence, Zhengzhou, China. 2Peng Cheng Laboratory, Shenzhen, China. 3Shanghai Institute for Mathematics and
+Interdisciplinary Sciences, Shanghai, China. 4Institute of Computing Technology, Chinese Academy of Sciences, Beijing, China. 5Ningbo Institute of
+Artificial Intelligence Industry, Ningbo, China. 6School of Computer Science, University of Waterloo, Waterloo, Ontario, Canada. 7School of Mathematical
+Sciences, Dalian University of Technology, Dalian, China. 8These authors contributed equally: Ziguang Li, Chao Huang, Xuliang Wang, Haibo Hu.
+e-mail: liuxingwu@dlut.edu.cn; mli@uwaterloo.ca
+
+Nature Machine Intelligence | Volume 7 | May 2025 | 794–799
+
+794
+
+Article
+
+https://doi.org/10.1038/s42256-025-01033-7
+
+Original data
+
+Posterior probabilities
+
+Token sequence
+
+Compressed data
+0
+
+a
+
+0.2
+
+b
+
+0.9 1.0
+c
+
+b
+
+0.18 0.2
+c
+
+Text
+0
+
+Image
+
+Generative
+large model
+
+Tokenizer
+
+Audio
+
+t1 t2 . . . tn
+
+Video
+
+µ(ti =
+
+ǀt1...ti–1 =
+
+) = 0.20
+
+µ(ti =
+
+ǀt1...ti–1 =
+
+) = 0.50
+
+µ(ti =
+
+ǀt1...ti–1 =
+
+) = 0.30
+
+a
+
+0.04
+
+Arithmetic
+encoder
+
+01100110101...
+
+Iterate with i = 1 to n
+to process t1, t2, ..., tn
+
+Fig. 1 | The architecture of our LMCompress. First, the original data is
+transformed into a sequence of tokens. Then, this token sequence is fed into a
+generative large model, which outputs the predictive distribution for each token.
+
+Finally, arithmetic coding losslessly compresses the original data based on the
+predictive distributions. The tokenizer and the generative large model may vary
+according to the type of the data.
+
+Mathematical proof
+
+Because the datasets were too large, we sampled 197 images from
+them. The total size of the images was 128 megabytes. The context
+length was set to 1,024 to fit the context window of iGPT.
+Figure 3 shows the compression rates of the baselines and LMCompress on the two datasets. The results demonstrate that our LMCompress substantially outperforms all the baselines on both datasets,
+more than halving the compression rates. Note that the DeepMind
+method also uses large models, namely, the Chinchilla family. Its compression rates are much higher than LMCompress, possibly because
+Chinchilla is only trained on a language corpus whereas iGPT is trained
+on an image corpus and can understand images better.
+
+Compression
+
+Understanding
+Experimental validation
+
+Fig. 2 | Key insight of this paper. The insight that understanding is equivalent to
+compression, bridging a cognitive concept and a technological concept.
+
+fine-tuned LLMs for texts in specific domains. Based on the acquired
+understanding of data, we next apply arithmetic coding (see Supplementary Section 4 for details) to compress them. Lossless compression experiments show that by using LLMs to understand data, we
+substantially improve compression rates on all types of data, including
+text, images, video and audio. Our method is several folds better than
+traditional algorithms, and is better than the variants which use plain
+LLMs by a large margin.
+On this basis, it is reasonable to claim that understanding implies
+compression. The other direction, namely, that compression implies
+understanding, was proved under reasonable definitions by us in
+ref. 14. Altogether, we obtain the insight that understanding is compression, as illustrated in Fig. 2.
+
+Results
+We use compression rate as our main metric of compression performance, which refers to the ratio of the size of the compressed data to
+that of the original data. In the context of compression rate, the lower
+the better. Additional metrics, such as time cost, are discussed in Supplementary Section 3.
+Most of the baselines, say, H.264 video compression standard,
+can work in both lossy and lossless modes. For fair comparison, all the
+baselines are set to their lossless modes in our experiments.
+In addition, because the compression rate of an algorithm varies
+across datasets, every compression algorithm is evaluated on at least
+two different datasets to mitigate the effect brought about by potential
+data biases.
+
+Image compression
+
+Model. We used the image GPT (iGPT) model as the generative large
+model for image compression.
+Dataset. We evaluated the image compression performance of LMCompress on two benchmark image datasets, including: (1) ILSVRC2017 (ref.
+15), a large-scale dataset containing millions of labelled images across
+thousands of categories, derived from the ImageNet corpus; and (2)
+CLIC2019 professional16, which is specifically designed for evaluating
+image compression algorithms. CLIC2019 features high-quality images
+that exhibit a diverse range of characteristics, including natural scenes,
+textures, patterns and structures.
+Nature Machine Intelligence | Volume 7 | May 2025 | 794–799
+
+Video compression
+
+Model. We alsod use iGPT as the generative large model for video
+compression.
+Datasets. We used test data from Xiph.org (ref. 17), which contains over
+1,000 video clips in the uncompressed YUV4MPEG format. Owing to
+the massive size of the dataset, we selected a subset for testing. This
+subset included one high-resolution video clip (4,096 × 2,160), five
+static-scene video clips and five dynamic-scene video clips, both of
+low resolution (352 × 288). A video clip is said to be static scene if its
+consecutive frames change slightly, for example, classroom recordings; otherwise, it is said to be dynamic scene, for example, action
+movies. The total sizes of these three categories were 759 megabytes,
+162 megabytes and 237 megabytes, respectively.
+As shown in Fig. 4, LMCompress outperformed all baselines on
+both video types. On the high-resolution data, LMCompress achieved
+more than 20% improvement in compression rate compared with the
+baselines. On low-resolution static-scene data, LMCompress achieved
+more than 30% improvement in compression rate. On low-resolution
+dynamic-scene data, LMCompress maintained its edge, achieving at
+least 30% improvement in compression rate. We further observed that
+dynamic scenes are harder to compress than static scenes. A possible
+reason is that, in a dynamic-scene video clip, the actors tend to be in
+transient postures which are hard to understand or predict.
+
+Audio compression
+
+Model. We used bGPT-audio as the generative large model for audio
+compression.
+Dataset. As bGPT-audio is pretrained on the LibriSpeech dataset18,
+we evaluated its compression performance on three additional datasets: LJSpeech19, Mozilla Common Voice 11 (ref. 20) and VoxPopuli21.
+Both LibriSpeech and LJSpeech are derived from the LibriVox project,
+encompassing nearly 1,000 hours of 16-kHz English audiobook recordings. Mozilla Common Voice 11 is a multilingual speech dataset curated
+795
+
+Article
+
+https://doi.org/10.1038/s42256-025-01033-7
+
+30
+
+rates compared with LMCompress*, highlighting the effectiveness of
+domain-specific fine-tuning in enhancing text compression.
+In summary, LMCompress has higher compression rates on various types of data than all traditional baselines and raw LLM-based
+algorithms. This evidence supports our claim that better understanding leads to better compression.
+
+20
+
+Discussion
+
+Image compression rate (%)
+
+60
+50
+40
+
+10
+0
+
+CLIC2019
+DeepMind-7B
+
+DeepMind-70B
+
+JPEG-2000
+
+LMCompress
+
+ILSVRC
+PNG
+
+JPEG-XL
+
+WebP
+
+Fig. 3 | Image compression rates. The datasets are CLIC2019 and ILSVRC. The
+results of DeepMind methods on ILSVRC are from ref. 10, but those on CLIC2019
+are left blank because neither such results nor Chinchilla models are publicly
+available.
+
+through the Common Voice project, in which users contribute voice
+recordings by reading provided texts. VoxPopuli is another multilingual
+speech dataset, consisting of recordings from European Parliament
+events between 2009 and 2020.
+For each dataset, we first standardized the audio files into
+16-kHz sample rate, single channel and 8-bit depth. Subsequently, a
+consecutive piece of approximately 100 megabytes was randomly
+sampled from each dataset for compression. For Mozilla Common
+Voice 11 and VoxPopuli, the sampling was limited to English-language
+recordings. Before being processed by bGPT-audio, each sampled
+piece was converted into raw bytes and segmented into chunks with
+a maximum length of 8,160 bytes. This segmentation aligns with
+the model’s 8,192-byte context window, accommodating the format
+requirement that includes a 16-byte start-of-sequence token and a
+16-byte end-of-sequence token.
+The results are shown in Fig. 5. We obtained two observations: (1)
+LMCompress outperformed the DeepMind method on all datasets,
+possibly because the LLaMA model family is trained solely on a language
+corpus whereas bGPT-audio is trained on audio; and (2) LMCompress
+showed prominent advantage over the most efficient traditional method,
+OptimFROG, which even surpasses the large-model-based DeepMind
+method. Specifically, compared with OptimFROG, the compression rates
+of LMCompress were 28%, 35% and 23% lower on the LJSpeech, Mozilla
+Common Voice 11 and VoxPopuli datasets, respectively.
+
+Text compression
+
+Model. We chose LLaMA3-8B, domain-specifically fine-tuned by means
+of low-rank adaptation, as the generative large model in LMCompress
+for text compression.
+Dataset. Our benchmarks for text compression were the MeDAL and
+the Pile of Law23. MeDAL is a dataset in the domain of medicine, created
+from PubMed abstracts released in the 2019 annual baseline. It primarily serves as a corpus for understanding medical abbreviations. On the
+other hand, Pile of Law is a dataset in the domain of law. It includes legal
+and administrative texts compiled from 35 sources.
+In the experiments, we extracted the first approximately 180 megabytes from MeDAL and the eurlex split of the Pile of Law corpus. The
+context length was set to 1,024 to fit the context window of LLaMA3-8B.
+For either domain dataset, we used the first 64 megabytes for
+fine-tuning LLaMA3-8B, the next 16 megabytes for validation and the
+rest for testing.
+As in Fig. 6, LMCompress outperformed all baseline models, achieving a compression rate on each dataset that is less than one-third of the
+best traditional baseline, zpaq. It also demonstrated lower compression
+
+Communication in the past was generally governed by the Shannon
+paradigm, with coding efficiency upper bounded by Shannon entropy.
+Although exploring other computable features can further improve
+compression, large models may be seen to approximate the uncomputable Solomonoff induction, and hence open a new Kolmogorov
+paradigm of compression. As we have shown, this new approach to
+lossless compression has achieved substantial improvements on various kinds of data. Provided an LLM is trained to predict well on a data
+type or domain, it can be used to compress the data at increasingly
+efficient rates. This paradigm allows us to systematically understand
+the data we transmit, liberating us from the Shannon entropy bound.
+A possible application scenario of LMCompress is 6G communication, in particular when the bandwidth is limited from the satellites24. It will be substantially benefited by understanding the data,
+with large models at both ends of communication for encoding and
+decoding. As the large models are specialized as agents, assisted by
+retrieval-augmented generation, artificial intelligence will understand the data to be transmitted much better. When the data need to
+be encrypted, our compression needs to be done before encryption.
+One can even imagine that the sides with superior models broadcast
+openly compressed messages, allowing only those with equal models
+to decipher as a first level of encryption, at no extra cost.
+We have tested the encoding time cost of LMCompress as shown
+in Supplementary Section 2. The encoding time cost of LMCompress is
+even lower than some traditional methods, which means that encoding
+time is not a barrier for LMCompress in audio compression. Nevertheless, LMCompress is far from being ready for deployment, considering that the time costs on non-audio data are somewhat high, not to
+mention the high resource and energy consumption of large models.
+However, this is not a long-term concern for the following reasons.
+First, the large model community is actively working on inference
+acceleration and model size reduction. We can reasonably anticipate
+the emergence of fast and strong large models in the near future, which
+will enable LMCompress to strike a satisfactory balance between compression efficiency and cost.
+Second, it is relatively easier to speed up the encoding process
+of LMCompress, as the calculation of predictive probability distributions for different tokens can be performed in a parallel manner. Such
+encoding-accelerated LMCompress is particularly well suited for static
+storage, whereby data needs to be stored for long a time but is rarely
+50
+
+Nature Machine Intelligence | Volume 7 | May 2025 | 794–799
+
+Video compression rate (%)
+
+22
+
+45
+40
+35
+30
+25
+20
+15
+10
+5
+0
+
+Static scene
+ffv1
+
+Dynamic scene
+h264
+
+h265
+
+LMCompress
+
+Fig. 4 | Video compression rates. The datasets are from Xiph.org, including
+high-resolution and low-resolution video clips. The low-resolution video clips are
+further classified into ‘static scene’ and ‘dynamic scene’.
+
+796
+
+Article
+
+https://doi.org/10.1038/s42256-025-01033-7
+
+45.00
+
+Audio compression rate (%)
+
+40.00
+35.00
+30.00
+25.00
+20.00
+15.00
+10.00
+5.00
+0
+
+LJSpeech
+FLAC
+
+OptimFROG
+
+Mozilla Common Voice 11
+WavPack
+
+VoxPopuli
+
+DeepMind
+
+LMCompress
+
+Fig. 5 | Audio compression rates. The datasets are LJSpeech, Mozilla Common
+Voice 11 and VoxPopuli. The method DeepMind is adapted from ref. 10 by
+replacing LLaMA2 with LlaMA3-8B for a fair comparison with our LMCompress.
+
+35
+
+First, iGPT is a large-scale vision model that has been trained on a
+vast corpus of images, equipped with a thorough understanding of visual
+data. This makes iGPT well suited for analysing and processing images.
+Second, iGPT is an autoregressive model. When presented with
+a sequence of pixels, it can generate a predictive probability distribution for each pixel in the sequence. The availability of the probability
+distributions is a prerequisite for arithmetic coding.
+Because the tokens of iGPT are greyscale values, we regard an
+image as three greyscale images, one for each RGB channel, and compress each channel independently. Specifically, for each channel,
+we concatenate the rows of the greyscale image into a sequence of
+greyscale pixels, input this sequence into iGPT and then feed the probability distributions produced by iGPT into the arithmetic encoder to
+complete the compression of that channel. During decompression,
+each channel is decompressed independently, and the three channels
+are then merged to reconstruct the original image.
+However, the entire sequence of pixels of a channel usually cannot
+be fed into the iGPT at once, owing to the limited context window of
+iGPT. Instead, we divide the sequence into non-overlapping segments
+(whose length is called context length), each of which can fit within
+iGPT’s context window. These segments are then fed into iGPT and
+compressed independently.
+
+Text compression rate (%)
+
+30
+
+Video compression
+
+25
+20
+15
+10
+5
+0
+
+Pile of Law
+
+MeDAL
+zstd
+
+7z
+
+zpaq
+
+brotli
+
+LMCompress*
+
+LMCompress
+
+Fig. 6 | Text compression rates. The datasets are MeDAL and Pile of Law. The
+LMCompress* method was adapted from refs. 9,10 by replacing LLaMA2-7B with
+LLaMA3-8B for a fair comparison. It is similar to LMCompress but uses the raw
+LLaMA3-8B model without fine-tuning.
+
+accessed. The demand for static storage is increasing, with examples
+including archiving surveillance data, medical records and online
+transaction logs.
+
+Methods
+Traditional compression methods, whether lossy or lossless, depend
+on a computable function for characterizing data. Here, we propose
+LMCompress, a Kolmogorov paradigm25 of compression rooted in the
+uncomputable Solomonoff induction. The Solomonoff induction is
+approximated by large models with never-ending input data. The compression rates should go up with better approximation of Solomonoff
+induction and better understanding of data.
+The process of LMCompress is illustrated in Fig. 1. First, we decompose the original data into a sequence of tokens. Then, we feed this
+token sequence into a large generative model, which outputs the predictive distribution for each token. Finally, we use arithmetic coding
+to losslessly compress the original data based on these predictive
+distributions. To enhance understanding of various types of data, we
+use different tokenizers and generative large models for different data
+types, which are described in more detail below.
+
+We have not found publicly available open-source large video models
+that autoregressively produce pixel-level probability distributions.
+This limitation can be overcome by leveraging the inherent structure
+of videos. Because a video consists of a sequence of frames, we treat
+each frame as an image and compress the video frame-by-frame using
+iGPT as in ‘Image compression’. Specifically, the frames are compressed
+independently and stored in the original order. During decompression,
+the frames are decoded independently and then arranged in order, so
+as to reconstruct the original video.
+At this stage, we choose not to exploit the interframe information
+for compression due to the following two concerns.
+First, disregarding interframe information may make a video
+codec scalable, resilient to propagation of errors over time, well suited
+for networked and point-to-point environments, and friendly to random frame access. In fact, some established video standards do not
+rely on interframe information, for example, FFV1 (ref. 26) and Motion
+JPEG 2000 (ref. 27).
+Second, it is hard for LMCompress to effectively use interframe
+information. On the one hand, we have observed that interframe information helps LMCompress less than intraframe information does.
+On the other hand, owing to the fixed context window of iGPT, incorporating interframe information would reduce the use of intraframe
+information, and hence lead to worse performance.
+
+Audio compression
+Audio is inherently a sequential medium. An audio clip consists of a
+temporal sequence of frames, each encoding the amplitude information at a specific time point using a fixed number of bytes. Hence, it is
+natural to leverage large autoregressive models to compress audio.
+We use the bGPT model, which is pretrained directly on raw audio
+bytes, to perform audio compression. It takes as input a sequence
+of audio bytes and produces the predictive probability distribution
+for every byte in the sequence. The distributions are then fed into an
+arithmetic encoder for compression.
+Given the limited context window of bGPT, a long sequence of
+audio bytes will be compressed segment by segment, as described in
+‘Audio compression’.
+
+Image compression
+
+Text compression
+
+We used iGPT as the generative large model for images. Our choice of
+iGPT was driven by two key factors.
+
+LLMs have demonstrated an impressive ability to compress general text9,10. Intriguingly, they have the potential to compress more
+
+Nature Machine Intelligence | Volume 7 | May 2025 | 794–799
+
+797
+
+Article
+efficiently, provided that the text to be compressed is restricted to
+specific domains. The key lies in adapting an LLM to better understand
+the target domain. This is implemented by fine-tuning the LLM on a
+domain-specific textual corpus, tailoring the model to the characteristics of the domain. Then, to compress a text from the domain, we feed
+it into the fine-tuned LLM. The LLM will estimate the predictive probabilities for the tokens in the text, which can be leveraged by arithmetic
+coding to perform compression. Again, when the LLM has a limited
+context window, the text will be compressed segment by segment, as
+described in ‘Audio compression’.
+
+Data availability
+ILSVRC is available at https://www.image-net.org/challenges/
+LSVRC/2012/index.php. CLIC is available at https://clic.compression.
+cc/2019/. LibriSpeech is available at www.openslr.org/12. LJSpeech
+is available at https://keithito.com/LJ-Speech-Dataset. Mozilla
+Common Voice 11 is available at https://huggingface.co/datasets/
+mozilla-foundation/common_voice_11_0. VoxPopuli is available at
+https://huggingface.co/datasets/facebook/voxpopuli. MeDAL is available at https://github.com/McGill-NLP/medal. Eurlex is available at
+https://huggingface.co/datasets/pile-of-law/pile-of-law. CIPR SIF is
+available at https://media.xiph.org/video/derf/.
+
+Code availability
+Our code is available via Code Ocean at https://doi.org/10.24433/
+CO.9735997.v1. (ref. 28)
+
+References
+1.
+2.
+
+3.
+4.
+5.
+6.
+7.
+8.
+
+9.
+
+10.
+
+11.
+
+12.
+
+13.
+
+14.
+15.
+16.
+
+Pavlov, I. 7-zip. www.7-zip.org/a/lzma-specification.7z (2024).
+Xiph.Org Foundation. Flac: free lossless audio codec. Xiph.org
+https://xiph.org/flac/features.html (2023).
+Boutell, T. Rfc2083: png (portable network graphics) specification
+version 1.0. W3C https://www.w3.org/TR/REC-png-961001 (1997).
+Richardson, I. E. The H.264 Advanced Video Compression
+Standard 2nd edn (Wiley, 2010).
+High efficiency video coding (hevc) - itu-t recommendation h.265.
+ITU https://www.itu.int/rec/T-REC-H.265 (2013).
+Shannon, C. E. A mathematical theory of communication.
+Bell Syst. Tech. J. 27, 379–423 (1948).
+Solomonoff, R. A formal theory of inductive inference.
+Inform. control 7, 1–22 (1964).
+Grau-Moya, J. et al. Learning universal predictors. In Proc. 41st
+International Conference on Machine Learning (eds Salakhutdinov,
+R. et al.) 16178–16205 (PMLR, 2024).
+Huang, C., Xie, Y., Jiang, Z., Lin, J. & Li, M. Approximating
+human-like few-shot learning with gpt-based compression.
+Preprint at https://arXiv.org/abs/2308.06942 (2023).
+Deletang, G. et al. Language modeling is compression.
+In Twelfth International Conference on Learning Representations
+(eds Chaudhuri, S. et al.) (ICLR, 2024).
+Bellard, F. Nncp v2: lossless data compression with transformer.
+Preprint at Fabrice Bellard https://bellard.org/nncp/nncp_v2.pdf
+(2021).
+Chen, M. et al. Generative pretraining from pixels. In International
+conference on machine learning (eds Daumé III, H. et al.)
+1691–1703 (PMLR, 2020).
+Wu, S. et al. Beyond language models: byte models are digital
+world simulators. Preprint at https://arXiv.org/abs/2402.19155
+(2024).
+Jiang, Z., Wang, R., Bu, D. & Li, M. A theory of human-like few-shot
+learning. Preprint at https://arXiv/org/abs/2301.01047 (2023).
+Russakovsky, O. et al. Imagenet large scale visual recognition
+challenge. Int. J. of Comput. Vis. 115, 211–252 (2015).
+Challenge on Learned Image Compression (CLIC). https://archive.
+compression.cc/2019/challenge/ (2019).
+
+Nature Machine Intelligence | Volume 7 | May 2025 | 794–799
+
+https://doi.org/10.1038/s42256-025-01033-7
+17.
+
+Xiph.org video test media. Xiph.org https://media.xiph.org/video/
+derf/ (accessed 2024).
+18. Panayotov, V., Chen, G., Povey, D. & Khudanpur, S. Librispeech:
+an asr corpus based on public domain audio book. In 2015
+IEEE International Conference on Acoustics, Speech and Signal
+Processing (ICASSP) (IEEE, 2015).
+19. Ito, K. & Johnson, L. The lj speech dataset. https://keithito.com/
+LJ-Speech-Dataset/ (2017).
+20. Ardila, R. et al. Common voice: a massively-multilingual
+speech corpus. In Proc. of the 12th Conference on Language
+Resources and Evaluation (eds Calzolari, N. et al.) 4211–4215
+(LREC, 2020).
+21. Wang, C. et al. VoxPopuli: a large-scale multilingual speech
+corpus for representation learning, semi-supervised learning and
+interpretation. In Proc. 59th Annual Meeting of the Association
+for Computational Linguistics and the 11th International Joint
+Conference on Natural Language Processing (Volume 1: Long
+Papers) (eds Zong, C., Xia, F., Li, W. & Navigli, R.) 993–1003
+(Association for Computational Linguistics, 2021).
+22. Wen, Z., Lu, X. H. & Reddy, S. MeDAL: medical abbreviation
+disambiguation dataset for natural language understanding
+pretraining. In Proc. 3rd Clinical Natural Language Processing
+Workshop (eds Rumshisky, A. et al.) 130–135 (Association for
+Computational Linguistics, 2020).
+23. Henderson, P. et al. Pile of law: Learning responsible data filtering
+from the law and a 256gb open-source legal dataset. Adv. Neural
+Inf. Process. Syst. 35, 29217–29234 (2022).
+24. Satellite Communications and their Role in Enabling 6G. Technical
+Report (GSOA, 2014); https://gsoasatellite.com/wp-content/
+uploads/6G-Paper-GSOA.pdf
+25. Li, M. & Vitányi, P. An Introduction to Kolmogorov Complexity and
+Its Applications (Springer, 2019).
+26. Niedermayer, M., Rice, D. & Martinez, J. FFV1 Video Coding
+Format Version 4. Internet-Draft draft-ietf-cellar-ffv1-v4-22.
+Internet Engineering Task Force https://datatracker.ietf.org/doc/
+draft-ietf-cellar-ffv1-v4/22/ (2024).
+27. Information technology - jpeg 2000 image coding system:
+motion jpeg 2000 - part 3 (ISO, 2007); https://www.iso.org/
+standard/41570.html
+28. Li, Z. & Wang, X. Understanding is compression: v.0.1.0 Code
+Ocean https://doi.org/10.24433/CO.9735997.v1 (2024).
+
+Acknowledgements
+
+This work is partially supported by the National Key R&D Program of
+China grant no. 2022YFA1304603 (to M.L.); Proteomic Navigator
+of the Human Body Project (to M.L.); Canada’s NSERC OGP0046506
+(to M.L. and C.W.); Canada Research Chair Program (to C.W.); National
+Natural Science Foundation of China grant no. 62072433 (to X.L.),
+grant no. 62088102 (to W.G. and M.L.) and grant no. 62025101
+(to W.G. and M.L.); and Kechuang Yongjiang 2035 key technology
+breakthrough plan of Zhejiang Ningbo grant no. 2024Z119 (to C.H.).
+We thank N. Zhang and P. Vitanyi for discussions on Solomonoff
+induction. We thank C. Huang, Y. Xie, Z. Jiang, R. Wang and P. Guo for
+their discussions and related work in ref. 14 and ref. 9.
+
+Author contributions
+
+M.L. conceived the presented idea. M.L., X.L., C.H., Q.Y. and W.G.
+developed the theory and supervised the findings of this work. Z.L.,
+C.H., X.W., H.H. and C.W. performed the computations and carried out
+the experiments. Z.L., C.H., X.W., H.H., C.W., D.B., X.L. and M.L. wrote
+the paper. All authors discussed the results and contributed to the
+final paper.
+
+Competing interests
+
+The authors declare no competing interests.
+798
+
+Article
+
+https://doi.org/10.1038/s42256-025-01033-7
+
+Additional information
+
+Publisher’s note Springer Nature remains neutral with regard
+to jurisdictional claims in published maps and institutional
+affiliations.
+
+Correspondence and requests for materials should be addressed to
+Xingwu Liu or Ming Li.
+Peer review information Nature Machine Intelligence thanks Ziv
+Goldfeld, Jan Voges and the other, anonymous, reviewer(s) for their
+contribution to the peer review of this work.
+
+Springer Nature or its licensor (e.g. a society or other partner)
+holds exclusive rights to this article under a publishing agreement
+with the author(s) or other rightsholder(s); author self-archiving
+of the accepted manuscript version of this article is solely
+governed by the terms of such publishing agreement and
+applicable law.
+
+Reprints and permissions information is available at
+www.nature.com/reprints.
+
+© The Author(s), under exclusive licence to Springer Nature Limited
+2025, corrected publication 2025
+
+Supplementary information The online version contains supplementary
+material available at https://doi.org/10.1038/s42256-025-01033-7.
+
+Nature Machine Intelligence | Volume 7 | May 2025 | 794–799
+
+799
+
+
