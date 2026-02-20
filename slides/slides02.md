@@ -5,6 +5,18 @@ style: |
   section.smalltext {
     font-size: 30px;
   }
+
+
+
+---
+# Class 3
+
+-   Discussion question and conversation
+-   Lab time to organize + discuss final projects
+-   Group discussion around final projects
+-   Preview of next week's readings & discussion + some scheduling
+
+
 ---
 
 
@@ -138,6 +150,18 @@ Ray Kurzweil, 2004:
 -  Economic benefits larger or smaller if nationalized?
 
 -  p(doom)?
+
+---
+
+# Lab time for final projects
+
+
+---
+
+# Semester logistics
+
+-    Answer survey about movie night choices
+-    Let us know about any upcoming absences due to upcomming religious or work comitments (e.g. Passover Seder April 2)
 
 
 

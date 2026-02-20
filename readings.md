@@ -1,9 +1,30 @@
 # Readings 
 
+
+## Week 3
+
+
+Some ideas:
+  -  https://drive.google.com/file/d/1uK7NhdSKprQKZnRjU58X7NLA1auXlWHt/view Read Introduction (page 2, and Alignment page 16-22, skim the rest)
+  
+  - https://www.brookings.edu/articles/isaac-asimovs-laws-of-robotics-are-wrong/
+
+  - Anthropic — [Constitution](https://www.anthropic.com:constitution)  -- Read the Overview, Closing thoughts, and "Acknowledging open problems" and skim the rest
+
+  - https://www.newyorker.com/magazine/2015/11/23/doomsday-invention-artificial-intelligence-nick-bostrom
+
+  - https://docs.google.com/document/d/1WwsnJQstPq91_Yh-Ch2XRL8H_EpsnjrC1dwZXR37PC8/edit?tab=t.0#heading=h.kkaua0hwmp1d --- read through page 9 and skim the rest
+
+
+
+
+
+
 ## Week 2
 
 - Required:
-  - [Situational Awareness](https://situational-awareness.ai/) by  Leopold Aschenbrenner. The [Justified Posteriors podcast](https://empiricrafting.substack.com/p/situational-awareness).
+  - “Situational Awareness” Leopold Ashenfelter
+With or without podcast accompaniment https://empiricrafting.substack.com/p/situational-awareness 
 -  One of:
    - [Scaling Laws](https://arxiv.org/pdf/2001.08361)
    - Ghelli, Internals of Conversational Agents + Anatomy of ChatGPT, in Canvas
