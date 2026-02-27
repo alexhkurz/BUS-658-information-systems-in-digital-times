@@ -1,9 +1,21 @@
 # Readings 
 
+## Week 4
+
+Required:
+
+- [An Essay on the Principle of Population](https://docs.google.com/document/d/1KlxckO3924MqcEaDlVWI1N8QtxWbSyqxaM105PpW5wU/edit?tab=t.0) 6th edition by Malthus. Chapters 1 and 2 (pages 13-22).
+- Acemoglu: [The Simple Macroeconomics of AI](https://economics.mit.edu/sites/default/files/2024-04/The%20Simple%20Macroeconomics%20of%20AI.pdf), 2024. This is a long paper, use LLMs to extract the big picture (main argument, main limitations). Also on [Justified Posteriors](https://empiricrafting.substack.com/p/the-simple-macroeconomics-of-ai).
+
+One of the following:
+
+- Eloundou etal: [GPTs are GPTs: An Early Look at the Labor Market Impact Potential of Large Language Models](https://arxiv.org/abs/2303.10130), 2023.
+
+
 ## Week 3
 
 Required:
-- Anthropic [Constitution](https://www.anthropic.com:constitution). Read the Overview, Closing thoughts, and "Acknowledging open problems" and skim the rest
+- Anthropic [Constitution](https://www.anthropic.com/constitution). Read the Overview, Closing thoughts, and "Acknowledging open problems" and skim the rest
 - [Eliciting latent knowledge: How to tell if your eyes deceive you](https://docs.google.com/document/d/1WwsnJQstPq91_Yh-Ch2XRL8H_EpsnjrC1dwZXR37PC8/edit?tab=t.0#heading=h.kkaua0hwmp1d). Read through page 9 and skim the rest
 
 One of the following:
