@@ -7,6 +7,7 @@ This is the repository for the course BUS-658 Information Systems in Digital Tim
 - [Lecture by Lecture](lecture-by-lecture.md)
 - [Canvas](https://canvas.chapman.edu/courses/84365)
 - [Intro (Slides)](https://alexhkurz.github.io/BUS-658-information-systems-in-digital-times/)
+- [Readings](./readings.md)
 - [Bibliography](bibliography/README.md)
 
 ---
