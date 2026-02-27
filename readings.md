@@ -11,7 +11,7 @@ Required:
 Optional:
 
 - Eloundou etal: [GPTs are GPTs: An Early Look at the Labor Market Impact Potential of Large Language Models](https://arxiv.org/abs/2303.10130), 2023.
-
+- Scott Alexander: [Meditations On Moloch](https://www.slatestarcodexabridged.com/Meditations-On-Moloch), 2014.
 
 ## Week 3
 
