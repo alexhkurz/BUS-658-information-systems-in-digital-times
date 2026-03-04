@@ -4,7 +4,7 @@
 
 Required:
 
-- [An Essay on the Principle of Population](https://docs.google.com/document/d/1KlxckO3924MqcEaDlVWI1N8QtxWbSyqxaM105PpW5wU/edit?tab=t.0) 6th edition by Malthus. Chapters 1 and 2 (pages 13-22).
+- [An Essay on the Principle of Population](https://math.uchicago.edu/~shmuel/Modeling/Malthus,%20An%20essay%20on%20the%20principle%20of%20population.pdf) 6th edition by Malthus. Chapters 1 and 2 (pages 13-22).
 - Acemoglu: [The Simple Macroeconomics of AI](https://economics.mit.edu/sites/default/files/2024-04/The%20Simple%20Macroeconomics%20of%20AI.pdf), 2024. This is a long paper, use LLMs to extract the big picture (main argument, main limitations). Also on [Justified Posteriors](https://empiricrafting.substack.com/p/the-simple-macroeconomics-of-ai). You need to understand the meaning (not the derivation) of equations (14) and Section 3.2.
 - [ThreeEconomicModels.md](docs/ThreeEconomicModels.md)
   
