@@ -7,7 +7,7 @@ Required:
 - [Going Whole Hog: A Philosophical Defense of AI Cognition](https://arxiv.org/abs/2504.13988). This paper defends the thesis that "LLMs like ChatGPT are full-blown linguistic and cognitive agents, possessing understanding, beliefs, desires, knowledge, and intentions." The paper anticipates a number of counter arguments against their thesis, eg in Chapters 4, 5, 7. Choose one of them and argue against the authors of the paper. Alternatively, find your own counter argument.
 
 Optional: 
-- Watch the video [The Most Misinterpreted Experiment in Neuroscience](https://www.youtube.com/watch?v=yDDgDSmfS6Q). Aaron Schurger is a Chapman professor known for his work in cognitive neuroscience, free will and consciousness. In case there is interest, we could ask him whether he wants to come by for a discussion. 
+- Watch the video [The Most Misinterpreted Experiment in Neuroscience](https://www.youtube.com/watch?v=yDDgDSmfS6Q). Chapman professor [Aaron Schurger](https://scholar.google.com/citations?user=lBSjfagAAAAJ&hl=en)  known for his work in cognitive neuroscience, free will and consciousness. In case there is interest, we could ask him whether he wants to come by for a discussion. 
 
 
 ## Week 4
