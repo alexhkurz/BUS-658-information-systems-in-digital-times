@@ -3,12 +3,11 @@
 # Week 5
 
 Required:
-- [From Anthropic’s Interpretability Research](https://transformer-circuits.pub/) read
-  - [Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet](https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html). This is a difficult but also very influential paper. Can you understand why this is important without going into all technical details?
-- [Going Whole Hog: A Philosophical Defense of AI Cognition](https://arxiv.org/abs/2504.13988). This paper defends the thesis that "LLMs like ChatGPT are full-blown linguistic and cognitive agents, possessing understanding, beliefs, desires, knowledge, and intentions." The paper anticipates a number of counter arguments against their thesis, eg in Chapters 4,5,7. Choose one of them and try to argue against the authors of the paper. Alternatively, find your own counter argument.
+- [From Anthropic’s Interpretability Research](https://transformer-circuits.pub/) read [Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet](https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html). This is a difficult but rewarding. Find one way to explain why this paper is important without going into all technical details.
+- [Going Whole Hog: A Philosophical Defense of AI Cognition](https://arxiv.org/abs/2504.13988). This paper defends the thesis that "LLMs like ChatGPT are full-blown linguistic and cognitive agents, possessing understanding, beliefs, desires, knowledge, and intentions." The paper anticipates a number of counter arguments against their thesis, eg in Chapters 4, 5, 7. Choose one of them and argue against the authors of the paper. Alternatively, find your own counter argument.
 
 Optional: 
-- Watch the video [The Most Misinterpreted Experiment in Neuroscience](https://www.youtube.com/watch?v=yDDgDSmfS6Q). Aaron Schurger is a Chapman professor known for his work in cognitive neuroscience free will and consciousness. In case there is interest, we could ask him whether he wants to come by for a discussion. 
+- Watch the video [The Most Misinterpreted Experiment in Neuroscience](https://www.youtube.com/watch?v=yDDgDSmfS6Q). Aaron Schurger is a Chapman professor known for his work in cognitive neuroscience, free will and consciousness. In case there is interest, we could ask him whether he wants to come by for a discussion. 
 
 
 ## Week 4
