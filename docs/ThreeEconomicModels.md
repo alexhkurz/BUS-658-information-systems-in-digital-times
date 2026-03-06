@@ -64,6 +64,9 @@ $$\frac{\dot{Y}}{Y} = 0 + g + n$$
 
 > **Note on Per-Capita Output:** Unlike Malthus, Solow allows for sustained increases in living standards. However, per-capita output ($y = Y/L$) grows asymptotically at rate $g$. This means that without continuous improvements in technology, capital accumulation alone cannot drive long-run growth in income per person.
 
+
+>>>What Would it Mean for Alpha to Increase? In Acemoglu's "Race Between Man adn Machine" automation can be modeled this way. 
+
 ---
 
 ## Page 3: The AK Model
@@ -105,3 +108,6 @@ $$\frac{\dot{Y}}{Y} = g + \frac{sY - (n + \delta)K}{K} \implies \gamma_Y = g + s
 | **Saving Rate Affects Growth?** | No | No (Level effect only) | **Yes** (Permanent effect) |
 | **Convergence?** | Yes (to subsistence $\bar{y}$) | Yes (Conditional) | **No** (Growth can diverge) |
 | **Primary Policy Implication** | Technology $\to$ More people | Technology $\to$ Higher income | Higher $s$ or $A$ $\to$ Faster growth |
+
+
+### Shorter Term Economic Impacts
