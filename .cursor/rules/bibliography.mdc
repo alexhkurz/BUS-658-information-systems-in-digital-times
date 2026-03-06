@@ -1,5 +1,5 @@
 ---
-description: Bibliography management — add papers, note files, README, pdftotext workflow
+description: Bibliography management — add papers, note files, README, pandoc/pdftotext workflow
 globs: bibliography/**/*.md, bibliography/**/README.md, references.bib
 alwaysApply: false
 ---
@@ -12,29 +12,45 @@ Rules for maintaining the bibliography. See also `references.mdc` for BibTeX for
 
 - **Root:** `bibliography/` (no longer `papers/`).
 - **Subfolders:** One per topic or theme (e.g. `math-and-cs/`, `interdisciplinarity/`, `philosophy-of-technology/`). Use subfolders so the bibliography can grow without a single flat list. **Every subfolder must contain a `.gitignore`** that excludes PDFs: add a file `bibliography/<subfolder>/.gitignore` with the single line `*.pdf`.
-- **Per-paper files** live in the chosen subfolder: `{citationkey}.pdf`, `{citationkey}.txt`, `{citationkey}.md`.
+- **Per-paper files** live in the chosen subfolder: `{citationkey}.pdf`, full-text conversion (`{citationkey}.md` or fallback `{citationkey}.txt`), and the note file `{citationkey}-notes.md`.
 
-Citation keys follow `references.mdc` (e.g. `commelin2023`, `orourke2016`). **PDFs should be renamed to `{citationkey}.pdf`** so that the same base name is used for `.pdf`, `.txt`, and `.md` in that subfolder. When adding a paper from an existing PDF (e.g. a journal download with a long filename), rename the PDF to `{citationkey}.pdf` after assigning the citation key. This keeps scripts (e.g. `pdftotext`) and links consistent. The `.md` and `.txt` names are always `{citationkey}.md` / `{citationkey}.txt`.
+Citation keys follow `references.mdc` (e.g. `commelin2023`, `orourke2016`). **PDFs should be renamed to `{citationkey}.pdf`** so that the same base name is used for all derived files in that subfolder.
+
+**File naming:**
+
+| File | Purpose |
+|------|--------|
+| `{citationkey}.pdf` | Source PDF (or EPUB; convert to PDF first if using pandoc on PDF). |
+| `{citationkey}.md` | **Preferred:** Full text of the paper in Markdown, converted from PDF/EPUB via **pandoc**. Use when pandoc is available and succeeds. |
+| `{citationkey}.txt` | **Fallback:** Plain-text extraction via **pdftotext** when pandoc is not used or fails (e.g. scan-only PDFs). |
+| `{citationkey}-notes.md` | Our note file: metadata, summary, relevance to class, key concepts, reading notes (see structure below). |
+
+Assistants and tools should prefer reading `{citationkey}.md` when present (better structure, headings); use `{citationkey}.txt` only when `.md` does not exist.
+
+**Note on PDF and pandoc:** Pandoc does **not** support PDF as input. For PDF sources: (1) run `pdftotext bibliography/<subfolder>/{citationkey}.pdf bibliography/<subfolder>/{citationkey}.txt`; (2) then run `pandoc -f markdown -t markdown --wrap=none bibliography/<subfolder>/{citationkey}.txt -o bibliography/<subfolder>/{citationkey}.md`. The pandoc step turns pdftotext’s line-by-line output into one line per paragraph (blank lines stay as paragraph breaks). For EPUB or HTML/LaTeX sources, use pandoc directly to produce `.md`.
+
+**Why `-notes.md` for the summary/note file:** With `.md` reserved for pandoc output (full text in Markdown), the human-written file (summary, relevance, key concepts, reading notes) needs a distinct name. `{citationkey}-notes.md` keeps the citation key first for sorting and makes the role clear in directory listings. Alternative: `{citationkey}.notes.md` if you prefer the "extension" style (all `{citationkey}.*` files group together).
 
 ## Adding a new paper
 
 1. **Choose or create a subfolder** under `bibliography/` (e.g. `bibliography/math-and-cs/`).
 2. **Add BibTeX entry** to `references.bib` (format and citation key: see `references.mdc`).
 3. **Add entry to the subfolder README:** `bibliography/<subfolder>/README.md` (single-line bullet; see format below).
-4. **Create the note file** in that subfolder: `bibliography/<subfolder>/{citationkey}.md` (structure below).
-5. **Add PDF and text:**
+4. **Create the note file** in that subfolder: `bibliography/<subfolder>/{citationkey}-notes.md` (structure below).
+5. **Add PDF and full text:**
    - Save or copy the PDF into the subfolder, then **rename it to `{citationkey}.pdf`** (e.g. `romeo2024.pdf`). Do not leave journal filenames (e.g. `S0273-0979-2024-01819-9.pdf`) in place.
-   - Create text: `pdftotext bibliography/<subfolder>/{citationkey}.pdf bibliography/<subfolder>/{citationkey}.txt` (same base name as the PDF).
+   - **Preferred — pandoc (Markdown):** `pandoc bibliography/<subfolder>/{citationkey}.pdf -o bibliography/<subfolder>/{citationkey}.md` (optionally add `--wrap=none` or extract only text: `pandoc ... -t markdown-smart`). For EPUB: `pandoc bibliography/<subfolder>/{citationkey}.epub -o bibliography/<subfolder>/{citationkey}.md`.
+   - **Fallback — pdftotext then pandoc:** if the source is PDF only: `pdftotext bibliography/<subfolder>/{citationkey}.pdf bibliography/<subfolder>/{citationkey}.txt`, then `pandoc -f markdown -t markdown --wrap=none bibliography/<subfolder>/{citationkey}.txt -o bibliography/<subfolder>/{citationkey}.md` (so `.md` has one line per paragraph). Use `.txt` only when `.md` was not produced.
 6. **Optionally update top-level index:** `bibliography/README.md` (list of subfolders and short description; link to each subfolder's README).
 
-PDFs are ignored by git (e.g. via `bibliography/*/.gitignore` or root `.gitignore`). `.txt` and `.md` are committed so assistants can use them.
+PDFs are ignored by git (e.g. via `bibliography/*/.gitignore` or root `.gitignore`). `.md`, `.txt`, and `-notes.md` are committed so assistants can use them.
 
 ## Subfolder README format
 
 Each subfolder has a `README.md` that lists its papers as **single-line bullet points**:
 
 ```
-- {Title} - {Author1} & {Author2} ({Year}) - [PDF]({url}) - [Scholar](https://scholar.google.com/scholar?q={title-as-query}) - [`{citationkey}`]({citationkey}.md)
+- {Title} - {Author1} & {Author2} ({Year}) - [PDF]({url}) - [Scholar](https://scholar.google.com/scholar?q={title-as-query}) - [`{citationkey}`]({citationkey}-notes.md)
 ```
 
 - Title: full title, sentence case.
@@ -42,12 +58,12 @@ Each subfolder has a `README.md` that lists its papers as **single-line bullet p
 - Year: 4-digit in parentheses.
 - Link: `[PDF](url)` if available; otherwise omit or use [arXiv](…), [Website](…), etc.
 - **Google Scholar:** `[Scholar](https://scholar.google.com/scholar?q={title-as-query})` — use the paper title as the query string; spaces become `+`.
-- Note file: `` [`citationkey`](citationkey.md) ``.
+- Note file: `` [`citationkey`](citationkey-notes.md) ``.
 
 Example:
 
 ```
-- Abstraction boundaries and spec driven development in pure mathematics - Commelin & Topaz (2023) - [PDF](https://arxiv.org/pdf/2309.14870.pdf) - [Scholar](https://scholar.google.com/scholar?q=Abstraction+boundaries+and+spec+driven+development+in+pure+mathematics) - [`commelin2023`](commelin2023.md)
+- Abstraction boundaries and spec driven development in pure mathematics - Commelin & Topaz (2023) - [PDF](https://arxiv.org/pdf/2309.14870.pdf) - [Scholar](https://scholar.google.com/scholar?q=Abstraction+boundaries+and+spec+driven+development+in+pure+mathematics) - [`commelin2023`](commelin2023-notes.md)
 ```
 
 ## Top-level bibliography index (optional but recommended)
@@ -59,7 +75,7 @@ Example:
 
 This gives a single place to see all topics and jump to the right subfolder when adding or searching papers.
 
-## Note file structure (`{citationkey}.md`)
+## Note file structure (`{citationkey}-notes.md`)
 
 Each note file in a subfolder should follow this structure:
 
@@ -103,9 +119,9 @@ Each note file in a subfolder should follow this structure:
 2. **BibTeX:** Add entry to `references.bib`; if open-access PDF exists, add `url = {\url{...}}`; use `note` only for text that should appear in the reference list; use `title = {{Title}}` with double braces to preserve capitalization.
 3. **Subfolder:** Pick or create a subfolder under `bibliography/`.
 4. **PDF:** Save to the subfolder and **rename to `{citationkey}.pdf`** (e.g. `harris2024.pdf`). Do not leave source filenames (e.g. publisher article IDs) in place.
-5. **Text:** Run `pdftotext bibliography/<subfolder>/{citationkey}.pdf bibliography/<subfolder>/{citationkey}.txt` (same base name as PDF).
-6. **Subfolder README:** Add one bullet line in `bibliography/<subfolder>/README.md` (include PDF link, Google Scholar link with paper title as query, and note file link).
-7. **Note file:** Create `bibliography/<subfolder>/{citationkey}.md` with metadata, summary, relevance, key concepts, and notes; include a Google Scholar link with the paper title as the query string.
+5. **Full text:** For PDF: `pdftotext bibliography/<subfolder>/{citationkey}.pdf bibliography/<subfolder>/{citationkey}.txt`, then `pandoc -f markdown -t markdown --wrap=none bibliography/<subfolder>/{citationkey}.txt -o bibliography/<subfolder>/{citationkey}.md`. For EPUB/HTML/LaTeX: `pandoc bibliography/<subfolder>/{citationkey}.epub -o bibliography/<subfolder>/{citationkey}.md` (and similarly for other formats pandoc supports).
+6. **Subfolder README:** Add one bullet line in `bibliography/<subfolder>/README.md` (include PDF link, Google Scholar link with paper title as query, and note file link to `{citationkey}-notes.md`).
+7. **Note file:** Create `bibliography/<subfolder>/{citationkey}-notes.md` with metadata, summary, relevance, key concepts, and notes; include a Google Scholar link with the paper title as the query string.
 8. **Relevance:** Map paper content to topics in class.
 
 ## Scaling with many papers
@@ -114,12 +130,12 @@ Each note file in a subfolder should follow this structure:
 - **Subfolder README:** Stays one line per paper; no need for long descriptions in the README.
 - **Note files:** Keep the detailed content in the `.md` files; README is only for discovery and links.
 - **Top-level index:** Maintain `bibliography/README.md` with subfolder names and links so you can quickly see all topics.
-- **Naming:** Use `{citationkey}` for all three: `.pdf`, `.txt`, and `.md`. Rename PDFs to `{citationkey}.pdf` when adding papers; do not leave publisher or journal filenames in place.
+- **Naming:** Use `{citationkey}.pdf` for the source; `{citationkey}.md` (pandoc) or `{citationkey}.txt` (pdftotext fallback) for full text; `{citationkey}-notes.md` for the note file. Rename PDFs to `{citationkey}.pdf` when adding papers; do not leave publisher or journal filenames in place.
 
 ## Git and file handling
 
 - **PDFs:** Ignored by git (e.g. `*.pdf` in `bibliography/*/.gitignore` or equivalent). Stored locally only.
-- **.txt and .md:** Tracked so assistants and tools can search and summarize.
+- **Full text and notes:** `{citationkey}.md`, `{citationkey}.txt`, and `{citationkey}-notes.md` are tracked so assistants and tools can search and summarise. Prefer `.md` (pandoc output) over `.txt` when both exist.
 - This keeps the repo small while leaving full text available locally and in notes.
 
 ## References

@@ -1,15 +1,40 @@
 # Readings 
 
+# Week 5
+
+Required:
+- [From Anthropic’s Interpretability Research](https://transformer-circuits.pub/) read [Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet](https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html). This is a difficult but rewarding. Find one way to explain why this paper is important without going into all technical details.
+- [Going Whole Hog: A Philosophical Defense of AI Cognition](https://arxiv.org/abs/2504.13988). This paper defends the thesis that "LLMs like ChatGPT are full-blown linguistic and cognitive agents, possessing understanding, beliefs, desires, knowledge, and intentions." The paper anticipates a number of counter arguments against their thesis, eg in Chapters 4, 5, 7. Choose one of them and argue against the authors of the paper. Alternatively, find your own counter argument.
+
+Optional: 
+- Watch the video [The Most Misinterpreted Experiment in Neuroscience](https://www.youtube.com/watch?v=yDDgDSmfS6Q). Chapman professor [Aaron Schurger](https://scholar.google.com/citations?user=lBSjfagAAAAJ&hl=en) is known for his work in cognitive neuroscience, free will and consciousness. In case there is interest, we could ask him whether he wants to come by for a discussion. 
+
+
+## Week 4
+
+Required:
+
+- [An Essay on the Principle of Population](https://math.uchicago.edu/~shmuel/Modeling/Malthus,%20An%20essay%20on%20the%20principle%20of%20population.pdf) 6th edition by Malthus. Chapters 1 and 2 (pages 13-22).
+- Acemoglu: [The Simple Macroeconomics of AI](https://economics.mit.edu/sites/default/files/2024-04/The%20Simple%20Macroeconomics%20of%20AI.pdf), 2024. This is a long paper, use LLMs to extract the big picture (main argument, main limitations). Also on [Justified Posteriors](https://empiricrafting.substack.com/p/the-simple-macroeconomics-of-ai). You need to understand the meaning (not the derivation) of equations (14) and Section 3.2.
+- [ThreeEconomicModels.md](docs/ThreeEconomicModels.md)
+  
+Optional:
+
+- Eloundou etal: [GPTs are GPTs: An Early Look at the Labor Market Impact Potential of Large Language Models](https://arxiv.org/abs/2303.10130), 2023.
+- Scott Alexander: [Meditations On Moloch](https://www.slatestarcodexabridged.com/Meditations-On-Moloch), 2014.
+
 ## Week 3
 
 Required:
-- Anthropic [Constitution](https://www.anthropic.com:constitution). Read the Overview, Closing thoughts, and "Acknowledging open problems" and skim the rest
+- Anthropic [Constitution](https://www.anthropic.com/constitution). Read the Overview, Closing thoughts, and "Acknowledging open problems" and skim the rest
 - [Eliciting latent knowledge: How to tell if your eyes deceive you](https://docs.google.com/document/d/1WwsnJQstPq91_Yh-Ch2XRL8H_EpsnjrC1dwZXR37PC8/edit?tab=t.0#heading=h.kkaua0hwmp1d). Read through page 9 and skim the rest
 
 One of the following:
 - [AGI Safety From First Principles](https://drive.google.com/file/d/1uK7NhdSKprQKZnRjU58X7NLA1auXlWHt/view), Richard Ngo. Read Introduction (page 2, and Alignment page 16-22, skim the rest).
 - [Isaac Asimov's Laws of Robotics Are Wrong](https://www.brookings.edu/articles/isaac-asimovs-laws-of-robotics-are-wrong/), Peter W. Singer
 - [The Doomsday Invention](https://www.newyorker.com/magazine/2015/11/23/doomsday-invention-artificial-intelligence-nick-bostrom), The New Yorker.
+- [ELK prize results](https://www.lesswrong.com/posts/zjMKpSB2Xccn9qi5t/elk-prize-results). A follow up to the "Eliciting Latent Knowledge" paper.
+
 
 ## Week 2
 
