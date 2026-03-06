@@ -61,7 +61,7 @@ Total output is $Y = y \cdot AL = k^\alpha AL$. In the steady state, $k$ is cons
 
 $$\frac{\dot{Y}}{Y} = \frac{d}{dt} \ln(k^{\ast\alpha} A L) = \alpha \frac{\dot{k^\ast}}{k^\ast} + \frac{\dot{A}}{A} + \frac{\dot{L}}{L}$$
 
-Since $\dot{k^*} = 0$, the expression simplifies to:
+Since $\dot{k^\ast} = 0$, the expression simplifies to:
 $$\frac{\dot{Y}}{Y} = 0 + g + n$$
 
 > **Note on Per-Capita Output:** Unlike Malthus, Solow allows for sustained increases in living standards. However, per-capita output ($y = Y/L$) grows asymptotically at rate $g$. This means that without continuous improvements in technology, capital accumulation alone cannot drive long-run growth in income per person.
