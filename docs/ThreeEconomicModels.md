@@ -57,8 +57,10 @@ Set $\dot{k} = 0$:
 $$sk^\alpha = (n + g + \delta)k \implies k^* = \left( \frac{s}{n+g+\delta} \right)^{\frac{1}{1-\alpha}}$$
 
 **2. Show the asymptotic growth rate of total output ($Y$).**
-Total output is $Y = y \cdot AL = k^\alpha AL$. In the steady state, $k$ is constant ($k^*$). Therefore, the growth rate of $Y$ is:
+Total output is $Y = y \cdot AL = k^\alpha AL$. In the steady state, $k$ is constant ($k^\ast$). Therefore, the growth rate of $Y$ is:
+
 $$\frac{\dot{Y}}{Y} = \frac{d}{dt} \ln(k^{*\alpha} A L) = \alpha \frac{\dot{k^*}}{k^*} + \frac{\dot{A}}{A} + \frac{\dot{L}}{L}$$
+
 Since $\dot{k^*} = 0$, the expression simplifies to:
 $$\frac{\dot{Y}}{Y} = 0 + g + n$$
 
