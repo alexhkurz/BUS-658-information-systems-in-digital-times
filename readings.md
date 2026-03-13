@@ -1,6 +1,11 @@
 # Readings 
 
-# Week 5
+## Week 6
+
+- Watch Terminator 2 or come to our move night.
+- No readings, but prepare a slide or two about your reflection.
+
+## Week 5
 
 Required:
 - [From Anthropic’s Interpretability Research](https://transformer-circuits.pub/) read [Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet](https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html). This is a difficult but rewarding. Find one way to explain why this paper is important without going into all technical details.
