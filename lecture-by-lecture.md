@@ -5,6 +5,6 @@
 - L3: [Discussion of Readings and Questions](https://hackmd.io/@alexhkurz/SJ2gWi4OZl) (also see Discord). The [Situational Awareness Slides](https://alexhkurz.github.io/BUS-658-information-systems-in-digital-times/slides/slides03.html). Put the slides for your lab [here](https://docs.google.com/presentation/d/1E4Kl9-Uoe9NznquBiex7Q1BhWkQQWv-w0kC4r2vSdxQ/edit?slide=id.p#slide=id.p) please. [Readings](readings.md).
 - L4: [Discussion of Readings and Questions](https://hackmd.io/@alexhkurz/rJv9pECdZl). [Slides for the Lab](https://docs.google.com/presentation/d/1hW8wBY9YqVXbPVGI7rY-B9Ahn4xpn1kZZthB1VNeR8k/edit?slide=id.p#slide=id.p). [Readings](readings.md).
 - L5:  [Discussion of Readings and Questions](https://hackmd.io/@alexhkurz/H17DdKvY-g). Seth's [Slides on Growth](./slides/Seth's%20Slides%20BUS%20658%20Class%205%20on%20Automation%20Economics%20and%20Growth.pdf) and the [Three Economic Models](docs/ThreeEconomicModels.md). [Readings](readings.md).
--  L6: [Discssion of readings and questions](https://docs.google.com/document/d/1c0qnv2xlTUNHrXEmPG3lefX9CfXaavi7tt2XrU5_elQ/edit?tab=t.0).The slides on [Scaling Monosemanticity](https://hackmd.io/@alexhkurz/Sy6kDDx9be). [Readings](readings.md).
+-  L6: [Discussion of readings and questions](https://docs.google.com/document/d/1c0qnv2xlTUNHrXEmPG3lefX9CfXaavi7tt2XrU5_elQ/edit?tab=t.0).The slides on [Scaling Monosemanticity](https://hackmd.io/@alexhkurz/Sy6kDDx9be). [Readings](readings.md).
 
 
