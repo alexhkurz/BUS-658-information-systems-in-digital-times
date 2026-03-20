@@ -1,5 +1,15 @@
 # Readings 
 
+## Week 7
+
+Required:
+- Vitalik Buterin, [The Meaning of Decentralization](https://medium.com/@VitalikButerin/the-meaning-of-decentralization-a0c92b76a274), 
+- Seb Krier, [Coasean Bargaining at Scale](https://blog.cosmos-institute.org/p/coasean-bargaining-at-scale), 2025
+
+Optional:
+- [Szabo on Smart Contracts](https://firstmonday.org/ojs/index.php/fm/article/view/548/469), 1997
+- Satoshi Nakamoto, [Bitcoin: A Peer-to-Peer Electronic Cash System](https://bitcoin.org/bitcoin.pdf), 2008.
+
 ## Week 6
 
 - Watch Terminator 2 or come to our move night.
