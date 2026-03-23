@@ -9,7 +9,7 @@ Required:
 Optional:
 - Lamport, Shostak, Pease, [The Byzantine Generals Problem](https://lamport.azurewebsites.net/pubs/byz.pdf), 1982
 - [Szabo on Smart Contracts](https://firstmonday.org/ojs/index.php/fm/article/view/548/469), 1997
-- Satoshi Nakamoto, [Bitcoin: A Peer-to-Peer Electronic Cash System](https://bitcoin.org/bitcoin.pdf), 2008.
+- Satoshi Nakamoto, [Bitcoin: A Peer-to-Peer Electronic Cash System](https://bitcoin.org/bitcoin.pdf), 2008
 
 ## Week 6
 
