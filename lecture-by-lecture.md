@@ -7,6 +7,6 @@
 - L5:  [Discussion of Readings and Questions](https://hackmd.io/@alexhkurz/H17DdKvY-g). Seth's [Slides on Growth](./slides/Seth's%20Slides%20BUS%20658%20Class%205%20on%20Automation%20Economics%20and%20Growth.pdf) and the [Three Economic Models](docs/ThreeEconomicModels.md). [Readings](readings.md).
 -  L6: [Discussion of Readings and Questions](https://docs.google.com/document/d/1c0qnv2xlTUNHrXEmPG3lefX9CfXaavi7tt2XrU5_elQ/edit?tab=t.0). The slides on [Scaling Monosemanticity](https://hackmd.io/@alexhkurz/Sy6kDDx9be). [Readings](readings.md).
 -  L7: [Discussion of Reflection 1](https://hackmd.io/@alexhkurz/ByHkBAtcWl). [Readings](readings.md).
--  L8: [Slides of the Lecture](https://hackmd.io/@alexhkurz/Bk9PwKnjbe). [Readings](readings.md).
+-  L8: [Slides of the Lecture](https://hackmd.io/@alexhkurz/SJWjb7siWg). [Readings](readings.md).
 
 
