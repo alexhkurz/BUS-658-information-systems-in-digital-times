@@ -1,5 +1,5 @@
 ---
-description: UK spelling, APA citations, footnotes, LaTeX/BibLaTeX configuration
+description: UK spelling, APA citations, footnotes, LaTeX article setup
 globs: "**/*.tex"
 alwaysApply: true
 ---
@@ -30,7 +30,7 @@ alwaysApply: true
 - **Document class**: Use `article` document class
 - **Fonts**: Use standard fonts (no custom font packages unless necessary)
 - **Compiler**: Use standard `pdflatex` compiler
-- **Bibliography**: Use **BibLaTeX** with an **author-year style** (not natbib)
+- **Bibliography:** BibLaTeX with **biber** and author–year style — full field templates, cite commands, and compile sequence: `../../../bib-mcp/docs/agent-rules/bibtex-biber.md`
 
 ### Required Files for Submission
 
@@ -46,20 +46,4 @@ When submitting, include all ancillary files:
 
 ## Current Status
 
-**Status**: ✅ Migrated to BibLaTeX with author-year style
-
-The `main.tex` file uses:
-```latex
-\usepackage[style=authoryear,backend=biber]{biblatex}
-\addbibresource{references.bib}
-...
-\printbibliography
-```
-
-### Compilation
-
-Use `biber` instead of `bibtex` for bibliography processing:
-1. `pdflatex main.tex`
-2. `biber main`
-3. `pdflatex main.tex`
-4. `pdflatex main.tex`
+**Status**: Migrated to BibLaTeX with author-year style (`main.tex` uses `\usepackage[style=authoryear,backend=biber]{biblatex}` and `\addbibresource{references.bib}`).
