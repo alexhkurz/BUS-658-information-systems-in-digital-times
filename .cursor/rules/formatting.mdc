@@ -30,7 +30,7 @@ alwaysApply: true
 - **Document class**: Use `article` document class
 - **Fonts**: Use standard fonts (no custom font packages unless necessary)
 - **Compiler**: Use standard `pdflatex` compiler
-- **Bibliography:** BibLaTeX with **biber** and author–year style — full field templates, cite commands, and compile sequence: `../../../bib-mcp/docs/agent-rules/bibtex-biber.md`
+- **Bibliography:** BibLaTeX with **biber** and author–year style — full field templates, cite commands, and compile sequence: `../../../bib-mcp/docs/agent-rules/bib-biber.md`
 
 ### Required Files for Submission
 

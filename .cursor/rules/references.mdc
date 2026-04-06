@@ -7,10 +7,10 @@ alwaysApply: false
 # References and BibTeX (this repo)
 
 **Canonical rules** (BibLaTeX/biber, citation keys, entry templates, `\cite` variants):  
-`../../../bib-mcp/docs/agent-rules/bibtex-biber.md`
+`../../../bib-mcp/docs/agent-rules/bib-biber.md`
 
 **MCP tools** (dedup, arXiv fetch, add):  
-`../../../bib-mcp/docs/agent-rules/mcp-bibtex-habits.md`
+`../../../bib-mcp/docs/agent-rules/mcp-bib-habits.md`
 
 ## Overrides for BUS-658
 

@@ -14,5 +14,5 @@ Bibliography **workflow**, **BibTeX/biber**, and **MCP habits** are maintained i
 
 ## Adding a new paper
 
-1. Follow `../../../bib-mcp/docs/agent-rules/bibliography-workflow.md` and `bibtex-biber.md`.
+1. Follow `../../../bib-mcp/docs/agent-rules/bibliography-workflow.md` and `bib-biber.md`.
 2. BibTeX in `references.bib`; files under `bibliography/<theme>/`; note file `{citationkey}-notes.md`.
