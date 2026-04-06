@@ -1,5 +1,22 @@
 # Readings 
 
+## Week 8
+
+- Assignment: 
+  - Discussion questions as usual.
+  - Also be prepared to work on your final project during the in-class lab, with a group and topic selected. 
+
+- Required:
+  - This 20 min book summary video: [Platform Revolution book summary](https://www.youtube.com/watch?v=jfd3k4VUYh4). One can also find a pdf of the book [online](http://103.44.149.34/elib/assets/buku/Platfrom_revolution.pdf).
+  - Wired Magazine article on the tendency of platforms to degrade over time: [“Enshittification”](https://www.wired.com/story/tiktok-platforms-cory-doctorow/)
+
+- One of these:
+  - Shane Greenstein, [The Basic Economics of Internet Infrastructure](https://www.aeaweb.org/articles?id=10.1257/jep.34.2.192), 2020.
+  - justified posteriors episode on [massive facebook experiment](https://empiricrafting.substack.com/p/did-metas-algorithms-swing-the-2020) 
+  - justified posteriors episode with [Network Economist Ben Golub](https://empiricrafting.substack.com/p/ben-golub-ai-referees-social-learning)  
+
+
+
 ## Week 7
 
 Required:
