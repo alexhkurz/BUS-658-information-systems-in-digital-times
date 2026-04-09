@@ -15,8 +15,6 @@
   - justified posteriors episode on [massive facebook experiment](https://empiricrafting.substack.com/p/did-metas-algorithms-swing-the-2020) 
   - justified posteriors episode with [Network Economist Ben Golub](https://empiricrafting.substack.com/p/ben-golub-ai-referees-social-learning)  
 
-
-
 ## Week 7
 
 Required:

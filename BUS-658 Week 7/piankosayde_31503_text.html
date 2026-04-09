@@ -1,0 +1,83 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <title>Week 7 Question: Sayde Pianko</title>
+</head>
+<body>
+<h1>Week 7 Question: Sayde Pianko</h1>
+<div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>If AI agents are going to make stipulated transactions instantly with other agents, how are we going to value the principles that people have such as being "Clean air focused" and how will we standardize human values in a way that makes this instantaneous complex agentic economy work?</span></p>
+<p>&nbsp;</p>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]">This is a genuinely hard problem — it sits at the intersection of mechanism design, moral philosophy, and distributed systems. Let me work through it carefully.</p>
+<h2 class="text-text-100 mt-3 -mb-1 text-[1.125rem] font-bold">The Core Tension</h2>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]">The problem is essentially this: <strong>human values are fuzzy, contextual, and contested — but agentic economies require precise, executable preference representations.</strong> You can't run a smart contract on "I care about clean air."</p>
+<hr class="border-border-200 border-t-0.5 my-3 mx-1.5">
+<h2 class="text-text-100 mt-3 -mb-1 text-[1.125rem] font-bold">How Values Could Be Encoded</h2>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]"><strong>1. Preference Registries (Personal Value Profiles)</strong> Individuals could maintain a signed, versioned preference manifest — something like a structured file that says:</p>
+<ul class="[li_&amp;]:mb-0 [li_&amp;]:mt-1 [li_&amp;]:gap-1 [&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc flex flex-col gap-1 pl-8 mb-3">
+<li class="whitespace-normal break-words pl-2"><em>Carbon cost weight: 0.3 (normalized against price)</em></li>
+<li class="whitespace-normal break-words pl-2"><em>Local sourcing preference: strong</em></li>
+<li class="whitespace-normal break-words pl-2"><em>Labor standards floor: ISO 26000 compliant suppliers only</em></li>
+</ul>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]">Agents acting on your behalf query this registry before executing transactions. The challenge is <em>who curates the ontology</em> of values — that's inherently political.</p>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]"><strong>2. Outcome-Based Proxies (Value Oracles)</strong> Rather than encoding abstract values, you attach agents to <em>measurement systems</em>. A "clean air" value becomes a live feed from EPA AQI data, satellite NO₂ monitoring, or third-party environmental audits. The agent bids differently based on real-time environmental impact scores of counterparties.</p>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]">This is more tractable but has a huge problem: <strong>whoever controls the oracle controls the value.</strong></p>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]"><strong>3. Stakeholder-Weighted DAOs</strong> Decentralized Autonomous Organizations could let affected communities vote on environmental impact weightings continuously. An agent transacting in a region would have to query the local DAO's current preference weights. This is democratic but <em>extremely slow</em> relative to millisecond agentic transactions — which creates a latency mismatch.</p>
+<hr class="border-border-200 border-t-0.5 my-3 mx-1.5">
+<h2 class="text-text-100 mt-3 -mb-1 text-[1.125rem] font-bold">The Standardization Problem</h2>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]">This is where it gets philosophically serious. There are roughly three camps:</p>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]"><strong>Government-led standardization</strong> Agencies like the EPA, SEC (for ESG), or a future "Value Standards Bureau" define canonical metrics. Pros: democratic legitimacy, enforceability. Cons: jurisdictional fragmentation, regulatory capture, values frozen at moment of legislation.</p>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]"><strong>Market-emergent standardization</strong> Values get priced in through reputation systems and revealed preference — similar to how credit scores emerged. The market discovers what "clean air focused" is worth in aggregate. Pros: adaptive, no central authority. Cons: systematically undervalues things markets are bad at pricing (long-horizon, diffuse, non-excludable goods like air quality).</p>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]"><strong>Protocol-layer standardization (the most interesting)</strong> An open standard — think IEEE for values — where anyone can propose a value module, communities ratify versions, and agents declare which <em>version</em> of a value ontology they're running. Like semantic versioning for ethics. This preserves pluralism: a "clean air v2.3" in California vs. "clean air v1.8" in Texas could coexist, and agents negotiate compatibility.</p>
+<hr class="border-border-200 border-t-0.5 my-3 mx-1.5">
+<h2 class="text-text-100 mt-3 -mb-1 text-[1.125rem] font-bold">Making It Instantaneous</h2>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]">The speed problem is real. The likely architecture is <strong>two-layer</strong>:</p>
+<div class="overflow-x-auto w-full px-2 mb-6">
+<table class="min-w-full border-collapse text-sm leading-[1.7] whitespace-normal">
+<thead class="text-left">
+<tr>
+<th class="text-text-100 border-b-0.5 border-border-300/60 py-2 pr-4 align-top font-bold" scope="col">Layer</th>
+<th class="text-text-100 border-b-0.5 border-border-300/60 py-2 pr-4 align-top font-bold" scope="col">Speed</th>
+<th class="text-text-100 border-b-0.5 border-border-300/60 py-2 pr-4 align-top font-bold" scope="col">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="border-b-0.5 border-border-300/30 py-2 pr-4 align-top"><strong>Slow layer</strong></td>
+<td class="border-b-0.5 border-border-300/30 py-2 pr-4 align-top">Days/weeks</td>
+<td class="border-b-0.5 border-border-300/30 py-2 pr-4 align-top">Humans deliberate, vote, update value profiles and oracle weights</td>
+</tr>
+<tr>
+<td class="border-b-0.5 border-border-300/30 py-2 pr-4 align-top"><strong>Fast layer</strong></td>
+<td class="border-b-0.5 border-border-300/30 py-2 pr-4 align-top">Milliseconds</td>
+<td class="border-b-0.5 border-border-300/30 py-2 pr-4 align-top">Agents execute within pre-committed value constraints, like a constitution</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]">This mirrors how constitutional law works: you don't re-litigate free speech every time a newspaper publishes. Agents operate within a pre-ratified value envelope, and edge cases get kicked to human review queues.</p>
+<hr class="border-border-200 border-t-0.5 my-3 mx-1.5">
+<h2 class="text-text-100 mt-3 -mb-1 text-[1.125rem] font-bold">The Deepest Problem: Value Incommensurability</h2>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]">Even if you solve the technical layer, some values <em>cannot be reduced to a common unit</em> without doing violence to them. How many dollars of clean air is worth one unit of local job preservation? Different communities will answer this differently — and legitimately so.</p>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]">The honest answer is that <strong>no fully automated system can resolve this.</strong> The best architecture probably looks like:</p>
+<ul class="[li_&amp;]:mb-0 [li_&amp;]:mt-1 [li_&amp;]:gap-1 [&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc flex flex-col gap-1 pl-8 mb-3">
+<li class="whitespace-normal break-words pl-2">Agents handle <strong>routine transactions</strong> within well-mapped value territory</li>
+<li class="whitespace-normal break-words pl-2"><strong>Contested tradeoffs</strong> trigger human escalation or community governance votes</li>
+<li class="whitespace-normal break-words pl-2"><strong>Red lines</strong> (hard ethical constraints) are non-negotiable at the protocol level — not subject to price signals at all</li>
+</ul>
+<hr class="border-border-200 border-t-0.5 my-3 mx-1.5">
+<h2 class="text-text-100 mt-3 -mb-1 text-[1.125rem] font-bold">What's Most Likely to Actually Happen</h2>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]">Realistically, the first iteration will be messy — large platforms (think AWS, Google, or a dominant agentic middleware) will define <em>de facto</em> value standards, just as they've done with content moderation. This will be contested, leading to regulatory intervention and eventually something like multi-stakeholder governance bodies — similar to how internet standards (IETF, W3C) evolved.</p>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]">The clean air principle specifically is probably best handled not as a <em>preference</em> to be traded off, but as a <strong>floor constraint</strong> enforced at the infrastructure level — agents simply cannot execute transactions below a certain environmental threshold, full stop. That removes it from the market and puts it back in the domain of law and collective governance, which is arguably where it belongs.</p>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]">The most important design principle: <strong>not everything that matters should be monetizable.</strong> A healthy agentic economy will need explicit "no-trade zones" — values held as inviolable rather than optimized.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span>In the article Coasean Bargaining at Scale the author talks about agents being able to price certain situations and create an immediate transaction based on perceived calculated values for an action. They specifically mention these 2 examples, "Your agent knows you have a child with asthma. A blanket “just ban the emissions” rule sounds tidy, but it flattens everything into the same position: trivial harms and intolerable ones, essential trips and frivolous ones. When a delivery truck’s agent plans its route, it doesn't need a government mandate to be considerate. It simply sees a higher “price” for entry onto your street, a signal broadcast by your agent, representing your strong preference to avoid diesel fumes. The truck's agent can then calculate, instantly, whether it is cheaper to pay the “clean air fee” to you and your neighbors, or to take a different route. Conversely, if your neighbor’s agent flags an emergency, for example if she’s in labor and needs the fastest route to the hospital, then everyone’s agents can auto-drop (or even invert) the price to clear a corridor, because they actually&nbsp;<em>value&nbsp;</em>her getting through fast. It's true that in some cases, enforcement of these contracts might cost more than their value; but this could be solved through automated escrows and reputation systems." How is this even possible... How will agents be able to value human opinions and values in monetary terms? What type of currency would be used? What would the infrastructure look like? Etc. These 2 examples leave more questions than answers... A fast-moving, complex, agentic economy like this would involve instantaneous microtransactions with millions of different agents at once... If we take the decentralized route, how will agents use this technology to improve payments? These ideas are super complex and often just quickly named by the author; large infrastructure and societal change will need to happen for a technology like this to proceed. The question above just focuses on getting some more technical details on if these dreams can be achieved.&nbsp;</span></p>
+</div>
+</body>
+</html>
