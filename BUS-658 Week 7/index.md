@@ -1,7 +1,5 @@
 # BUS-658 — Week 7
 
-Index of text submissions in this folder. In VS Code / Cursor, use preview or **Cmd-click** a link to open the HTML file.
-
 ## Submissions
 
 (Comments by AK)
