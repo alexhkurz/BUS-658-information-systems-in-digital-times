@@ -1,5 +1,16 @@
 # Readings 
 
+## Week 9
+
+- Required:
+  - Glen Weyl, Audrey Tang, Jacob Mchangama: [Building A Prosocial Media Ecosystem](https://www.noemamag.com/building-a-prosocial-media-ecosystem/), 2025.
+  - Fiona Scott Morton: [What Will It Take to Create Competitive Digital Markets?‌](https://insights.som.yale.edu/insights/what-will-it-take-to-create-competitive-digital-markets), 2025.
+  -  Henry Farrell: [AI as Governance](https://www.annualreviews.org/content/journals/10.1146/annurev-polisci-040723-013245), 2025.
+
+- Optional:
+  -  Fiona Scott-Morton: [Regulation - Making Markets Work for People](https://som.yale.edu/media/16434/download?inline)
+  -  Justified Posteriors: [Can political science contribute to the AI discourse?](https://empiricrafting.substack.com/p/can-political-science-contribute), 2025.
+
 ## Week 8
 
 - Assignment: 
