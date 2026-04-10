@@ -8,5 +8,6 @@
 -  L6: [Discussion of Readings and Questions](https://docs.google.com/document/d/1c0qnv2xlTUNHrXEmPG3lefX9CfXaavi7tt2XrU5_elQ/edit?tab=t.0). The slides on [Scaling Monosemanticity](https://hackmd.io/@alexhkurz/Sy6kDDx9be). [Readings](readings.md).
 -  L7: [Discussion of Reflection 1](https://hackmd.io/@alexhkurz/ByHkBAtcWl). [Readings](readings.md).
 -  L8: [Slides of the Lecture](https://hackmd.io/@alexhkurz/SJWjb7siWg). [Readings](readings.md).
+-  L9: [Discussion Week 7](./BUS-658%20Week%207/index.md). [Discussion Week 8](https://hackmd.io/@alexhkurz/Syd9SnrhZg). [Slides](./docs/slides/Platform%20Slides%20for%204-9-26.pdf). [Readings](readings.md).
 
 
