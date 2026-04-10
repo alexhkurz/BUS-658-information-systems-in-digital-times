@@ -9,11 +9,13 @@
   - personal AI advocates vs personal AI assistants?
   - trading government rules for big tech rules ... interesting ... can you say more? There is a book that is related to this topic: 
     - Elizabeth Anderson. [Private Government: How Employers Rule Our Lives (and Why We Don't Talk about It)](https://www.jstor.org/stable/j.ctvc775n0). (She compares the modern workplace to a dictatorship.)
-    - Another book whose ideas are always in the background of our class is Albert O. Hirschman: Exit, Voice, and Loyalty. (He says "deterioration" instead of "enshittification" and discusses exit and voice as the two possible mechanisms that can counter enshittification.)
+    - Another book whose ideas are always in the background of our class is Albert O. Hirschman: [Exit, Voice, and Loyalty](https://en.wikipedia.org/wiki/Exit,_Voice,_and_Loyalty). (He says "deterioration" instead of "enshittification"[^ensh] and discusses exit and voice as the two possible mechanisms that can counter enshittification.)
+- Campbell, Lewis
 - [Castro, Carlo](castrocarlo_32164_text.html)
   - You got quite a lot out of the AI, what is your summary?
   - Should AIs have rights or only human persons?
   - Should AIs have to have identifiable human owners?
+- Ehrman, Jordan
 - [Hammer, Amelia](hammeramelia_65523_text.html)
   - "If decentralization is supposed to make systems more fair, why do we still end up seeing power concentrated in certain people or groups?"
     - Buterin: "collusion resistance is the hardest form of decentralization to achieve".
@@ -65,3 +67,5 @@
   - Conclusions by the AI:
     - "If the cost of Intelligence (AI) and Coordination (Blockchain) drops faster than the giants can gatekeep them, we will see a massive boom in small, highly productive firms. However, if the "compute and data" requirements for AI remain so high that only a few can afford them, we risk a "Platform Monopoly" where we all use decentralized tools, but we use them through a centralized "operating system" owned by one or two companies."
     - "Do you think we’ll see governments step in to treat AI compute or data as a "public utility" to prevent this kind of monopoly?"
+
+[^ensh]: Hirschman focuses on "slack" as a reason for deterioriation while Doctorow focuses on rent extraction as a reason for enshittification. Both discuss decentralization. How to institutionalizing the exit option is one of the major topics of Hirschman but also, in another guise, what Doctorow talks about when he advertises the needs for interoperability.
