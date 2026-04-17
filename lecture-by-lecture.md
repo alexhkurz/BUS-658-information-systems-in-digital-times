@@ -9,8 +9,8 @@
 -  L7: [Discussion of Reflection 1](https://hackmd.io/@alexhkurz/ByHkBAtcWl). [Readings](readings.md).
 -  L8: [Slides of the Lecture](https://hackmd.io/@alexhkurz/SJWjb7siWg). Note on the [history of DJT](https://hackmd.io/@alexhkurz/S1FtkTasZl). [Readings](readings.md).
 -  L9: [Discussion Week 7](./BUS-658%20Week%207/index.md). [Discussion Week 8](https://hackmd.io/@alexhkurz/Syd9SnrhZg). [Slides](./docs/slides/Platform%20Slides%20for%204-9-26.pdf). [Readings](readings.md). 
--  L10: [Discussion Week 9](./BUS-658%20Week%209/index.md). [Slides-Weyl-Farrell]( https://hackmd.io/@alexhkurz/H1G-a0RnZl). [Slides-Scott-Morton](./slides/Platform%20Slides%20fiona%20scott%20morton%20for%204-16-26.pptx). [Readings](readings.md). 
--  L11: 
+-  L10: [Slides-Scott-Morton](./slides/Platform%20Slides%20fiona%20scott%20morton%20for%204-16-26.pptx). [Slides-Weyl-Farrell]( https://hackmd.io/@alexhkurz/H1G-a0RnZl). [Discussion Week 9](./BUS-658-Week-9/index.md). [Readings](readings.md). 
+-  L11: ...
 -  L12: Reflection 2 due the day before. 
 -  L13/14: Presentations. (25min per group, including 10min for questions.)
 
