@@ -9,7 +9,7 @@
 -  L7: [Discussion of Reflection 1](https://hackmd.io/@alexhkurz/ByHkBAtcWl). [Readings](readings.md).
 -  L8: [Decentralized Systems, Distributed Hash Tables, Bitcoin](https://hackmd.io/@alexhkurz/SJWjb7siWg). Note on the [history of Distritubed Hash Tables](https://hackmd.io/@alexhkurz/S1FtkTasZl). [Readings](readings.md).
 -  L9: [Discussion Week 7](./BUS-658%20Week%207/index.md). [Discussion Week 8](https://hackmd.io/@alexhkurz/Syd9SnrhZg). [Slides](./docs/slides/Platform%20Slides%20for%204-9-26.pdf). [Readings](readings.md). 
--  L10: [Slides on Scott-Morton](./slides/Platform%20Slides%20fiona%20scott%20morton%20for%204-16-26.pptx). [Slides on Weyl-etal and Farrell]( https://hackmd.io/@alexhkurz/H1G-a0RnZl). [Discussion Week 9](./BUS-658-Week-9/index.md). [Readings](readings.md). 
+-  L10: [Slides on Scott-Morton](./slides/Platform%20Slides%20fiona%20scott%20morton%20for%204-16-26.pptx). [Slides on Weyl-etal and Farrell]( https://hackmd.io/@alexhkurz/H1G-a0RnZl). [Discussion Week 9](./BUS-658-Week-9/index.md). [Readings](readings.md) ... [Slides for the lab](https://docs.google.com/presentation/d/121QOMfM3kWGKsWsxxtYXOtq0dIAqeFAn3n7r700voUA/edit?slide=id.g3d6e3495a92_0_0#slide=id.g3d6e3495a92_0_0)
 -  L11: ...
 -  L12: Reflection 2 due the day before. 
 -  L13/14: Presentations. (25min per group, including 10min for questions.)
