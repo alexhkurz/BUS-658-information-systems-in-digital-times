@@ -1,5 +1,18 @@
 # Readings 
 
+## Week 10
+
+Required: 
+
+- Iain M Banks: [A few notes on the culture](https://theculture.adactio.com/).
+- Astral Codex Ten: [Book Review: Deep Utopia](https://www.astralcodexten.com/p/book-review-deep-utopia) 
+
+Optional:
+
+- Eliezer Yudkowsky: [Orthogonality Thesis](https://www.lesswrong.com/w/orthogonality-thesis)
+- Isaac Asimov: [The Bicentennial Man](https://xpressenglish.com/our-stories/bicentennial-man/). Book or movie.
+- John McCarthy, [THE ROBOT AND THE BABY](http://jmc.stanford.edu/articles/robotandbaby/robotandbaby.pdf)
+
 ## Week 9
 
 - Required:
