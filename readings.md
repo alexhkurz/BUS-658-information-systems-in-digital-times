@@ -1,5 +1,16 @@
 # Readings 
 
+## Week 11
+
+Required:
+- Quisquater etal (1990) [How to explain zero-knowledge protocols to your children](https://pages.cs.wisc.edu/~mkowalcz/628.pdf). The Ali Baba Cave Story.
+- Ohlhaver, Weyl, Buterin (2022) [Decentralized Society: Finding Web3’s Soul](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4105763). Introduces "soulbound tokens" to address the identity problem of the Web. Skip the technical part but try to get a sense of how what problem the paper tries to solve and how zero-knowledge proofs could be relevant.
+
+Optional:
+- Buterin (2021) [An approximate introduction to how zk-SNARKs are possible](https://vitalik.eth.limo/general/2021/01/26/snarks.html). On the application of ZKP to cryptocurrencies.
+- Henry etal (2020) [Where's Alice? Applied Kid Crypto Meets Provable Security](https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=Where%E2%80%99s+Alice%3F%3A+Applied+Kid+Crypto+Meets+Provable+Security&btnG=). This has the "Where is Waldo" story. 
+
+
 ## Week 10
 
 Required: 
