@@ -1,20 +1,49 @@
 ---
 description: BUS-658 bibliography — local paths; canonical workflow in bib-mcp
-globs: bibliography/**/*.md, bibliography/**/README.md, references.bib
+globs: bibliography/**/*.md, bibliography/**/README.md, bibliography/CHANGELOG.md, bibliography/references.bib, references.bib
 alwaysApply: false
 ---
 
 # Bibliography (this repo)
 
-**Canonical rules** (folder tree, PDF → text → Markdown, README line, note template, git):  
-`../../../bib-mcp/docs/agent-rules/bibliography-workflow.md`  
-(relative to this file: up from `.cursor/rules/` to `alexhkurz-at-git`, then `bib-mcp/...`).
+**Shared mechanics** (BibLaTeX/biber, citation keys, `bibliography/` tree, `pdftotext`, optional pandoc → `.md`, **`CHANGELOG.md`**, Unsorted backlog, Marker opt-in):  
+[`../../bib-mcp/docs/styleguide.md`](../../bib-mcp/docs/styleguide.md) — start with *Rule stack for AI assistants*.
+
+Short stubs: [`../../bib-mcp/docs/agent-rules/bibliography-workflow.md`](../../bib-mcp/docs/agent-rules/bibliography-workflow.md), [`../../bib-mcp/docs/agent-rules/mcp-bib-habits.md`](../../bib-mcp/docs/agent-rules/mcp-bib-habits.md).
 
 ## Overrides for BUS-658
 
-- **BibTeX file:** `references.bib` (repository root).
+- **BibTeX file:** `bibliography/references.bib`.
 - **Cited sources root:** `bibliography/` with thematic subfolders.
+- **Curated note file:** `{citationkey}-notes.md` (metadata, summary, relevance, concepts; README and `CHANGELOG.md` link here).
+- **Full text extract:** `{citationkey}.txt` and duplicate `{citationkey}.md` (plain `pdftotext` output), matching existing theme folders.
 - **Note file relevance heading:** `## Relevance to our class` (map content to course topics).
-- **Citation keys:** see `references.mdc` (author-year style, e.g. `commelin2023`).
+- **Citation keys:** see `references.mdc` and the styleguide; **new** keys use **`{lastname}{year}_{short_snake}`** (underscore after the year) unless extending a legacy key.
 
-Follow the canonical checklist there; only the paths and heading above differ.
+When **bib-mcp** is in the same Cursor workspace, follow **`cursor-bibliography-rules.mdc`** there (`alwaysApply`) in addition to this file.
+
+---
+
+## `bibliography/CHANGELOG.md`
+
+**Definition of done:** any ingestion that adds or completes a paper’s curated `{citationkey}-notes.md` **must** prepend **`bibliography/CHANGELOG.md`** (short title as link → note path relative to that file, citation key in backticks). See [*bibliography/CHANGELOG.md* (global convention)](../../bib-mcp/docs/styleguide.md#bibliographychangelogmd-global-convention).
+
+---
+
+## Adding or completing a paper (checklist)
+
+1. **Citation key** — assign per styleguide / `references.mdc`; must match PDF / `.txt` / `.md` / `-notes.md` basenames.
+2. **`bibliography/references.bib`** — add or correct the entry.
+3. **Folder** — correct subfolder under `bibliography/` (or `Unsorted/` until known).
+4. **PDF** — `{citationkey}.pdf`; gitignored via `bibliography/.gitignore`.
+5. **Text** — `pdftotext` → `{citationkey}.txt`; copy to `{citationkey}.md`. If the PDF is scan-only, leave a one-line explanation in `.txt` / `.md` and rely on the curated note + DOI.
+6. **`{citationkey}-notes.md`** — metadata, summary, authors, **`## Relevance to our class`**, key concepts, notes; include Google Scholar link in metadata.
+7. **Subfolder `README.md`** — one bullet per styleguide Variant A; **year ascending**.
+8. **Top-level `bibliography/README.md`** — add a line under **Subfolders** when you introduce a new theme directory.
+9. **`bibliography/CHANGELOG.md`** — prepend under `## YYYY-MM-DD`.
+
+---
+
+## Git
+
+Track curated `*-notes.md`, `{citationkey}.md`, `{citationkey}.txt`, `README.md`, `CHANGELOG.md`; do **not** commit `*.pdf` under `bibliography/`.

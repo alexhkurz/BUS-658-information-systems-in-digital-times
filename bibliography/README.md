@@ -16,3 +16,4 @@ Course bibliography: papers, reports, and readings for Information Systems in Di
 - [LLM Compression](LLM%20Compression/README.md) — Compression using LLMs (LLMs as compressors) and compressing LLMs (pruning, quantization, distillation, NAS).
 - [Entropy Estimation](Entropy%20Estimation/README.md) — Entropy of natural language: estimation methods, limits of corpus-based estimation, word entropy across languages, LLM uncertainty quantification.
 - [Emergent Properties](Emergent%20Properties/README.md) — Emergence, “more is different,” and the hierarchical structure of science; relevance to scale and complexity (e.g. in AI and language models).
+- [Zero-Knowledge Proofs](Zero-Knowledge%20Proofs/README.md) — Interactive proofs, knowledge complexity, and zero-knowledge proof systems for NP (foundations for cryptography and privacy-preserving protocols).

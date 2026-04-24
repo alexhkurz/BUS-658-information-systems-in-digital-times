@@ -1,6 +1,6 @@
 ---
 description: BUS-658 BibTeX — local file; canonical rules in bib-mcp
-globs: references.bib, bibliography/**/*.md
+globs: references.bib, bibliography/references.bib, bibliography/**/*.md, bibliography/CHANGELOG.md
 alwaysApply: false
 ---
 
@@ -14,6 +14,6 @@ alwaysApply: false
 
 ## Overrides for BUS-658
 
-- **File:** add entries to `references.bib` at the repo root.
+- **File:** add entries to `bibliography/references.bib` (this repository’s consolidated BibTeX).
 - **Workflow:** when adding a paper, also follow `bibliography.mdc` (notes under `bibliography/<theme>/`).
 - **In-document style:** UK spelling and APA author–date prose are in `formatting.mdc`.
