@@ -1,6 +1,6 @@
-# Readings 
+# Readings
 
-## Week 11
+## Week 11: Zero-Knowledge Proofs and Web3 Identity
 
 Required:
 - Quisquater etal (1990) [How to explain zero-knowledge protocols to your children](https://pages.cs.wisc.edu/~mkowalcz/628.pdf). The Ali Baba Cave Story.
@@ -11,7 +11,7 @@ Optional:
 - Henry etal (2020) [Where's Alice? Applied Kid Crypto Meets Provable Security](https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=Where%E2%80%99s+Alice%3F%3A+Applied+Kid+Crypto+Meets+Provable+Security&btnG=). This has the "Where is Waldo" story. 
 
 
-## Week 10
+## Week 10: AI Futures, Utopia, and Value Alignment
 
 Required: 
 
@@ -24,7 +24,7 @@ Optional:
 - Isaac Asimov: [The Bicentennial Man](https://xpressenglish.com/our-stories/bicentennial-man/). Book or movie.
 - John McCarthy, [THE ROBOT AND THE BABY](http://jmc.stanford.edu/articles/robotandbaby/robotandbaby.pdf)
 
-## Week 9
+## Week 9: Policy and Governance
 
 - Required:
   - Glen Weyl, Audrey Tang, Jacob Mchangama: [Building A Prosocial Media Ecosystem](https://www.noemamag.com/building-a-prosocial-media-ecosystem/), 2025.
@@ -35,7 +35,7 @@ Optional:
   -  Fiona Scott-Morton: [Regulation - Making Markets Work for People](https://som.yale.edu/media/16434/download?inline)
   -  Justified Posteriors: [Can political science contribute to the AI discourse?](https://empiricrafting.substack.com/p/can-political-science-contribute), 2025.
 
-## Week 8
+## Week 8: Platform Dynamics, Infrastructure, and Market Design
 
 - Assignment: 
   - Discussion questions as usual.
@@ -50,7 +50,7 @@ Optional:
   - justified posteriors episode on [massive facebook experiment](https://empiricrafting.substack.com/p/did-metas-algorithms-swing-the-2020) 
   - justified posteriors episode with [Network Economist Ben Golub](https://empiricrafting.substack.com/p/ben-golub-ai-referees-social-learning)  
 
-## Week 7
+## Week 7: Technologies for Decentralisation
 
 Required:
 - Vitalik Buterin, [The Meaning of Decentralization](https://medium.com/@VitalikButerin/the-meaning-of-decentralization-a0c92b76a274), 2017
@@ -61,12 +61,12 @@ Optional:
 - [Szabo on Smart Contracts](https://firstmonday.org/ojs/index.php/fm/article/view/548/469), 1997
 - Satoshi Nakamoto, [Bitcoin: A Peer-to-Peer Electronic Cash System](https://bitcoin.org/bitcoin.pdf), 2008
 
-## Week 6
+## Week 6: Reflection Checkpoint (No New Readings)
 
 - Watch Terminator 2 or come to our move night.
 - No readings, but prepare a slide or two about your reflection.
 
-## Week 5
+## Week 5: Interpretability, Cognition, Philosophy of AI Minds
 
 Required:
 - [From Anthropic’s Interpretability Research](https://transformer-circuits.pub/) read [Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet](https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html). This is a difficult but rewarding. Find one way to explain why this paper is important without going into all technical details.
@@ -77,7 +77,7 @@ Optional:
 - Watch the video [The Most Misinterpreted Experiment in Neuroscience](https://www.youtube.com/watch?v=yDDgDSmfS6Q). Chapman professor [Aaron Schurger](https://scholar.google.com/citations?user=lBSjfagAAAAJ&hl=en) is known for his work in cognitive neuroscience, free will and consciousness. In case there is interest, we could ask him whether he wants to come by for a discussion. 
 
 
-## Week 4
+## Week 4: Automation, Growth, Labour-Market
 
 Required:
 
@@ -90,7 +90,7 @@ Optional:
 - Eloundou etal: [GPTs are GPTs: An Early Look at the Labor Market Impact Potential of Large Language Models](https://arxiv.org/abs/2303.10130), 2023.
 - Scott Alexander: [Meditations On Moloch](https://www.slatestarcodexabridged.com/Meditations-On-Moloch), 2014.
 
-## Week 3
+## Week 3: AI Alignment
 
 Required:
 - Anthropic [Constitution](https://www.anthropic.com/constitution). Read the Overview, Closing thoughts, and "Acknowledging open problems" and skim the rest
@@ -103,7 +103,7 @@ One of the following:
 - [ELK prize results](https://www.lesswrong.com/posts/zjMKpSB2Xccn9qi5t/elk-prize-results). A follow up to the "Eliciting Latent Knowledge" paper.
 
 
-## Week 2
+## Week 2: Forecasting AI Trajectories
 
 - Required:
   - [Situational Awareness](https://situational-awareness.ai/) by Leopold Aschenbrenner. The [Justified Posteriors podcast](https://empiricrafting.substack.com/p/situational-awareness).
@@ -114,19 +114,16 @@ One of the following:
   - [Why Can't Your AI Agent Book a Flight?](https://empiricrafting.substack.com/p/why-cant-your-ai-agent-book-a-flight) and [The Semantic Web](https://www.lassila.org/publications/2001/SciAm.pdf)
   - [Stanford AI Index Report (2025)](https://hai.stanford.edu/ai-index/2025-ai-index-report)  
   - [Evaluating GDPVal](https://empiricrafting.substack.com/p/evaluating-gdpval-openais-eval-for) and [GDPval: Evaluating AI Model Performance on Real-World Economically Valuable Tasks](https://arxiv.org/pdf/2510.04374.pdf)
-  - Anthropic — [Constitution](https://www.anthropic.com:constitution)  
 
-## Week 1
+## Week 1: AI Foundations
 
 - Required:
    -  Lenat & Marcus — [Getting from Generative AI to Trustworthy AI](https://arxiv.org/pdf/2308.04445) (16 desiderata for future AI).
-  
-- One of the following:
-  - 3Blue1Brown — [Neural Networks](https://www.3blue1brown.com/topics/neural-networks) (foundational introduction)
-  - [Attention Is All You Need](https://arxiv.org/abs/1706.03762) (the seminal paper)
+  - One of the following:
+    - 3Blue1Brown — [Neural Networks](https://www.3blue1brown.com/topics/neural-networks) (foundational introduction)
+    - [Attention Is All You Need](https://arxiv.org/abs/1706.03762) (the seminal paper)
 
 - One of the following:
   - [Why Can't Your AI Agent Book a Flight?](https://empiricrafting.substack.com/p/why-cant-your-ai-agent-book-a-flight) and [The Semantic Web](https://www.lassila.org/publications/2001/SciAm.pdf)
   - [Stanford AI Index Report (2025)](https://hai.stanford.edu/ai-index/2025-ai-index-report)  
   - [Evaluating GDPVal](https://empiricrafting.substack.com/p/evaluating-gdpval-openais-eval-for) and [GDPval: Evaluating AI Model Performance on Real-World Economically Valuable Tasks](https://arxiv.org/pdf/2510.04374.pdf)
-  - Anthropic — [Constitution](https://www.anthropic.com:constitution)  
