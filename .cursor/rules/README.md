@@ -8,6 +8,7 @@ Bibliography **workflow**, **BibTeX/biber**, and **MCP habits** are maintained i
 
 ## Rule files (.mdc)
 
+- **`workspace.mdc`** — `alwaysApply: true`; in multi-root workspaces, agents must prefix chat links with **`BUS-658-information-systems-in-digital-times/`** (never bare `bibliography/README.md`, etc.).
 - **`bibliography.mdc`** — Applies to `bibliography/**`, `bibliography/CHANGELOG.md`, and `bibliography/references.bib`. Points at bib-mcp; BUS-658 paths, `*-notes.md`, and “Relevance to our class”.
 - **`references.mdc`** — Applies to `bibliography/references.bib`, `references.bib`, and bibliography notes. Points at bib-mcp.
 - **`formatting.mdc`** — UK spelling, APA prose, article class, footnotes. Always on for `*.tex`; BibLaTeX details defer to bib-mcp.

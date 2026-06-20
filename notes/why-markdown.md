@@ -1,6 +1,6 @@
 # Markdown, the Lingua Franca of AI
 
-The title is inspired by Anil Dash's blog [How Markdown took over the world](https://www.anildash.com/2026/01/09/how-markdown-took-over-the-world/). This blog is also a good source on the history markdown. See also [Wikipedia](https://en.wikipedia.org/wiki/Markdown). If you dont know the story of [Aaron Swartz](https://en.wikipedia.org/wiki/Aaron_Swartz), it is very remarkable (both inspiring and sad) and there is a great documentary somewhere on the web. 
+The title is inspired by Anil Dash's blog [How Markdown took over the world](https://www.anildash.com/2026/01/09/how-markdown-took-over-the-world/). This blog is also a good source on the history markdown. See also [Wikipedia](https://en.wikipedia.org/wiki/Markdown). If you dont know the story of [Aaron Swartz](https://en.wikipedia.org/wiki/Aaron_Swartz), it is very remarkable (both inspiring and sad) and there is a [great documentary](https://www.youtube.com/watch?v=9vz06QO3UkQ&rco=1). 
 
 [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/) and [Basic Syntax](https://www.markdownguide.org/basic-syntax/)
 

@@ -11,7 +11,7 @@ Optional:
 - Henry etal (2020) [Where's Alice? Applied Kid Crypto Meets Provable Security](https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=Where%E2%80%99s+Alice%3F%3A+Applied+Kid+Crypto+Meets+Provable+Security&btnG=). This has the "Where is Waldo" story. 
 
 
-## Week 10: AI Futures, Utopia, and Value Alignment
+## Week 10: Utopias
 
 Required: 
 
@@ -43,7 +43,7 @@ Optional:
 
 - Required:
   - This 20 min book summary video: [Platform Revolution book summary](https://www.youtube.com/watch?v=jfd3k4VUYh4). One can also find a pdf of the book [online](http://103.44.149.34/elib/assets/buku/Platfrom_revolution.pdf).
-  - Wired Magazine article on the tendency of platforms to degrade over time: [“Enshittification”](https://www.wired.com/story/tiktok-platforms-cory-doctorow/)
+  - Cory Doctorow on [Enshittification](https://www.wired.com/story/tiktok-platforms-cory-doctorow/)
 
 - One of these:
   - Shane Greenstein, [The Basic Economics of Internet Infrastructure](https://www.aeaweb.org/articles?id=10.1257/jep.34.2.192), 2020.
@@ -66,7 +66,7 @@ Optional:
 - Watch Terminator 2 or come to our move night.
 - No readings, but prepare a slide or two about your reflection.
 
-## Week 5: Interpretability, Cognition, Philosophy of AI Minds
+## Week 5: Mechanistic Interpretability and Philosophy of Mind
 
 Required:
 - [From Anthropic’s Interpretability Research](https://transformer-circuits.pub/) read [Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet](https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html). This is a difficult but rewarding. Find one way to explain why this paper is important without going into all technical details.
