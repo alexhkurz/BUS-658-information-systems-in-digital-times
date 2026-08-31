@@ -25,7 +25,7 @@
     - Or alternate, closely related, weekly assignment
 - 15% Reflection 1:
     - At the end of week 5, we will suggest to each student a topic for reflection based on one of their proposed questions. 
-    - Students will have two weeks to complete a 500-1,000 word reflection on this topic; encourage or require an analytical element?
+    - Students will have two weeks to complete a 500-1,000 word reflection on this topic.
 - 15% Reflection 2:
     - At the end of week 10, we will suggest to each student a second reflection topic based on their proposed questions
     - Students will have two weeks to complete a 500-1,000 word reflection on this topic.
