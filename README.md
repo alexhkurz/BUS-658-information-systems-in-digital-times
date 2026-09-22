@@ -19,6 +19,17 @@ Lectures provide the theoretical background for each topic. Labs build practical
 - [Canvas](https://canvas.chapman.edu/courses/84365)
 - [Intro (Slides)](https://alexhkurz.github.io/BUS-658-information-systems-in-digital-times/)
 
+## Sister repository (private)
+
+Student submissions, reflections, conversation exports, and other non-public material live in the private sister checkout [`BUS-658-2026-private`](../BUS-658-2026-private) (sibling folder; not a submodule).
+
+| This repo (public) | Private sister |
+|--------------------|----------------|
+| Syllabus, readings, lecture-by-lecture, slides, labs, bibliography | Submissions, reflections, graded work, large PDFs, project slides |
+| Assignment prompts | Instructor notes on student work |
+
+Do not commit student submissions here.
+
 ---
 
-<span style="color: #999;">Slides are written in [Marp](https://marp.app/) markdown in `slides/`. For example, to deploy [`slides/slides01.md`](slides/slides01.md) to [GitHub Pages](https://alexhkurz.github.io/BUS-658-information-systems-in-digital-times/slides/slides01.html) run `bash scripts/gh-pages.sh`.</span> 
+<span style="color: #999;">Slides are written in [Marp](https://marp.app/) markdown in `slides/`. For example, to deploy [`slides/slides01.md`](slides/slides01.md) to [GitHub Pages](https://alexhkurz.github.io/BUS-658-information-systems-in-digital-times/slides/slides01.html) run `bash scripts/gh-pages.sh`.</span>
